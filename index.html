@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>St. Paul Central Mountain Bike Team | Youth Cycling Saint Paul MN</title>
+  <meta name="description" content="Experience the excitement of mountain biking with the St. Paul Central Mountain Bike Team. Youth cycling for grades 6-12, all skill levels welcome. July-October season with coaching, trail rides, and optional MCA racing across Twin Cities trails in Saint Paul, Minnesota.">
+  <link rel="canonical" href="https://centralmtb.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="St. Paul Central Mountain Bike Team | Youth Cycling Saint Paul MN">
+  <meta property="og:description" content="Join the St. Paul Central Mountain Bike Team — youth cycling for grades 6-12. All skill levels welcome. Coaching, trail rides, and optional MCA racing across Twin Cities trails.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://centralmtb.com/">
+  <meta property="og:image" content="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1200,fit=crop,q=80/AMqlGL5ErPhwawxo/mountain-biking-minnesota-YX4aZklpDXfb70gw.jpg">
+  <meta property="og:site_name" content="St. Paul Central Mountain Bike Team">
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SportsTeam",
+    "name": "St. Paul Central Mountain Bike Team",
+    "alternateName": "Central MTB",
+    "url": "https://centralmtb.com",
+    "sport": "Mountain Biking",
+    "description": "Youth mountain biking team for grades 6-12 in the St. Paul school district. All skill levels welcome. July-October season with coaching, practice rides, and optional MCA racing.",
+    "email": "hello@centralmtb.com",
+    "memberOf": {
+      "@type": "SportsOrganization",
+      "name": "Minnesota Cycling Association",
+      "url": "https://www.mncycling.org"
+    },
+    "location": {
+      "@type": "City",
+      "name": "Saint Paul",
+      "addressRegion": "MN"
+    },
+    "areaServed": {
+      "@type": "EducationalOrganization",
+      "name": "Saint Paul Public Schools District 625"
+    }
+  }
+  </script>
+
+  <!-- Preload hero image for fast LCP -->
+  <link rel="preload" as="image" href="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,fit=crop,q=80/AMqlGL5ErPhwawxo/mountain-biking-minnesota-YX4aZklpDXfb70gw.jpg"
+        imagesrcset="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop,q=75/AMqlGL5ErPhwawxo/mountain-biking-minnesota-YX4aZklpDXfb70gw.jpg 768w,
+                     https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1280,fit=crop,q=80/AMqlGL5ErPhwawxo/mountain-biking-minnesota-YX4aZklpDXfb70gw.jpg 1280w,
+                     https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,fit=crop,q=80/AMqlGL5ErPhwawxo/mountain-biking-minnesota-YX4aZklpDXfb70gw.jpg 1920w"
+        imagesizes="100vw">
+
+  <!-- Preconnect to font + image CDNs -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://assets.zyrosite.com">
+
+  <!-- Fonts with display:swap to prevent render blocking -->
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ========================================
+       VARIABLES & RESET (mobile-first)
+    ======================================== */
+    :root {
+      --red: #C2282D;
+      --red-hover: #d93338;
+      --red-dark: #a12024;
+      --dark: #0f1114;
+      --dark-alt: #1a1d23;
+      --light: #f7f6f3;
+      --white: #ffffff;
+      --text: #2d2d2d;
+      --text-mid: #555;
+      --text-muted: #777;
+      --border: #e2dfd9;
+      --card: #ffffff;
+      --alt-bg: #f0eeea;
+      --font-d: 'Barlow Condensed', sans-serif;
+      --font-b: 'Barlow', sans-serif;
+      --nav-h: 64px;
+      --radius: 10px;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+
+    body {
+      font-family: var(--font-b);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--light);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img { max-width:100%; height:auto; display:block; }
+    a { color:inherit; text-decoration:none; }
+
+    /* ========================================
+       NAVIGATION (mobile-first)
+    ======================================== */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      height: var(--nav-h);
+      background: rgba(15,17,20,0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 16px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo img { height: 40px; width: auto; }
+
+    /* Desktop nav hidden on mobile */
+    .nav-links { display: none; list-style: none; align-items: center; gap: 4px; }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.8);
+      font-weight: 500;
+      font-size: 15px;
+      padding: 10px 14px;
+      border-radius: 6px;
+      transition: color 0.15s, background 0.15s;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .nav-links a:hover { color:#fff; background:rgba(255,255,255,0.08); }
+
+    .dropdown { position:relative; }
+    .dropdown > a::after {
+      content:''; display:inline-block;
+      width:0; height:0;
+      border-left:4px solid transparent; border-right:4px solid transparent;
+      border-top:4px solid currentColor;
+      margin-left:6px; opacity:0.5;
+    }
+
+    .dropdown-menu {
+      display:none; position:absolute; top:100%; left:0;
+      background: var(--dark-alt);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:8px; padding:6px 0;
+      min-width:210px;
+      box-shadow:0 12px 40px rgba(0,0,0,0.4);
+      list-style:none;
+    }
+    .dropdown:hover .dropdown-menu { display:block; }
+    .dropdown-menu a { display:flex; padding:10px 18px; font-size:14px; border-radius:0; min-height:44px; align-items:center; }
+    .dropdown-menu a:hover { background:rgba(255,255,255,0.06); }
+
+    .nav-cta {
+      background: var(--red) !important;
+      color: #fff !important;
+      font-weight: 700 !important;
+      padding: 10px 20px !important;
+      border-radius: 6px !important;
+    }
+    .nav-cta:hover { background: var(--red-hover) !important; }
+
+    /* Hamburger */
+    .ham {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      min-width: 44px;
+      min-height: 44px;
+    }
+    .ham span {
+      display:block; width:22px; height:2px;
+      background:#fff; border-radius:2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .ham.active span:nth-child(1) { transform: rotate(45deg) translate(4px,5px); }
+    .ham.active span:nth-child(2) { opacity:0; }
+    .ham.active span:nth-child(3) { transform: rotate(-45deg) translate(4px,-5px); }
+
+    /* Mobile menu */
+    .mob-menu {
+      display:none; position:fixed;
+      top:var(--nav-h); left:0; right:0; bottom:0;
+      background:var(--dark);
+      padding:20px 16px 40px;
+      overflow-y:auto;
+      z-index:999;
+      -webkit-overflow-scrolling:touch;
+    }
+    .mob-menu.open { display:block; }
+
+    .mob-menu a {
+      display:flex; align-items:center;
+      color:rgba(255,255,255,0.85);
+      font-weight:500; font-size:17px;
+      padding:14px 0;
+      border-bottom:1px solid rgba(255,255,255,0.06);
+      min-height:48px;
+    }
+    .mob-menu a:hover { color:var(--red); }
+
+    .mob-sub { padding-left:20px; }
+    .mob-sub a { font-size:15px; color:rgba(255,255,255,0.55); min-height:44px; }
+
+    .mob-cta {
+      display:block !important;
+      margin-top:24px;
+      background:var(--red);
+      color:#fff !important;
+      padding:16px 24px;
+      border-radius:8px;
+      font-weight:700; font-size:16px;
+      text-align:center;
+      border-bottom:none !important;
+      min-height:52px;
+    }
+
+    /* ========================================
+       HERO (mobile-first)
+    ======================================== */
+    .hero {
+      position:relative;
+      height:85vh;
+      min-height:520px;
+      max-height:800px;
+      display:flex;
+      align-items:flex-end;
+      overflow:hidden;
+      margin-top:var(--nav-h);
+    }
+
+    .hero-img { position:absolute; inset:0; z-index:0; }
+
+    .hero-img img {
+      width:100%; height:100%;
+      object-fit:cover;
+      object-position:center 30%;
+    }
+
+    .hero-img::after {
+      content:''; position:absolute; inset:0;
+      background:linear-gradient(to top,
+        rgba(15,17,20,0.95) 0%,
+        rgba(15,17,20,0.75) 30%,
+        rgba(15,17,20,0.45) 55%,
+        rgba(15,17,20,0.2) 80%,
+        rgba(15,17,20,0.1) 100%
+      );
+    }
+
+    .hero-content {
+      position:relative; z-index:1;
+      width:100%; max-width:1200px;
+      margin:0 auto;
+      padding:0 16px 40px;
+    }
+
+    .hero-tag {
+      display:inline-block;
+      font-weight:700; font-size:13px;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      color:#fff;
+      margin-bottom:14px;
+      background:var(--red);
+      padding:6px 14px;
+      border-radius:4px;
+    }
+
+    .hero h1 {
+      font-family:var(--font-d);
+      font-weight:800;
+      font-size:clamp(36px,8vw,68px);
+      line-height:1.0;
+      color:#fff;
+      max-width:600px;
+      margin-bottom:16px;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+    }
+
+    .hero-sub {
+      font-size:16px; line-height:1.55;
+      color:rgba(255,255,255,0.85);
+      max-width:480px;
+      margin-bottom:28px;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.4);
+    }
+
+    .hero-btns { display:flex; gap:10px; flex-direction:column; }
+
+    /* ========================================
+       BUTTONS (44px+ touch targets)
+    ======================================== */
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:6px;
+      font-family:var(--font-b);
+      font-weight:700; font-size:15px;
+      padding:14px 24px;
+      border-radius:8px; border:none;
+      cursor:pointer;
+      transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+      min-height:48px;
+      text-align:center;
+    }
+
+    .btn-red { background:var(--red); color:#fff; }
+    .btn-red:hover {
+      background:var(--red-hover);
+      transform:translateY(-1px);
+      box-shadow:0 6px 20px rgba(194,40,45,0.35);
+    }
+
+    .btn-outline {
+      background:transparent; color:#fff;
+      border:2px solid rgba(255,255,255,0.3);
+    }
+    .btn-outline:hover { border-color:#fff; background:rgba(255,255,255,0.08); }
+
+    .btn-white { background:#fff; color:var(--red); }
+    .btn-white:hover {
+      transform:translateY(-1px);
+      box-shadow:0 6px 20px rgba(0,0,0,0.2);
+    }
+
+    /* ========================================
+       SECTIONS
+    ======================================== */
+    .section { padding:56px 16px; }
+    .section-alt { background:var(--alt-bg); }
+    .section-dark { background:var(--dark); color:#fff; }
+    .container { max-width:1200px; margin:0 auto; }
+
+    .s-label {
+      font-weight:700; font-size:12px;
+      letter-spacing:0.14em;
+      text-transform:uppercase;
+      color:var(--red);
+      margin-bottom:10px;
+    }
+
+    .s-title {
+      font-family:var(--font-d);
+      font-weight:700;
+      font-size:clamp(28px,5vw,42px);
+      line-height:1.1;
+      color:var(--dark);
+      margin-bottom:16px;
+    }
+    .section-dark .s-title { color:#fff; }
+
+    .s-intro {
+      font-size:16px; line-height:1.65;
+      color:var(--text-mid);
+      max-width:600px;
+      margin-bottom:36px;
+    }
+
+    /* ========================================
+       ABOUT
+    ======================================== */
+    .about-grid { display:grid; grid-template-columns:1fr; gap:32px; }
+    .about-text p { margin-bottom:14px; line-height:1.7; }
+
+    .about-stats {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:24px;
+    }
+
+    .stat {
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:20px;
+    }
+
+    .stat-num {
+      font-family:var(--font-d);
+      font-weight:800; font-size:28px;
+      color:var(--red);
+      line-height:1; margin-bottom:2px;
+    }
+
+    .stat-lbl { font-size:13px; font-weight:500; color:var(--text-muted); }
+
+    .about-photo img {
+      border-radius:var(--radius);
+      width:100%;
+      aspect-ratio:3/2;
+      object-fit:cover;
+    }
+
+    /* ========================================
+       INFO CARDS
+    ======================================== */
+    .cards { display:grid; grid-template-columns:1fr; gap:16px; }
+
+    .card {
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:24px;
+    }
+
+    .card-icon {
+      width:44px; height:44px;
+      background:rgba(194,40,45,0.08);
+      border-radius:10px;
+      display:flex; align-items:center; justify-content:center;
+      margin-bottom:16px; font-size:22px;
+    }
+
+    .card h3 {
+      font-family:var(--font-d);
+      font-weight:700; font-size:20px;
+      margin-bottom:8px; color:var(--dark);
+    }
+
+    .card p { font-size:15px; line-height:1.6; color:var(--text-mid); }
+    .card a { color:var(--red); font-weight:600; }
+
+    /* ========================================
+       COST TABLE — desktop table, mobile cards
+    ======================================== */
+    .tbl-wrap { margin-top:20px; }
+
+    .cost-tbl {
+      width:100%; border-collapse:collapse;
+      font-size:14px;
+    }
+
+    .cost-tbl thead { background:var(--dark); }
+    .cost-tbl th {
+      padding:12px 16px; text-align:left;
+      font-weight:600; font-size:12px;
+      letter-spacing:0.06em;
+      text-transform:uppercase; color:#fff;
+    }
+    .cost-tbl th:first-child { border-radius:8px 0 0 0; }
+    .cost-tbl th:last-child { border-radius:0 8px 0 0; text-align:right; }
+
+    .cost-tbl td { padding:12px 16px; border-bottom:1px solid var(--border); }
+    .cost-tbl td:last-child { text-align:right; font-weight:600; white-space:nowrap; }
+    .cost-tbl tr:nth-child(even) { background:var(--alt-bg); }
+
+    .req { color:var(--red); font-weight:600; }
+    .opt { color:var(--text-muted); font-style:italic; }
+
+    /* Mobile: hide table, show cards */
+    .cost-cards { display:none; }
+
+    @media (max-width:600px) {
+      .cost-tbl { display:none; }
+      .cost-cards { display:flex; flex-direction:column; gap:10px; margin-top:20px; }
+
+      .cost-card {
+        background:var(--card);
+        border:1px solid var(--border);
+        border-radius:var(--radius);
+        padding:16px;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        gap:12px;
+      }
+
+      .cost-card-info { flex:1; }
+
+      .cost-card-name {
+        font-weight:600; font-size:15px;
+        color:var(--dark);
+        margin-bottom:2px;
+      }
+
+      .cost-card-req { font-size:13px; }
+
+      .cost-card-price {
+        font-family:var(--font-d);
+        font-weight:700; font-size:20px;
+        color:var(--dark);
+        white-space:nowrap;
+      }
+    }
+
+    /* ========================================
+       FAQ
+    ======================================== */
+    .faq-list { max-width:800px; }
+    .faq-item { border-bottom:1px solid var(--border); }
+
+    .faq-q {
+      width:100%; background:none; border:none;
+      text-align:left;
+      padding:20px 0;
+      font-family:var(--font-b);
+      font-weight:600; font-size:16px;
+      color:var(--dark); cursor:pointer;
+      display:flex; justify-content:space-between;
+      align-items:center; gap:16px;
+      line-height:1.4; min-height:56px;
+    }
+    .faq-q:hover { color:var(--red); }
+
+    .faq-ic {
+      flex-shrink:0; width:28px; height:28px;
+      border-radius:50%; background:var(--alt-bg);
+      display:flex; align-items:center; justify-content:center;
+      font-size:18px; font-weight:300;
+      color:var(--text-muted); transition:all 0.2s;
+    }
+
+    .faq-item.on .faq-ic { background:var(--red); color:#fff; transform:rotate(45deg); }
+
+    .faq-a { max-height:0; overflow:hidden; transition:max-height 0.3s ease; }
+    .faq-a-inner { padding:0 0 20px; font-size:15px; line-height:1.7; color:var(--text-mid); }
+    .faq-a-inner a { color:var(--red); font-weight:500; }
+    .faq-a-inner a:hover { text-decoration:underline; }
+
+    /* ========================================
+       HEJA
+    ======================================== */
+    .comm-grid { display:grid; grid-template-columns:1fr; gap:32px; align-items:center; }
+    .comm-features { display:flex; flex-direction:column; gap:14px; margin-top:20px; }
+
+    .comm-feat { display:flex; align-items:flex-start; gap:12px; }
+
+    .comm-feat-ic {
+      flex-shrink:0; width:32px; height:32px;
+      background:rgba(194,40,45,0.08);
+      border-radius:8px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:16px; margin-top:1px;
+    }
+
+    .comm-feat p { font-size:15px; line-height:1.5; color:var(--text-mid); }
+    .comm-feat strong { color:var(--text); }
+
+    .comm-img { display:flex; justify-content:center; }
+    .comm-img img {
+      max-width:280px; width:100%;
+      border-radius:14px;
+      box-shadow:0 16px 48px rgba(0,0,0,0.1);
+    }
+
+    /* ========================================
+       GALLERY
+    ======================================== */
+    .gallery { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+
+    .gallery img {
+      width:100%; aspect-ratio:1/1;
+      object-fit:cover; border-radius:6px;
+    }
+
+    /* ========================================
+       REGISTRATION BANNER
+    ======================================== */
+    .reg-banner {
+      background:linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
+      padding:48px 16px; text-align:center;
+    }
+
+    .reg-banner h2 {
+      font-family:var(--font-d);
+      font-weight:800;
+      font-size:clamp(28px,5vw,44px);
+      color:#fff; margin-bottom:10px;
+    }
+
+    .reg-banner p {
+      font-size:16px;
+      color:rgba(255,255,255,0.85);
+      margin-bottom:28px;
+      max-width:500px; margin-left:auto; margin-right:auto;
+    }
+
+    /* ========================================
+       FOOTER
+    ======================================== */
+    .footer {
+      background:var(--dark);
+      color:rgba(255,255,255,0.55);
+      padding:48px 16px 28px;
+    }
+
+    .footer-grid {
+      max-width:1200px; margin:0 auto;
+      display:grid; grid-template-columns:1fr 1fr; gap:32px;
+    }
+
+    .footer-brand img { height:auto; max-height:50px; max-width:160px; margin-bottom:12px; object-fit:contain; }
+    .footer-brand p { font-size:13px; line-height:1.6; max-width:260px; }
+
+    .footer h4 {
+      font-weight:700; font-size:13px;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,0.85);
+      margin-bottom:12px;
+    }
+
+    .footer ul { list-style:none; }
+    .footer ul li { margin-bottom:4px; }
+    .footer ul a {
+      font-size:14px; color:rgba(255,255,255,0.45);
+      min-height:44px;
+      display:inline-flex; align-items:center;
+      transition:color 0.15s;
+    }
+    .footer ul a:hover { color:var(--red); }
+
+    .footer-btm {
+      max-width:1200px; margin:32px auto 0;
+      padding-top:20px;
+      border-top:1px solid rgba(255,255,255,0.07);
+      font-size:12px; text-align:center;
+    }
+
+    /* ========================================
+       TABLET+ (768px)
+    ======================================== */
+    @media (min-width:768px) {
+      :root { --nav-h:72px; }
+      .nav-inner { padding:0 24px; }
+      .ham { display:none; }
+      .nav-links { display:flex; }
+
+      .section { padding:80px 24px; }
+      .hero-content { padding:0 24px 64px; }
+      .hero-sub { font-size:18px; }
+      .hero { height:88vh; max-height:880px; }
+      .hero-btns { flex-direction:row; }
+
+      .about-grid { grid-template-columns:1fr 1fr; gap:56px; }
+      .cards { grid-template-columns:repeat(3,1fr); gap:20px; }
+      .comm-grid { grid-template-columns:1fr 1fr; gap:56px; }
+      .gallery { grid-template-columns:repeat(4,1fr); gap:8px; }
+      .gallery img { border-radius:8px; }
+      .footer-grid { grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; }
+      .reg-banner { padding:64px 24px; }
+    }
+
+    /* ========================================
+       ACCESSIBILITY
+    ======================================== */
+    @media (prefers-reduced-motion:reduce) {
+      *, *::before, *::after { transition-duration:0.01ms !important; animation-duration:0.01ms !important; }
+      html { scroll-behavior:auto; }
+    }
+
+    a:focus-visible, button:focus-visible {
+      outline:2px solid var(--red);
+      outline-offset:2px;
+      border-radius:4px;
+    }
+
+    .faq-a-inner a, .card a, .s-intro a {
+      text-decoration:underline;
+      text-underline-offset:2px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====== NAVIGATION ====== -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo" aria-label="Central MTB Home">
+        <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=200,fit=crop,q=90/AMqlGL5ErPhwawxo/sticker-A85ENn3nz5UPZjN1.png" alt="St. Paul Central MTB logo" width="120" height="44">
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li class="dropdown">
+          <a href="/parent-guide">Parent Guide</a>
+          <ul class="dropdown-menu">
+            <li><a href="/parent-guide">Welcome</a></li>
+            <li><a href="/parent-guide#eligibility">Eligibility</a></li>
+            <li><a href="/parent-guide#schedule">Practices &amp; Schedule</a></li>
+            <li><a href="/parent-guide#costs">Equipment &amp; Fees</a></li>
+            <li><a href="/equipment-guide">Equipment Guide</a></li>
+            <li><a href="/lettering-criteria">Lettering Criteria</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="/try-out-ride">Try-Out-Ride</a>
+          <ul class="dropdown-menu">
+            <li><a href="/girls">Girls Program</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="/resources">Resources</a>
+          <ul class="dropdown-menu">
+            <li><a href="/coach">Coach Info</a></li>
+            <li><a href="/coach-bios">Coach Bios</a></li>
+            <li><a href="/captain">Captain Application</a></li>
+            <li><a href="/media">Photos &amp; Media</a></li>
+          </ul>
+        </li>
+        <li><a href="https://shop.centralmtb.com/" target="_blank" rel="noopener">Shop</a></li>
+        <li><a href="/join" class="nav-cta">Join the Team</a></li>
+      </ul>
+
+      <button class="ham" aria-label="Open menu" aria-expanded="false" id="hamBtn">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mob-menu" id="mobMenu" role="dialog" aria-label="Navigation menu">
+    <a href="/">Home</a>
+    <a href="/parent-guide">Parent Guide</a>
+    <div class="mob-sub">
+      <a href="/parent-guide#eligibility">Eligibility</a>
+      <a href="/parent-guide#costs">Equipment &amp; Fees</a>
+      <a href="/equipment-guide">Equipment Guide</a>
+      <a href="/lettering-criteria">Lettering Criteria</a>
+    </div>
+    <a href="/try-out-ride">Try-Out-Ride</a>
+    <div class="mob-sub">
+      <a href="/girls">Girls Program</a>
+    </div>
+    <a href="/resources">Resources</a>
+    <div class="mob-sub">
+      <a href="/coach-bios">Coach Bios</a>
+      <a href="/captain">Captain Application</a>
+      <a href="/media">Photos &amp; Media</a>
+    </div>
+    <a href="https://shop.centralmtb.com/" target="_blank" rel="noopener">Shop</a>
+    <a href="/join" class="mob-cta">Join the Team</a>
+  </div>
+
+  <!-- ====== HERO ====== -->
+  <section class="hero">
+    <div class="hero-img">
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1280,fit=crop,q=80/AMqlGL5ErPhwawxo/mountain-biking-minnesota-YX4aZklpDXfb70gw.jpg"
+           srcset="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop,q=75/AMqlGL5ErPhwawxo/mountain-biking-minnesota-YX4aZklpDXfb70gw.jpg 768w,
+                   https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1280,fit=crop,q=80/AMqlGL5ErPhwawxo/mountain-biking-minnesota-YX4aZklpDXfb70gw.jpg 1280w,
+                   https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,fit=crop,q=80/AMqlGL5ErPhwawxo/mountain-biking-minnesota-YX4aZklpDXfb70gw.jpg 1920w"
+           sizes="100vw"
+           alt="St. Paul Central youth mountain bikers racing at an MCA event in Minnesota"
+           width="1920" height="1080"
+           fetchpriority="high" decoding="async">
+    </div>
+    <div class="hero-content">
+      <span class="hero-tag">Grades 6–12 · All Skill Levels</span>
+      <h1>Experience the Rides of Your Life</h1>
+      <p class="hero-sub">Join the St. Paul Central Mountain Bike Team. We'll teach you the trails, build your skills, and make sure you have a blast doing it.</p>
+      <div class="hero-btns">
+        <a href="/join" class="btn btn-red">Join the Team →</a>
+        <a href="/parent-guide" class="btn btn-outline">Parent Guide</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== ABOUT ====== -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <span class="s-label">About Us</span>
+          <h2 class="s-title">A Supportive Community on Two Wheels</h2>
+          <div class="about-text">
+            <p>We're a youth mountain biking team where riders of all abilities explore the Twin Cities' best trails — Battle Creek, Lebanon Hills, Theo Wirth, and more. Our July through October season includes coaching, practice rides, and optional MCA racing.</p>
+            <p>New to mountain biking? Perfect. We'll teach you everything, help you earn a varsity letter, and make sure you have a blast doing it.</p>
+          </div>
+          <div class="about-stats">
+            <div class="stat"><div class="stat-num">Jul–Oct</div><div class="stat-lbl">Season Length</div></div>
+            <div class="stat"><div class="stat-num">3×</div><div class="stat-lbl">Practices per Week</div></div>
+            <div class="stat"><div class="stat-num">6–12</div><div class="stat-lbl">Grades Welcome</div></div>
+            <div class="stat"><div class="stat-num">5</div><div class="stat-lbl">MCA Races per Season</div></div>
+          </div>
+        </div>
+        <div class="about-photo">
+          <img src="team-photo.jpg"
+               srcset="team-photo-sm.jpg 480w, team-photo.jpg 800w"
+               sizes="(max-width:767px) 100vw, 50vw"
+               alt="St. Paul Central Mountain Bike Team group photo — students and coaches in team jerseys"
+               width="800" height="533" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== QUICK INFO ====== -->
+  <section class="section section-alt">
+    <div class="container">
+      <span class="s-label">At a Glance</span>
+      <h2 class="s-title">Everything You Need to Know</h2>
+      <p class="s-intro">Here's the quick version for busy parents. Dive into the <a href="/parent-guide" style="color:var(--red)">Parent Guide</a> for full details.</p>
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">📅</div>
+          <h3>Practice Schedule</h3>
+          <p>Tuesday &amp; Thursday evenings, 5:30–7:30pm. Saturday mornings, 9:30–11:30am. We ride trails like Battle Creek, Carver Lake, and Sunfish Park.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🏔️</div>
+          <h3>All Levels Welcome</h3>
+          <p>No experience needed. Our coaches work with every skill level from first-time riders to experienced racers. Racing is completely optional.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🏫</div>
+          <h3>Who Can Join</h3>
+          <p>Students grades 6–12 from St. Paul Central, Harding, Johnson, Como Park, and most other St. Paul schools. <a href="mailto:hello@centralmtb.com">Not sure? Ask us.</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== COSTS ====== -->
+  <section class="section" id="costs">
+    <div class="container">
+      <span class="s-label">Costs</span>
+      <h2 class="s-title">Season Cost Breakdown</h2>
+      <p class="s-intro">We keep it transparent. Need help? Financial assistance is available — <a href="mailto:hello@centralmtb.com" style="color:var(--red)">just ask</a>.</p>
+      <div class="tbl-wrap">
+        <table class="cost-tbl">
+          <thead><tr><th>Item</th><th>Required?</th><th>Est. Cost</th></tr></thead>
+          <tbody>
+            <tr><td>Mountain Bike (hardtail or full suspension)</td><td class="req">Required</td><td>$500+</td></tr>
+            <tr><td>MIPS Helmet</td><td class="req">Required</td><td>~$60</td></tr>
+            <tr><td>Cycling Gloves</td><td class="req">Required</td><td>~$25</td></tr>
+            <tr><td>Protective Eyewear</td><td class="opt">Recommended</td><td>~$50</td></tr>
+            <tr><td>MCA Athlete Registration</td><td class="req">Required</td><td>$100</td></tr>
+            <tr><td>St. Paul Central MTB Team Dues</td><td class="req">Required</td><td>$90</td></tr>
+            <tr><td>Team Jersey (racing only)</td><td class="opt">Racing only</td><td>~$60</td></tr>
+            <tr><td>Season Race Entry (5 races)</td><td class="opt">Optional</td><td>~$150</td></tr>
+          </tbody>
+        </table>
+
+        <!-- Mobile card layout — shown below 600px, table hidden -->
+        <div class="cost-cards">
+          <div class="cost-card"><div class="cost-card-info"><div class="cost-card-name">Mountain Bike</div><div class="cost-card-req req">Required</div></div><div class="cost-card-price">$500+</div></div>
+          <div class="cost-card"><div class="cost-card-info"><div class="cost-card-name">MIPS Helmet</div><div class="cost-card-req req">Required</div></div><div class="cost-card-price">~$60</div></div>
+          <div class="cost-card"><div class="cost-card-info"><div class="cost-card-name">Cycling Gloves</div><div class="cost-card-req req">Required</div></div><div class="cost-card-price">~$25</div></div>
+          <div class="cost-card"><div class="cost-card-info"><div class="cost-card-name">Protective Eyewear</div><div class="cost-card-req opt">Recommended</div></div><div class="cost-card-price">~$50</div></div>
+          <div class="cost-card"><div class="cost-card-info"><div class="cost-card-name">MCA Athlete Registration</div><div class="cost-card-req req">Required</div></div><div class="cost-card-price">$100</div></div>
+          <div class="cost-card"><div class="cost-card-info"><div class="cost-card-name">Team Dues</div><div class="cost-card-req req">Required</div></div><div class="cost-card-price">$90</div></div>
+          <div class="cost-card"><div class="cost-card-info"><div class="cost-card-name">Team Jersey</div><div class="cost-card-req opt">Racing only</div></div><div class="cost-card-price">~$60</div></div>
+          <div class="cost-card"><div class="cost-card-info"><div class="cost-card-name">Season Race Entry (5 races)</div><div class="cost-card-req opt">Optional</div></div><div class="cost-card-price">~$150</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FAQ ====== -->
+  <section class="section section-alt" id="faq">
+    <div class="container">
+      <span class="s-label">FAQs</span>
+      <h2 class="s-title">Common Questions</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">What experience or skill level is required to join?<span class="faq-ic" aria-hidden="true">+</span></button>
+          <div class="faq-a" role="region"><div class="faq-a-inner">No prior experience is needed! Our team welcomes riders of all skill levels, from beginners to experienced cyclists.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">What kind of bike or equipment is needed?<span class="faq-ic" aria-hidden="true">+</span></button>
+          <div class="faq-a" role="region"><div class="faq-a-inner">Riders need a mountain bike (hardtail or full suspension), helmet, and basic gear like gloves and water bottles. See our <a href="/equipment-guide">equipment guide</a> for details, and <a href="mailto:hello@centralmtb.com">contact us</a> if you need help finding affordable options.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">What is the time commitment?<span class="faq-ic" aria-hidden="true">+</span></button>
+          <div class="faq-a" role="region"><div class="faq-a-inner">Practices are Tuesday and Thursday evenings and Saturday mornings at Twin Cities trails. The season runs the first week of July through mid-October. Participation is flexible based on your schedule.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Do students need to compete in races?<span class="faq-ic" aria-hidden="true">+</span></button>
+          <div class="faq-a" role="region"><div class="faq-a-inner">Racing is completely optional! Many riders focus on skill-building and trail rides while others compete in Minnesota Cycling Association (MCA) races. You decide what's right for you.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Which schools can join the team?<span class="faq-ic" aria-hidden="true">+</span></button>
+          <div class="faq-a" role="region"><div class="faq-a-inner">We welcome students in grades 6–12 from St. Paul Central, Harding, Johnson, Como Park, and most other St. Paul schools. Highland Park students should contact the <a href="https://www.spymtb.org/">SPY MTB team</a>. Not sure if you're eligible? <a href="mailto:hello@centralmtb.com">Contact us</a> and we'll help!</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">How much does it cost to join?<span class="faq-ic" aria-hidden="true">+</span></button>
+          <div class="faq-a" role="region"><div class="faq-a-inner">Team registration is $90 per student plus a $100 MCA fee. Racing is optional — if you choose to compete, race fees are separate. See the <a href="#costs">cost breakdown above</a> for the full picture.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== HEJA ====== -->
+  <section class="section">
+    <div class="container">
+      <div class="comm-grid">
+        <div>
+          <span class="s-label">Stay Connected</span>
+          <h2 class="s-title">Team Communication on Heja</h2>
+          <p style="color:var(--text-mid);line-height:1.7">All team communication happens through <strong style="color:var(--text)">Heja</strong>, a free team management app. No email clutter — just real-time updates when you need them.</p>
+          <div class="comm-features">
+            <div class="comm-feat"><div class="comm-feat-ic">📍</div><p><strong>Practice locations &amp; times</strong> — always know where to go</p></div>
+            <div class="comm-feat"><div class="comm-feat-ic">🌧️</div><p><strong>Weather cancellations</strong> — instant updates, no guessing</p></div>
+            <div class="comm-feat"><div class="comm-feat-ic">🏁</div><p><strong>Race information</strong> — schedules, logistics, results</p></div>
+            <div class="comm-feat"><div class="comm-feat-ic">✉️</div><p><strong>After you register</strong>, we'll send you an invitation link</p></div>
+          </div>
+        </div>
+        <div class="comm-img">
+          <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=358,fit=crop,q=80/AMqlGL5ErPhwawxo/heja-8R4wt2OcRPIcfyeR.png"
+               alt="Heja app showing St. Paul Central MTB practice notifications and event calendar"
+               width="375" height="358" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== GALLERY ====== -->
+  <section class="section section-alt">
+    <div class="container">
+      <span class="s-label">Gallery</span>
+      <h2 class="s-title">Life on the Trails</h2>
+      <div class="gallery">
+        <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=400,h=400,fit=crop,q=75/AMqlGL5ErPhwawxo/scr-20260118-orst-7LsTRZLzWYY3D1yE.jpeg" alt="St. Paul Central MTB riders on a wooded trail during practice" width="400" height="400" loading="lazy" decoding="async">
+        <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=400,h=400,fit=crop,q=75/AMqlGL5ErPhwawxo/20250927_183138_baeb29-su9tCbpyuNiSRzYq.JPEG" alt="Central MTB team members at a fall trail ride" width="400" height="400" loading="lazy" decoding="async">
+        <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=400,h=400,fit=crop,q=75/AMqlGL5ErPhwawxo/20250906_190625_2faf64-vgMxj8EN8jVqRnK3.JPEG" alt="Youth mountain biker navigating singletrack at Battle Creek" width="400" height="400" loading="lazy" decoding="async">
+        <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=400,h=400,fit=crop,q=75/AMqlGL5ErPhwawxo/20251002_193918_14349b-SQcW4O23DpW1pz2I.JPEG" alt="Central MTB team riding at sunset on a Twin Cities trail" width="400" height="400" loading="lazy" decoding="async">
+        <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=400,h=400,fit=crop,q=75/AMqlGL5ErPhwawxo/scr-20260118-otne-hH1T8RpKjctVPGJI.jpeg" alt="St. Paul Central mountain bikers at an MCA cross-country race" width="400" height="400" loading="lazy" decoding="async">
+        <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=400,h=400,fit=crop,q=75/AMqlGL5ErPhwawxo/20251013_134908_906474-KmosYTY9MY1Skp2s.JPEG" alt="Central MTB riders celebrating after a race finish" width="400" height="400" loading="lazy" decoding="async">
+        <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=400,h=400,fit=crop,q=75/AMqlGL5ErPhwawxo/20240912_185551-m7V5LnLX66hPbpQM.JPG" alt="St. Paul Central Mountain Bike team at Battle Creek trail" width="400" height="400" loading="lazy" decoding="async">
+        <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=400,h=400,fit=crop,q=75/AMqlGL5ErPhwawxo/2025-team-YbN40Ev2JrcalJzb.jpg" alt="Full team photo of St. Paul Central MTB at Sunfish Lake" width="400" height="400" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== REGISTRATION BANNER ====== -->
+  <!--
+    REGISTRATION TOGGLE:
+    Comment/uncomment Option A or B to switch.
+  -->
+
+  <!-- Option A: OPEN -->
+  <section class="reg-banner">
+    <div class="container">
+      <h2>Ready to Ride?</h2>
+      <p>Registration is open for the upcoming season. Join the team and experience the trails with us.</p>
+      <a href="/join" class="btn btn-white">Join the Team →</a>
+    </div>
+  </section>
+
+  <!-- Option B: CLOSED
+  <section class="reg-banner" style="background:linear-gradient(135deg,var(--dark-alt) 0%,#2a2d35 100%)">
+    <div class="container">
+      <h2>Registration Opens Spring 2027</h2>
+      <p>The current season is underway. Drop us a note and we'll let you know when registration opens.</p>
+      <a href="mailto:hello@centralmtb.com?subject=Notify me when registration opens" class="btn btn-white">Get Notified →</a>
+    </div>
+  </section>
+  -->
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=320,fit=crop,q=90/AMqlGL5ErPhwawxo/sticker-A85ENn3nz5UPZjN1.png" alt="St. Paul Central Mountain Bike Team logo" loading="lazy">
+        <p>Youth mountain biking for grades 6–12 in the St. Paul school district. All skill levels welcome.</p>
+      </div>
+      <div>
+        <h4>Team</h4>
+        <ul>
+          <li><a href="/parent-guide">Parent Guide</a></li>
+          <li><a href="/equipment-guide">Equipment Guide</a></li>
+          <li><a href="/lettering-criteria">Lettering Criteria</a></li>
+          <li><a href="/coach-bios">Coach Bios</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get Involved</h4>
+        <ul>
+          <li><a href="/join">Join the Team</a></li>
+          <li><a href="/try-out-ride">Try-Out-Ride</a></li>
+          <li><a href="/girls">Girls Program</a></li>
+          <li><a href="/captain">Captain Application</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="mailto:hello@centralmtb.com">hello@centralmtb.com</a></li>
+          <li><a href="https://shop.centralmtb.com/" target="_blank" rel="noopener">Team Shop</a></li>
+          <li><a href="/media">Photos &amp; Media</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-btm">
+      <span>© 2026 St. Paul Central Mountain Bike Team. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <!-- ====== MINIMAL JS (deferred by position) ====== -->
+  <script>
+    var hamBtn=document.getElementById('hamBtn'),mobMenu=document.getElementById('mobMenu');
+    hamBtn.addEventListener('click',function(){var o=mobMenu.classList.toggle('open');hamBtn.classList.toggle('active');hamBtn.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':'';});
+    for(var ml=mobMenu.querySelectorAll('a'),i=0;i<ml.length;i++)ml[i].addEventListener('click',function(){mobMenu.classList.remove('open');hamBtn.classList.remove('active');hamBtn.setAttribute('aria-expanded','false');document.body.style.overflow='';});
+    for(var fq=document.querySelectorAll('.faq-q'),j=0;j<fq.length;j++)fq[j].addEventListener('click',function(){var it=this.parentElement,an=it.querySelector('.faq-a'),w=it.classList.contains('on');for(var ai=document.querySelectorAll('.faq-item'),k=0;k<ai.length;k++){ai[k].classList.remove('on');ai[k].querySelector('.faq-q').setAttribute('aria-expanded','false');ai[k].querySelector('.faq-a').style.maxHeight=null;}if(!w){it.classList.add('on');this.setAttribute('aria-expanded','true');an.style.maxHeight=an.scrollHeight+'px';}});
+  </script>
+
+</body>
+</html>
