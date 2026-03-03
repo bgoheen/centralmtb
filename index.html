@@ -56,7 +56,8 @@
   <link rel="preconnect" href="https://assets.zyrosite.com">
 
   <!-- Fonts with display:swap to prevent render blocking -->
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=64,fit=crop,q=90/AMqlGL5ErPhwawxo/sticker-A85ENn3nz5UPZjN1.png">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
 
   <style>
     /* ========================================
@@ -68,16 +69,16 @@
       --red-dark: #a12024;
       --dark: #0f1114;
       --dark-alt: #1a1d23;
-      --light: #f7f6f3;
+      --light: #ffffff;
       --white: #ffffff;
       --text: #2d2d2d;
       --text-mid: #555;
       --text-muted: #777;
-      --border: #e2dfd9;
+      --border: #e5e5e5;
       --card: #ffffff;
-      --alt-bg: #f0eeea;
+      --alt-bg: #f5f5f5;
       --font-d: 'Barlow Condensed', sans-serif;
-      --font-b: 'Barlow', sans-serif;
+      --font-b: 'Roboto', sans-serif;
       --nav-h: 64px;
       --radius: 10px;
     }
@@ -87,8 +88,9 @@
 
     body {
       font-family: var(--font-b);
-      font-size: 16px;
-      line-height: 1.6;
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.7;
       color: var(--text);
       background: var(--light);
       -webkit-font-smoothing: antialiased;
@@ -237,8 +239,8 @@
     ======================================== */
     .hero {
       position:relative;
-      height:85vh;
-      min-height:520px;
+      height:90vh;
+      min-height:580px;
       max-height:800px;
       display:flex;
       align-items:flex-end;
@@ -251,7 +253,7 @@
     .hero-img img {
       width:100%; height:100%;
       object-fit:cover;
-      object-position:center 30%;
+      object-position:center center;
     }
 
     .hero-img::after {
@@ -284,19 +286,31 @@
       border-radius:4px;
     }
 
-    .hero h1 {
-      font-family:var(--font-d);
-      font-weight:800;
-      font-size:clamp(36px,8vw,68px);
-      line-height:1.0;
+    .hero-tagline {
+      font-family:var(--font-b);
+      font-weight:100;
+      font-size:clamp(32px,7vw,64px);
+      line-height:1.05;
       color:#fff;
+      text-transform:uppercase;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+      margin-bottom:8px;
+    }
+
+    .hero h1 {
+      font-family:var(--font-b);
+      font-weight:300;
+      font-size:clamp(16px,2.5vw,22px);
+      line-height:1.4;
+      color:rgba(255,255,255,0.9);
       max-width:600px;
       margin-bottom:16px;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+      text-shadow: 0 1px 8px rgba(0,0,0,0.4);
     }
 
     .hero-sub {
-      font-size:16px; line-height:1.55;
+      font-size:18px; line-height:1.6;
+      font-weight:300;
       color:rgba(255,255,255,0.85);
       max-width:480px;
       margin-bottom:28px;
@@ -367,7 +381,8 @@
     .section-dark .s-title { color:#fff; }
 
     .s-intro {
-      font-size:16px; line-height:1.65;
+      font-size:18px; line-height:1.7;
+      font-weight:300;
       color:var(--text-mid);
       max-width:600px;
       margin-bottom:36px;
@@ -531,7 +546,7 @@
     .faq-item.on .faq-ic { background:var(--red); color:#fff; transform:rotate(45deg); }
 
     .faq-a { max-height:0; overflow:hidden; transition:max-height 0.3s ease; }
-    .faq-a-inner { padding:0 0 20px; font-size:15px; line-height:1.7; color:var(--text-mid); }
+    .faq-a-inner { padding:0 0 20px; font-size:17px; line-height:1.7; color:var(--text-mid); }
     .faq-a-inner a { color:var(--red); font-weight:500; }
     .faq-a-inner a:hover { text-decoration:underline; }
 
@@ -764,8 +779,9 @@
     </div>
     <div class="hero-content">
       <span class="hero-tag">Grades 6–12 · All Skill Levels</span>
-      <h1>Experience the Rides of Your Life</h1>
-      <p class="hero-sub">Join the St. Paul Central Mountain Bike Team. We'll teach you the trails, build your skills, and make sure you have a blast doing it.</p>
+      <p class="hero-tagline">Experience the Rides of Your Life</p>
+      <h1>St. Paul Central Mountain Bike Team: Youth Cycling for Grades 6-12</h1>
+      <p class="hero-sub">Join a supportive community where riders of all abilities explore Twin Cities trails. We'll teach you everything, build your skills, and make sure you have a blast doing it.</p>
       <div class="hero-btns">
         <a href="/join" class="btn btn-red">Join the Team →</a>
         <a href="/parent-guide" class="btn btn-outline">Parent Guide</a>
