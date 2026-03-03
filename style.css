@@ -70,7 +70,7 @@
     .nav-links a {
       color: rgba(255,255,255,0.8);
       font-weight: 500;
-      font-size: 15px;
+      font-size: 16px;
       padding: 10px 14px;
       border-radius: 6px;
       transition: color 0.15s, background 0.15s;
@@ -375,7 +375,7 @@
       margin-bottom:8px; color:var(--dark);
     }
 
-    .card p { font-size:15px; line-height:1.6; color:var(--text-mid); }
+    .card p { font-size:16px; line-height:1.7; color:var(--text-mid); font-weight:300; }
     .card a { color:var(--red); font-weight:600; }
 
     /* ========================================
@@ -385,7 +385,7 @@
 
     .cost-tbl {
       width:100%; border-collapse:collapse;
-      font-size:14px;
+      font-size:16px;
     }
 
     .cost-tbl thead { background:var(--dark); }
@@ -452,7 +452,7 @@
       text-align:left;
       padding:20px 0;
       font-family:var(--font-b);
-      font-weight:600; font-size:16px;
+      font-weight:500; font-size:18px;
       color:var(--dark); cursor:pointer;
       display:flex; justify-content:space-between;
       align-items:center; gap:16px;
@@ -471,7 +471,7 @@
     .faq-item.on .faq-ic { background:var(--red); color:#fff; transform:rotate(45deg); }
 
     .faq-a { max-height:0; overflow:hidden; transition:max-height 0.3s ease; }
-    .faq-a-inner { padding:0 0 20px; font-size:15px; line-height:1.7; color:var(--text-mid); }
+    .faq-a-inner { padding:0 0 20px; font-size:16px; line-height:1.7; color:var(--text-mid); font-weight:300; }
     .faq-a-inner a { color:var(--red); font-weight:500; }
     .faq-a-inner a:hover { text-decoration:underline; }
 
@@ -488,7 +488,7 @@
       background:rgba(194,40,45,0.08);
       border-radius:8px;
       display:flex; align-items:center; justify-content:center;
-      font-size:16px; margin-top:1px;
+      font-size:16px; margin-top:1px; font-weight:300;
     }
 
     .comm-feat p { font-size:15px; line-height:1.5; color:var(--text-mid); }
@@ -740,7 +740,7 @@
       font-weight:700; font-size:18px;
       color:var(--dark); margin-bottom:6px;
     }
-    .org-card p { font-size:14px; line-height:1.6; color:var(--text-mid); margin-bottom:0; }
+    .org-card p { font-size:16px; line-height:1.6; color:var(--text-mid); margin-bottom:0; }
 
     /* Schedule grid */
     .sched-grid { display:grid; grid-template-columns:1fr; gap:10px; margin:16px 0; }
