@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Join the Team | St. Paul Central Mountain Bike Team</title>
-  <meta name="description" content="Sign up to join the St. Paul Central Mountain Bike Team — youth mountain biking for grades 6-12 in Saint Paul, Minnesota.">
+  <meta name="description" content="Sign up to join the St. Paul Central Mountain Bike Team - youth mountain biking for grades 6-12 in Saint Paul, Minnesota.">
   <link rel="canonical" href="https://centralmtb.com/join">
   <link rel="icon" type="image/png" href="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=64,fit=crop,q=90/AMqlGL5ErPhwawxo/sticker-A85ENn3nz5UPZjN1.png">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,7 +46,6 @@
       transition:background 0.2s; margin-top:8px;
     }
     .form-submit:hover { background:#a82025; }
-    .form-note { font-size:13px; color:var(--text-muted); margin-top:4px; }
     @media(max-width:600px) {
       .form-row { grid-template-columns:1fr; }
     }
@@ -67,7 +66,6 @@
 
     <div class="info-box"><p><strong>Note:</strong> This form is an interest form, not a commitment. We will reach out with details about try-it-rides, registration, and the upcoming season.</p></div>
 
-    <!-- Netlify Forms: set name="join-team", add netlify attribute, honeypot for spam -->
     <div id="formWrap">
     <form name="join-team" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="joinForm">
       <input type="hidden" name="form-name" value="join-team">
@@ -180,12 +178,12 @@
         <div class="form-row single">
           <div class="form-group">
             <label for="experience">Tell us about your mountain biking experience <span class="req">*</span></label>
-            <textarea id="experience" name="Biking Experience" required placeholder="No experience at all? That's totally fine — just let us know!"></textarea>
+            <textarea id="experience" name="Biking Experience" required placeholder="No experience at all? That's totally fine - just let us know!"></textarea>
           </div>
         </div>
       </div>
 
-      <button type="submit" class="form-submit">Submit →</button>
+      <button type="submit" class="form-submit">Submit</button>
     </form>
     </div>
 
@@ -206,11 +204,9 @@
 
     <p>Questions? Email us at <a href="mailto:hello@centralmtb.com">hello@centralmtb.com</a>.</p>
   </div></div></section>
-  <footer class="footer"><div class="footer-grid"><div class="footer-brand"><img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=320,fit=crop,q=90/AMqlGL5ErPhwawxo/sticker-A85ENn3nz5UPZjN1.png" alt="St. Paul Central Mountain Bike Team logo" loading="lazy"><p>Youth mountain biking for grades 6–12 in the St. Paul school district. All skill levels welcome.</p></div><div><h4>Team</h4><ul><li><a href="/parent-guide">Parent Guide</a></li><li><a href="/equipment-guide">Equipment Guide</a></li><li><a href="/lettering-criteria">Lettering Criteria</a></li><li><a href="/coach-bios">Coach Bios</a></li></ul></div><div><h4>Get Involved</h4><ul><li><a href="/join">Join the Team</a></li><li><a href="/try-it-ride">Try-It-Ride</a></li><li><a href="/girls">Girls Try-It-Ride</a></li><li><a href="/captain">Captain Application</a></li></ul></div><div><h4>Connect</h4><ul><li><a href="mailto:hello@centralmtb.com">hello@centralmtb.com</a></li><li><a href="https://shop.centralmtb.com/" target="_blank" rel="noopener">Team Shop</a></li><li><a href="/media">Photos &amp; Media</a></li></ul></div></div><div class="footer-btm"><span>© 2026 St. Paul Central Mountain Bike Team. All rights reserved.</span></div></footer>
+  <footer class="footer"><div class="footer-grid"><div class="footer-brand"><img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=320,fit=crop,q=90/AMqlGL5ErPhwawxo/sticker-A85ENn3nz5UPZjN1.png" alt="St. Paul Central Mountain Bike Team logo" loading="lazy"><p>Youth mountain biking for grades 6-12 in the St. Paul school district. All skill levels welcome.</p></div><div><h4>Team</h4><ul><li><a href="/parent-guide">Parent Guide</a></li><li><a href="/equipment-guide">Equipment Guide</a></li><li><a href="/lettering-criteria">Lettering Criteria</a></li><li><a href="/coach-bios">Coach Bios</a></li></ul></div><div><h4>Get Involved</h4><ul><li><a href="/join">Join the Team</a></li><li><a href="/try-it-ride">Try-It-Ride</a></li><li><a href="/girls">Girls Try-It-Ride</a></li><li><a href="/captain">Captain Application</a></li></ul></div><div><h4>Connect</h4><ul><li><a href="mailto:hello@centralmtb.com">hello@centralmtb.com</a></li><li><a href="https://shop.centralmtb.com/" target="_blank" rel="noopener">Team Shop</a></li><li><a href="/media">Photos &amp; Media</a></li></ul></div></div><div class="footer-btm"><span>&copy; 2026 St. Paul Central Mountain Bike Team. All rights reserved.</span></div></footer>
   <script>
     var hamBtn=document.getElementById("hamBtn"),mobMenu=document.getElementById("mobMenu");hamBtn.addEventListener("click",function(){var o=mobMenu.classList.toggle("open");hamBtn.classList.toggle("active");hamBtn.setAttribute("aria-expanded",o);document.body.style.overflow=o?"hidden":"";});for(var ml=mobMenu.querySelectorAll("a"),i=0;i<ml.length;i++)ml[i].addEventListener("click",function(){mobMenu.classList.remove("open");hamBtn.classList.remove("active");hamBtn.setAttribute("aria-expanded","false");document.body.style.overflow="";});
-
-    // Handle form submission with AJAX so we can show success message
     document.getElementById('joinForm').addEventListener('submit', function(e) {
       e.preventDefault();
       var form = this;
@@ -224,12 +220,8 @@
           document.getElementById('formWrap').style.display = 'none';
           document.getElementById('successMsg').style.display = 'block';
           window.scrollTo({ top: document.getElementById('successMsg').offsetTop - 100, behavior: 'smooth' });
-        } else {
-          alert('Something went wrong. Please try again or email us at hello@centralmtb.com.');
-        }
-      }).catch(function() {
-        alert('Something went wrong. Please try again or email us at hello@centralmtb.com.');
-      });
+        } else { alert('Something went wrong. Please try again or email us at hello@centralmtb.com.'); }
+      }).catch(function() { alert('Something went wrong. Please try again or email us at hello@centralmtb.com.'); });
     });
   </script>
 </body></html>
