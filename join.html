@@ -7,17 +7,192 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .form-section { margin-top:32px; }
+    .form-section-title {
+      font-family:var(--font-d); font-weight:700; font-size:16px;
+      text-transform:uppercase; letter-spacing:0.08em;
+      color:var(--red); margin-bottom:20px; padding-bottom:8px;
+      border-bottom:2px solid var(--red);
+    }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+    .form-row.single { grid-template-columns:1fr; }
+    .form-group { display:flex; flex-direction:column; }
+    .form-group label {
+      font-size:14px; font-weight:500; color:var(--dark);
+      margin-bottom:6px;
+    }
+    .form-group label .req { color:var(--red); margin-left:2px; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      font-family:var(--font-b); font-size:16px; font-weight:300;
+      padding:12px 14px; border:1px solid var(--border);
+      border-radius:8px; background:#fff;
+      color:var(--dark); transition:border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline:none; border-color:var(--red);
+      box-shadow:0 0 0 3px rgba(194,40,45,0.1);
+    }
+    .form-group select { appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; padding-right:36px; }
+    .form-group textarea { resize:vertical; min-height:100px; }
+    .form-submit {
+      font-family:var(--font-b); font-weight:600; font-size:16px;
+      color:#fff; background:var(--red); border:none;
+      padding:16px 48px; border-radius:8px; cursor:pointer;
+      transition:background 0.2s; margin-top:8px;
+    }
+    .form-submit:hover { background:#a82025; }
+    .form-note { font-size:13px; color:var(--text-muted); margin-top:4px; }
+    @media(max-width:600px) {
+      .form-row { grid-template-columns:1fr; }
+    }
+    .success-msg {
+      background:#f0fdf4; border:1px solid #bbf7d0; border-radius:10px;
+      padding:32px; text-align:center; display:none;
+    }
+    .success-msg h3 { color:#166534; margin-bottom:8px; }
+    .success-msg p { color:#15803d; }
+  </style>
 </head><body>
   <nav class="nav" role="navigation" aria-label="Main navigation"><div class="nav-inner"><a href="/" class="nav-logo" aria-label="Central MTB Home"><img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=200,fit=crop,q=90/AMqlGL5ErPhwawxo/sticker-A85ENn3nz5UPZjN1.png" alt="St. Paul Central MTB logo" width="120" height="44"></a><ul class="nav-links"><li><a href="/">Home</a></li><li class="dropdown"><a href="/parent-guide">Parent Guide</a><ul class="dropdown-menu"><li><a href="/parent-guide">Welcome</a></li><li><a href="/parent-guide#eligibility">Eligibility</a></li><li><a href="/parent-guide#schedule">Practices &amp; Schedule</a></li><li><a href="/parent-guide#costs">Equipment &amp; Fees</a></li><li><a href="/equipment-guide">Equipment Guide</a></li><li><a href="/lettering-criteria">Lettering Criteria</a></li></ul></li><li class="dropdown"><a href="/try-it-ride">Try-It-Ride</a><ul class="dropdown-menu"><li><a href="/girls">Girls Try-It-Ride</a></li></ul></li><li class="dropdown"><a href="/resources">Resources</a><ul class="dropdown-menu"><li><a href="/coach">Coach Info</a></li><li><a href="/coach-bios">Coach Bios</a></li><li><a href="/captain">Captain Application</a></li><li><a href="/media">Photos &amp; Media</a></li></ul></li><li><a href="https://shop.centralmtb.com/" target="_blank" rel="noopener">Shop</a></li><li><a href="/join" class="nav-cta">Join the Team</a></li></ul><button class="ham" aria-label="Open menu" aria-expanded="false" id="hamBtn"><span></span><span></span><span></span></button></div></nav>
   <div class="mob-menu" id="mobMenu" role="dialog" aria-label="Navigation menu"><a href="/">Home</a><a href="/parent-guide">Parent Guide</a><div class="mob-sub"><a href="/equipment-guide">Equipment Guide</a><a href="/lettering-criteria">Lettering Criteria</a></div><a href="/try-it-ride">Try-It-Ride</a><div class="mob-sub"><a href="/girls">Girls Try-It-Ride</a></div><a href="/resources">Resources</a><div class="mob-sub"><a href="/coach-bios">Coach Bios</a><a href="/captain">Captain Application</a><a href="/media">Photos &amp; Media</a></div><a href="https://shop.centralmtb.com/" target="_blank" rel="noopener">Shop</a><a href="/join" class="mob-cta">Join the Team</a></div>
   <header class="page-header"><div class="container"><div class="breadcrumb"></div><h1>Join the Team</h1><p>Fill out the form below and we will send you everything you need to get started.</p></div></header>
-  <section class="section"><div class="container"><div class="content" style="max-width:800px">
-    <h2>Interested in Riding With Us?</h2>
+  <section class="section"><div class="container"><div class="content" style="max-width:680px">
+
     <p>We are excited that you are considering the St. Paul Central Mountain Bike Team! Complete the form below and we will follow up with information about the team, registration, and next steps.</p>
 
     <div class="info-box"><p><strong>Note:</strong> This form is an interest form, not a commitment. We will reach out with details about try-it-rides, registration, and the upcoming season.</p></div>
 
-    <script type="text/javascript" src="https://form.jotform.com/jsform/240716987231057"></script>
+    <!-- Netlify Forms: set name="join-team", add netlify attribute, honeypot for spam -->
+    <div id="formWrap">
+    <form name="join-team" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="joinForm">
+      <input type="hidden" name="form-name" value="join-team">
+      <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+      <!-- RIDER INFO -->
+      <div class="form-section">
+        <div class="form-section-title">Rider Information</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="rider-first">First Name <span class="req">*</span></label>
+            <input type="text" id="rider-first" name="rider-first-name" required>
+          </div>
+          <div class="form-group">
+            <label for="rider-last">Last Name <span class="req">*</span></label>
+            <input type="text" id="rider-last" name="rider-last-name" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="rider-phone">Phone <span class="req">*</span></label>
+            <input type="tel" id="rider-phone" name="rider-phone" required>
+          </div>
+          <div class="form-group">
+            <label for="rider-email">Email <span class="req">*</span></label>
+            <input type="email" id="rider-email" name="rider-email" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="rider-grade">Grade in the Fall <span class="req">*</span></label>
+            <select id="rider-grade" name="rider-grade" required>
+              <option value="">Select grade...</option>
+              <option>6th</option><option>7th</option><option>8th</option>
+              <option>9th</option><option>10th</option><option>11th</option><option>12th</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="rider-gender">Gender <span class="req">*</span></label>
+            <select id="rider-gender" name="rider-gender" required>
+              <option value="">Select...</option>
+              <option>Female</option><option>Male</option><option>Non-binary</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- PARENT 1 -->
+      <div class="form-section">
+        <div class="form-section-title">Parent / Guardian 1</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="p1-first">First Name <span class="req">*</span></label>
+            <input type="text" id="p1-first" name="parent1-first-name" required>
+          </div>
+          <div class="form-group">
+            <label for="p1-last">Last Name <span class="req">*</span></label>
+            <input type="text" id="p1-last" name="parent1-last-name" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="p1-phone">Phone <span class="req">*</span></label>
+            <input type="tel" id="p1-phone" name="parent1-phone" required>
+          </div>
+          <div class="form-group">
+            <label for="p1-email">Email <span class="req">*</span></label>
+            <input type="email" id="p1-email" name="parent1-email" required>
+          </div>
+        </div>
+      </div>
+
+      <!-- PARENT 2 -->
+      <div class="form-section">
+        <div class="form-section-title">Parent / Guardian 2 <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:13px;color:var(--text-muted)">(optional)</span></div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="p2-first">First Name</label>
+            <input type="text" id="p2-first" name="parent2-first-name">
+          </div>
+          <div class="form-group">
+            <label for="p2-last">Last Name</label>
+            <input type="text" id="p2-last" name="parent2-last-name">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="p2-phone">Phone</label>
+            <input type="tel" id="p2-phone" name="parent2-phone">
+          </div>
+          <div class="form-group">
+            <label for="p2-email">Email</label>
+            <input type="email" id="p2-email" name="parent2-email">
+          </div>
+        </div>
+      </div>
+
+      <!-- EXPERIENCE -->
+      <div class="form-section">
+        <div class="form-section-title">Experience</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="has-bike">Do you have a mountain bike? <span class="req">*</span></label>
+            <select id="has-bike" name="has-mountain-bike" required>
+              <option value="">Select...</option>
+              <option>Yes</option><option>No</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row single">
+          <div class="form-group">
+            <label for="experience">Tell us about your mountain biking experience <span class="req">*</span></label>
+            <textarea id="experience" name="biking-experience" required placeholder="No experience at all? That's totally fine — just let us know!"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="form-submit">Submit →</button>
+    </form>
+    </div>
+
+    <div class="success-msg" id="successMsg">
+      <h3>You're in!</h3>
+      <p>Thanks for your interest in Central MTB. We will be in touch soon with details about try-it-rides, registration, and next steps.</p>
+    </div>
 
     <hr class="section-divider">
 
@@ -32,5 +207,29 @@
     <p>Questions? Email us at <a href="mailto:hello@centralmtb.com">hello@centralmtb.com</a>.</p>
   </div></div></section>
   <footer class="footer"><div class="footer-grid"><div class="footer-brand"><img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=320,fit=crop,q=90/AMqlGL5ErPhwawxo/sticker-A85ENn3nz5UPZjN1.png" alt="St. Paul Central Mountain Bike Team logo" loading="lazy"><p>Youth mountain biking for grades 6–12 in the St. Paul school district. All skill levels welcome.</p></div><div><h4>Team</h4><ul><li><a href="/parent-guide">Parent Guide</a></li><li><a href="/equipment-guide">Equipment Guide</a></li><li><a href="/lettering-criteria">Lettering Criteria</a></li><li><a href="/coach-bios">Coach Bios</a></li></ul></div><div><h4>Get Involved</h4><ul><li><a href="/join">Join the Team</a></li><li><a href="/try-it-ride">Try-It-Ride</a></li><li><a href="/girls">Girls Try-It-Ride</a></li><li><a href="/captain">Captain Application</a></li></ul></div><div><h4>Connect</h4><ul><li><a href="mailto:hello@centralmtb.com">hello@centralmtb.com</a></li><li><a href="https://shop.centralmtb.com/" target="_blank" rel="noopener">Team Shop</a></li><li><a href="/media">Photos &amp; Media</a></li></ul></div></div><div class="footer-btm"><span>© 2026 St. Paul Central Mountain Bike Team. All rights reserved.</span></div></footer>
-  <script>var hamBtn=document.getElementById("hamBtn"),mobMenu=document.getElementById("mobMenu");hamBtn.addEventListener("click",function(){var o=mobMenu.classList.toggle("open");hamBtn.classList.toggle("active");hamBtn.setAttribute("aria-expanded",o);document.body.style.overflow=o?"hidden":"";});for(var ml=mobMenu.querySelectorAll("a"),i=0;i<ml.length;i++)ml[i].addEventListener("click",function(){mobMenu.classList.remove("open");hamBtn.classList.remove("active");hamBtn.setAttribute("aria-expanded","false");document.body.style.overflow="";});</script>
+  <script>
+    var hamBtn=document.getElementById("hamBtn"),mobMenu=document.getElementById("mobMenu");hamBtn.addEventListener("click",function(){var o=mobMenu.classList.toggle("open");hamBtn.classList.toggle("active");hamBtn.setAttribute("aria-expanded",o);document.body.style.overflow=o?"hidden":"";});for(var ml=mobMenu.querySelectorAll("a"),i=0;i<ml.length;i++)ml[i].addEventListener("click",function(){mobMenu.classList.remove("open");hamBtn.classList.remove("active");hamBtn.setAttribute("aria-expanded","false");document.body.style.overflow="";});
+
+    // Handle form submission with AJAX so we can show success message
+    document.getElementById('joinForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var form = this;
+      var data = new FormData(form);
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data).toString()
+      }).then(function(res) {
+        if (res.ok) {
+          document.getElementById('formWrap').style.display = 'none';
+          document.getElementById('successMsg').style.display = 'block';
+          window.scrollTo({ top: document.getElementById('successMsg').offsetTop - 100, behavior: 'smooth' });
+        } else {
+          alert('Something went wrong. Please try again or email us at hello@centralmtb.com.');
+        }
+      }).catch(function() {
+        alert('Something went wrong. Please try again or email us at hello@centralmtb.com.');
+      });
+    });
+  </script>
 </body></html>
