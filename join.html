@@ -87,7 +87,7 @@
         <div class="form-row">
           <div class="form-group">
             <label for="rider-phone">Rider Phone <span class="req">*</span></label>
-            <input type="tel" id="rider-phone" name="Rider Phone" required>
+            <input type="tel" id="rider-phone" name="Rider Phone" required placeholder="(651) 555-1234" maxlength="14">
           </div>
           <div class="form-group">
             <label for="rider-email">Rider Email <span class="req">*</span></label>
@@ -129,7 +129,7 @@
         <div class="form-row">
           <div class="form-group">
             <label for="p1-phone">Parent 1 Phone <span class="req">*</span></label>
-            <input type="tel" id="p1-phone" name="Parent 1 Phone" required>
+            <input type="tel" id="p1-phone" name="Parent 1 Phone" required placeholder="(651) 555-1234" maxlength="14">
           </div>
           <div class="form-group">
             <label for="p1-email">Parent 1 Email <span class="req">*</span></label>
@@ -154,7 +154,7 @@
         <div class="form-row">
           <div class="form-group">
             <label for="p2-phone">Parent 2 Phone</label>
-            <input type="tel" id="p2-phone" name="Parent 2 Phone">
+            <input type="tel" id="p2-phone" name="Parent 2 Phone" placeholder="(651) 555-1234" maxlength="14">
           </div>
           <div class="form-group">
             <label for="p2-email">Parent 2 Email</label>
@@ -207,8 +207,32 @@
   <footer class="footer"><div class="footer-grid"><div class="footer-brand"><img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=320,fit=crop,q=90/AMqlGL5ErPhwawxo/sticker-A85ENn3nz5UPZjN1.png" alt="St. Paul Central Mountain Bike Team logo" loading="lazy"><p>Youth mountain biking for grades 6-12 in the St. Paul school district. All skill levels welcome.</p></div><div><h4>Team</h4><ul><li><a href="/parent-guide">Parent Guide</a></li><li><a href="/equipment-guide">Equipment Guide</a></li><li><a href="/lettering-criteria">Lettering Criteria</a></li><li><a href="/coach-bios">Coach Bios</a></li></ul></div><div><h4>Get Involved</h4><ul><li><a href="/join">Join the Team</a></li><li><a href="/try-it-ride">Try-It-Ride</a></li><li><a href="/girls">Girls Try-It-Ride</a></li><li><a href="/captain">Captain Application</a></li></ul></div><div><h4>Connect</h4><ul><li><a href="mailto:hello@centralmtb.com">hello@centralmtb.com</a></li><li><a href="https://shop.centralmtb.com/" target="_blank" rel="noopener">Team Shop</a></li><li><a href="/media">Photos &amp; Media</a></li></ul></div></div><div class="footer-btm"><span>&copy; 2026 St. Paul Central Mountain Bike Team. All rights reserved.</span></div></footer>
   <script>
     var hamBtn=document.getElementById("hamBtn"),mobMenu=document.getElementById("mobMenu");hamBtn.addEventListener("click",function(){var o=mobMenu.classList.toggle("open");hamBtn.classList.toggle("active");hamBtn.setAttribute("aria-expanded",o);document.body.style.overflow=o?"hidden":"";});for(var ml=mobMenu.querySelectorAll("a"),i=0;i<ml.length;i++)ml[i].addEventListener("click",function(){mobMenu.classList.remove("open");hamBtn.classList.remove("active");hamBtn.setAttribute("aria-expanded","false");document.body.style.overflow="";});
+
+    // Auto-format phone numbers to (XXX) XXX-XXXX
+    function formatPhone(e) {
+      var x = e.target.value.replace(/\D/g, '').substring(0, 10);
+      var a = x.substring(0, 3), b = x.substring(3, 6), c = x.substring(6, 10);
+      if (x.length > 6) e.target.value = '(' + a + ') ' + b + '-' + c;
+      else if (x.length > 3) e.target.value = '(' + a + ') ' + b;
+      else if (x.length > 0) e.target.value = '(' + a;
+      else e.target.value = '';
+    }
+    document.querySelectorAll('input[type="tel"]').forEach(function(el) {
+      el.addEventListener('input', formatPhone);
+    });
+
+    // Validate phone has 10 digits before submit
     document.getElementById('joinForm').addEventListener('submit', function(e) {
       e.preventDefault();
+      var phones = this.querySelectorAll('input[type="tel"][required]');
+      for (var i = 0; i < phones.length; i++) {
+        var digits = phones[i].value.replace(/\D/g, '');
+        if (digits.length !== 10) {
+          phones[i].focus();
+          alert('Please enter a valid 10-digit phone number.');
+          return;
+        }
+      }
       var form = this;
       var data = new FormData(form);
       fetch('/', {
