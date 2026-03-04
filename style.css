@@ -689,6 +689,7 @@
       border-radius:var(--radius);
       padding:24px;
       align-self:start;
+      display:none;
     }
     .page-sidebar h4 {
       font-family:var(--font-d);
@@ -758,4 +759,5 @@
       .page-header { padding:56px 24px 48px; }
       .page-grid { grid-template-columns:1fr 260px; gap:56px; }
       .org-cards { grid-template-columns:repeat(3,1fr); }
+      .page-sidebar { display:block; }
     }
