@@ -1,104 +1,208 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coach Bios | St. Paul Central Mountain Bike Team</title>
   <meta name="description" content="Meet the volunteer coaches of the St. Paul Central Mountain Bike Team.">
   <link rel="canonical" href="https://centralmtb.com/coach-bios">
   <link rel="icon" type="image/png" href="/images/logo-64.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <nav class="nav" role="navigation" aria-label="Main navigation">
-    <div class="nav-inner">
-      <a href="/" class="nav-logo" aria-label="Central MTB Home">
-        <img src="/images/logo.png" alt="St. Paul Central MTB logo" width="120" height="44">
-      </a>
-      <ul class="nav-links">
-        <li><a href="/">Home</a></li>
-        <li class="dropdown"><a href="/parent-guide">Parent Guide</a>
-          <ul class="dropdown-menu">
-            <li><a href="/parent-guide">Welcome</a></li>
-            <li><a href="/parent-guide#eligibility">Eligibility</a></li>
-            <li><a href="/parent-guide#schedule">Practices &amp; Schedule</a></li>
-            <li><a href="/parent-guide#costs">Equipment &amp; Fees</a></li>
-            <li><a href="/equipment-guide">Equipment Guide</a></li>
-            <li><a href="/lettering-criteria">Lettering Criteria</a></li>
-          </ul>
-        </li>
-        <li class="dropdown"><a href="/try-it-ride">Try-It-Ride</a>
-          <ul class="dropdown-menu"><li><a href="/girls">Girls Try-It-Ride</a></li></ul>
-        </li>
-        <li class="dropdown"><a href="/resources">Resources</a>
-          <ul class="dropdown-menu">
-            <li><a href="/coach">Coach Info</a></li>
-            <li><a href="/coach-bios">Coach Bios</a></li>
-            <li><a href="/captain">Captain Application</a></li>
-            <li><a href="/media">Photos &amp; Media</a></li>
-          </ul>
-        </li>
-        <li><a href="https://shop.centralmtb.com/" target="_blank" rel="noopener">Shop</a></li>
-        <li><a href="/join" class="nav-cta">Join the Team</a></li>
-      </ul>
-      <button class="ham" aria-label="Open menu" aria-expanded="false" id="hamBtn"><span></span><span></span><span></span></button>
+  <style>
+    .coaches-grid {
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:20px;
+      margin:32px 0;
+    }
+    @media(min-width:600px) { .coaches-grid { grid-template-columns:repeat(3, 1fr); gap:24px; } }
+    @media(min-width:900px) { .coaches-grid { grid-template-columns:repeat(4, 1fr); gap:28px; } }
+
+    .coach-card {
+      cursor:pointer;
+      text-align:center;
+      transition:transform 0.2s;
+    }
+    .coach-card:hover { transform:translateY(-4px); }
+    .coach-card img {
+      width:100%;
+      aspect-ratio:1;
+      object-fit:cover;
+      border-radius:10px;
+      display:block;
+    }
+    .coach-card h3 {
+      font-family:var(--font-b);
+      font-size:15px;
+      font-weight:600;
+      color:var(--dark);
+      margin:10px 0 2px;
+    }
+    .coach-card .pronouns {
+      font-size:13px;
+      color:var(--text-muted);
+      font-weight:300;
+    }
+
+    .modal-overlay {
+      display:none;
+      position:fixed;
+      inset:0;
+      z-index:2000;
+      background:rgba(15,17,20,0.7);
+      backdrop-filter:blur(4px);
+      -webkit-backdrop-filter:blur(4px);
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    }
+    .modal-overlay.open { display:flex; }
+    .modal {
+      background:#fff;
+      border-radius:14px;
+      max-width:580px;
+      width:100%;
+      max-height:90vh;
+      overflow-y:auto;
+      position:relative;
+      box-shadow:0 20px 60px rgba(0,0,0,0.3);
+    }
+    .modal-close {
+      position:absolute;
+      top:12px;
+      right:12px;
+      width:36px;
+      height:36px;
+      border:none;
+      background:rgba(15,17,20,0.6);
+      color:#fff;
+      border-radius:50%;
+      font-size:20px;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:1;
+      transition:background 0.2s;
+    }
+    .modal-close:hover { background:rgba(15,17,20,0.85); }
+    .modal-img {
+      width:100%;
+      aspect-ratio:1;
+      object-fit:cover;
+      border-radius:14px 14px 0 0;
+      display:block;
+    }
+    .modal-body { padding:24px; }
+    .modal-body h2 {
+      font-family:var(--font-d);
+      font-weight:700;
+      font-size:22px;
+      color:var(--dark);
+      margin-bottom:2px;
+    }
+    .modal-body .pronouns {
+      font-size:14px;
+      color:var(--text-muted);
+      margin-bottom:16px;
+    }
+    .modal-body p {
+      font-size:16px;
+      line-height:1.7;
+      color:var(--text);
+      font-weight:300;
+    }
+  </style>
+</head><body>
+  <nav class="nav" role="navigation" aria-label="Main navigation"><div class="nav-inner"><a href="/" class="nav-logo" aria-label="Central MTB Home"><img src="/images/logo.png" alt="St. Paul Central MTB logo" width="120" height="44"></a><ul class="nav-links"><li><a href="/">Home</a></li><li class="dropdown"><a href="/parent-guide">Parent Guide</a><ul class="dropdown-menu"><li><a href="/parent-guide">Welcome</a></li><li><a href="/parent-guide#eligibility">Eligibility</a></li><li><a href="/parent-guide#schedule">Practices &amp; Schedule</a></li><li><a href="/parent-guide#costs">Equipment &amp; Fees</a></li><li><a href="/equipment-guide">Equipment Guide</a></li><li><a href="/lettering-criteria">Lettering Criteria</a></li></ul></li><li class="dropdown"><a href="/try-it-ride">Try-It-Ride</a><ul class="dropdown-menu"><li><a href="/girls">Girls Try-It-Ride</a></li></ul></li><li class="dropdown"><a href="/resources">Resources</a><ul class="dropdown-menu"><li><a href="/coach">Coach Info</a></li><li><a href="/coach-bios">Coach Bios</a></li><li><a href="/captain">Captain Application</a></li><li><a href="/media">Photos &amp; Media</a></li></ul></li><li><a href="https://shop.centralmtb.com/" target="_blank" rel="noopener">Shop</a></li><li><a href="/join" class="nav-cta">Join the Team</a></li></ul><button class="ham" aria-label="Open menu" aria-expanded="false" id="hamBtn"><span></span><span></span><span></span></button></div></nav>
+  <div class="mob-menu" id="mobMenu" role="dialog" aria-label="Navigation menu"><a href="/">Home</a><a href="/parent-guide">Parent Guide</a><div class="mob-sub"><a href="/equipment-guide">Equipment Guide</a><a href="/lettering-criteria">Lettering Criteria</a></div><a href="/try-it-ride">Try-It-Ride</a><div class="mob-sub"><a href="/girls">Girls Try-It-Ride</a></div><a href="/resources">Resources</a><div class="mob-sub"><a href="/coach-bios">Coach Bios</a><a href="/captain">Captain Application</a><a href="/media">Photos &amp; Media</a></div><a href="https://shop.centralmtb.com/" target="_blank" rel="noopener">Shop</a><a href="/join" class="mob-cta">Join the Team</a></div>
+  <header class="page-header"><div class="container"><div class="breadcrumb"></div><h1>Meet Our Coaches</h1><p>The volunteer coaches who make Central MTB possible.</p></div></header>
+
+  <section class="section"><div class="container"><div class="content" style="max-width:960px">
+    <p>Our coaching staff is made up of dedicated volunteers who are passionate about mountain biking and helping young riders develop their skills, confidence, and love for the sport. All coaches are licensed through the Minnesota Cycling Association.</p>
+
+    <div class="coaches-grid">
+      <div class="coach-card" onclick="openModal(this)" data-name="Ben Goheen" data-pronouns="he/him" data-img="/coaches/ben-goheen.jpg" data-bio="Coach Ben first got into mountain biking by building jumps with friends in the gravel pits of South Dakota. Fast forward to 2018, when his passion came full circle to coaching after his daughter, Molly, joined the Stillwater Mountain Bike Team as a 7th grader. He enjoys seeing students progress throughout the season and over the years. Kinnickinnic State Park and Cuyuna are where you'll find him in peak form!">
+        <img src="/coaches/ben-goheen.jpg" alt="Ben Goheen" loading="lazy"><h3>Ben Goheen</h3><span class="pronouns">he/him</span>
+      </div>
+      <div class="coach-card" onclick="openModal(this)" data-name="Bennett Jordan" data-pronouns="he/him" data-img="/coaches/bennett-jordan.jpg" data-bio="Bennett found his way into mountain biking through BMX in the 1980s and became a true convert in the mountains of Santa Cruz, CA. He began coaching three years ago to support his son, Sebastian, at the start of his bike journey - and get some laps in with the kids. For Bennett, coaching is a meaningful way to contribute to building community and encouraging riders to push through their challenges. Off the bike, he enjoys traveling and camping with his family, and hanging out with their two quirky cats, Bruno and Scout.">
+        <img src="/coaches/bennett-jordan.jpg" alt="Bennett Jordan" loading="lazy"><h3>Bennett Jordan</h3><span class="pronouns">he/him</span>
+      </div>
+      <div class="coach-card" onclick="openModal(this)" data-name="Craig Eckfeldt" data-pronouns="he/him" data-img="/coaches/craig-eckfeldt.jpg" data-bio="Craig has been a lifelong cycling enthusiast who discovered a passion for mountain biking when his son, Ronin, began riding in middle school. In regards to coaching the team, he jokingly sees himself as a bit of an impostor because he's found that coaching has taught him just as much as he's shared.">
+        <img src="/coaches/craig-eckfeldt.jpg" alt="Craig Eckfeldt" loading="lazy"><h3>Craig Eckfeldt</h3><span class="pronouns">he/him</span>
+      </div>
+      <div class="coach-card" onclick="openModal(this)" data-name="Dan Hohmann" data-pronouns="he/him" data-img="/coaches/daniel-hohmann.jpg" data-bio="Coach Dan has been riding bikes for years and coaching for the last three. As a coach, he focuses on helping riders develop solid foundational skills and challenge their endurance (and their comfort zones) - and most importantly, finding joy in the presence of the ride. If Dan isn't on the Duluth Traverse, you might be able to find him spending time with family, cooking or getting lost in a good book.">
+        <img src="/coaches/daniel-hohmann.jpg" alt="Dan Hohmann" loading="lazy"><h3>Dan Hohmann</h3><span class="pronouns">he/him</span>
+      </div>
+      <div class="coach-card" onclick="openModal(this)" data-name="Dan Wheeler" data-pronouns="he/him" data-img="/coaches/dan-wheeler.jpg" data-bio="Dan comes to coaching after extensive experience as a school athlete, who then transitioned into coaching. He has coached nordic skiing, track and field, Trail Kids at the Loppet and cyclocross! Fun fact: his family once had a &quot;wunderhund&quot;, Monk, who was trained to run along the trails, &quot;riding&quot; the berms and jumps. Dan is excited for adventures with the team this season!">
+        <img src="/coaches/dan-wheeler.jpg" alt="Dan Wheeler" loading="lazy"><h3>Dan Wheeler</h3><span class="pronouns">he/him</span>
+      </div>
+      <div class="coach-card" onclick="openModal(this)" data-name="Greg Filice" data-pronouns="he/him" data-img="/coaches/greg-filice.jpg" data-bio="Greg began mountain biking in 2018 and joined the Central Team as a Level 1 coach in 2024. As a coach, he enjoys giving tips to the riders and providing support in their pursuit. He is working toward completing Level 2 coach training. You can often find him and his son, Ruggi, taking laps on the trails at Lebanon Hills.">
+        <img src="/coaches/greg-filice.jpg" alt="Greg Filice" loading="lazy"><h3>Greg Filice</h3><span class="pronouns">he/him</span>
+      </div>
+      <div class="coach-card" onclick="openModal(this)" data-name="Harrison Lin" data-pronouns="he/him" data-img="/coaches/harrison-lin.jpg" data-bio="">
+        <img src="/coaches/harrison-lin.jpg" alt="Harrison Lin" loading="lazy"><h3>Harrison Lin</h3><span class="pronouns">he/him</span>
+      </div>
+      <div class="coach-card" onclick="openModal(this)" data-name="Jake Ganfield" data-pronouns="he/him" data-img="/coaches/jake-ganfield.jpg" data-bio="Coach Jake found mountain biking when he was younger and recently gotten back into the sport after his son, Roland, began racing last season. Jake enjoys mountain biking for its blend of adventure and nature - &quot;it's like hiking in the woods, just faster!&quot;">
+        <img src="/coaches/jake-ganfield.jpg" alt="Jake Ganfield" loading="lazy"><h3>Jake Ganfield</h3><span class="pronouns">he/him</span>
+      </div>
+      <div class="coach-card" onclick="openModal(this)" data-name="Jamie Lindfors" data-pronouns="he/him" data-img="/coaches/jamie-lindfors.jpg" data-bio="">
+        <img src="/coaches/jamie-lindfors.jpg" alt="Jamie Lindfors" loading="lazy"><h3>Jamie Lindfors</h3><span class="pronouns">he/him</span>
+      </div>
+      <div class="coach-card" onclick="openModal(this)" data-name="Joe Murphy" data-pronouns="he/him" data-img="/coaches/joe-murphy.jpg" data-bio="Joe comes to us after gaining experience in the 90s. After taking a hiatus from the sport, he's been back at it for the last 5 years. Coaching feeds his appreciation for the practices and race weekends that take us out into nature. He is an avid fat-biker during the winter months on the River Bottoms trail, fueling the miles with the perennial St. Paul staple, the Pearson's Salted Nut Roll.">
+        <img src="/coaches/joe-murphy.jpg" alt="Joe Murphy" loading="lazy"><h3>Joe Murphy</h3><span class="pronouns">he/him</span>
+      </div>
+      <div class="coach-card" onclick="openModal(this)" data-name="Loren Danielson" data-pronouns="he/him" data-img="/coaches/loren-danielson.jpg" data-bio="">
+        <img src="/coaches/loren-danielson.jpg" alt="Loren Danielson" loading="lazy"><h3>Loren Danielson</h3><span class="pronouns">he/him</span>
+      </div>
+      <div class="coach-card" onclick="openModal(this)" data-name="Marlaine Cox" data-pronouns="she/her" data-img="/coaches/marlaine-cox.jpg" data-bio="Marlaine brings her experience career mentoring to mountain bike coaching this year. In coaching, she values being able to learn alongside the riders. She picked up mountain biking with her son, Joe, and enjoys the access to all the trails the Twin Cities have to offer. After picking up her first &quot;decent&quot; bike and riding at Cuyuna, the trail system won out as a favorite. When not on the trails, one of Marlaine's favorite things to do is backpacking the Superior Hiking Trail.">
+        <img src="/coaches/marlaine-cox.jpg" alt="Marlaine Cox" loading="lazy"><h3>Marlaine Cox</h3><span class="pronouns">she/her</span>
+      </div>
+      <div class="coach-card" onclick="openModal(this)" data-name="Mike Schnegelberger" data-pronouns="he/him" data-img="/coaches/mike-schnegelberger.jpg" data-bio="">
+        <img src="/coaches/mike-schnegelberger.jpg" alt="Mike Schnegelberger" loading="lazy"><h3>Mike Schnegelberger</h3><span class="pronouns">he/him</span>
+      </div>
+      <div class="coach-card" onclick="openModal(this)" data-name="Rebecca Goheen" data-pronouns="she/her" data-img="/coaches/rebecca-goheen.jpg" data-bio="Rebecca became a coach by accident - after buying her first mountain bike, she planned to ride solo while her sons practiced. Another coach on the team encouraged her to join as a parent coach, and she quickly fell in love with riding singletrack and supporting young riders as they discover the joy of the trail. As a coach, the highlight every year is watching the progress young riders make over the course of the season. &quot;I enjoy pointing that out and then observing their pride as they recognize it for themselves.&quot;">
+        <img src="/coaches/rebecca-goheen.jpg" alt="Rebecca Goheen" loading="lazy"><h3>Rebecca Goheen</h3><span class="pronouns">she/her</span>
+      </div>
+      <div class="coach-card" onclick="openModal(this)" data-name="Scot Nortrom" data-pronouns="he/him" data-img="/coaches/scot-nortrom.jpg" data-bio="Scot is a third-year coach, who was previously a lifelong road biker before finding mountain biking. He is inspired by seeing riders' hard work pay off - and the smiles that come with it! When Scot isn't on the trails, you can find him out hiking, camping, or exploring Minnesota State Parks with his family.">
+        <img src="/coaches/scot-nortrom.jpg" alt="Scot Nortrom" loading="lazy"><h3>Scot Nortrom</h3><span class="pronouns">he/him</span>
+      </div>
     </div>
-  </nav>
-  <div class="mob-menu" id="mobMenu" role="dialog" aria-label="Navigation menu">
-    <a href="/">Home</a>
-    <a href="/parent-guide">Parent Guide</a>
-    <div class="mob-sub"><a href="/equipment-guide">Equipment Guide</a><a href="/lettering-criteria">Lettering Criteria</a></div>
-    <a href="/try-it-ride">Try-It-Ride</a>
-    <div class="mob-sub"><a href="/girls">Girls Try-It-Ride</a></div>
-    <a href="/resources">Resources</a>
-    <div class="mob-sub"><a href="/coach-bios">Coach Bios</a><a href="/captain">Captain Application</a><a href="/media">Photos &amp; Media</a></div>
-    <a href="https://shop.centralmtb.com/" target="_blank" rel="noopener">Shop</a>
-    <a href="/join" class="mob-cta">Join the Team</a>
+
+    <hr class="section-divider">
+    <h2>Want to Coach?</h2>
+    <p>We are always looking for volunteers. Whether you are an experienced rider or just getting started, there is a place for you on our coaching team.</p>
+    <div style="margin-top:20px"><a href="/coach" class="btn">Learn About Coaching &rarr;</a></div>
+  </div></div></section>
+
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+      <img class="modal-img" id="modalImg" src="" alt="">
+      <div class="modal-body">
+        <h2 id="modalName"></h2>
+        <div class="pronouns" id="modalPronouns"></div>
+        <p id="modalBio"></p>
+      </div>
+    </div>
   </div>
 
-  <header class="page-header">
-    <div class="container">
-      <div class="breadcrumb"><a href="/">Home</a> / <a href="/resources">Resources</a> / Coach Bios</div>
-      <h1>Meet Our Coaches</h1>
-      <p>The volunteer coaches who make Central MTB possible.</p>
-    </div>
-  </header>
-
-  <section class="section">
-    <div class="container">
-      <div class="content" style="max-width:800px">
-        <p>Our coaching staff is made up of dedicated volunteers who are passionate about mountain biking and helping young riders develop their skills, confidence, and love for the sport. All coaches are licensed through the Minnesota Cycling Association.</p>
-
-        <!-- Elfsight Team Showcase | SPC MTB coaches -->
-        <script src="https://elfsightcdn.com/platform.js" async></script>
-        <div class="elfsight-app-4cab0ae3-1f83-4b78-9ee9-aeb28a6af228" data-elfsight-app-lazy></div>
-
-        <hr class="section-divider">
-
-        <h2>Want to Coach?</h2>
-        <p>We are always looking for volunteers. Whether you are an experienced rider or just getting started, there is a place for you on our coaching team.</p>
-        <div style="margin-top:20px"><a href="/coach" class="btn">Learn About Coaching →</a></div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <img src="/images/logo.png" alt="St. Paul Central Mountain Bike Team logo" loading="lazy">
-        <p>Youth mountain biking for grades 6–12 in the St. Paul school district. All skill levels welcome.</p>
-      </div>
-      <div><h4>Team</h4><ul><li><a href="/parent-guide">Parent Guide</a></li><li><a href="/equipment-guide">Equipment Guide</a></li><li><a href="/lettering-criteria">Lettering Criteria</a></li><li><a href="/coach-bios">Coach Bios</a></li></ul></div>
-      <div><h4>Get Involved</h4><ul><li><a href="/join">Join the Team</a></li><li><a href="/try-it-ride">Try-It-Ride</a></li><li><a href="/girls">Girls Try-It-Ride</a></li><li><a href="/captain">Captain Application</a></li></ul></div>
-      <div><h4>Connect</h4><ul><li><a href="mailto:hello@centralmtb.com">hello@centralmtb.com</a></li><li><a href="https://shop.centralmtb.com/" target="_blank" rel="noopener">Team Shop</a></li><li><a href="/media">Photos &amp; Media</a></li></ul></div>
-    </div>
-    <div class="footer-btm"><span>© 2026 St. Paul Central Mountain Bike Team. All rights reserved.</span></div>
-  </footer>
+  <footer class="footer"><div class="footer-grid"><div class="footer-brand"><img src="/images/logo.png" alt="St. Paul Central Mountain Bike Team logo" loading="lazy"><p>Youth mountain biking for grades 6-12 in the St. Paul school district. All skill levels welcome.</p></div><div><h4>Team</h4><ul><li><a href="/parent-guide">Parent Guide</a></li><li><a href="/equipment-guide">Equipment Guide</a></li><li><a href="/lettering-criteria">Lettering Criteria</a></li><li><a href="/coach-bios">Coach Bios</a></li></ul></div><div><h4>Get Involved</h4><ul><li><a href="/join">Join the Team</a></li><li><a href="/try-it-ride">Try-It-Ride</a></li><li><a href="/girls">Girls Try-It-Ride</a></li><li><a href="/captain">Captain Application</a></li></ul></div><div><h4>Connect</h4><ul><li><a href="mailto:hello@centralmtb.com">hello@centralmtb.com</a></li><li><a href="https://shop.centralmtb.com/" target="_blank" rel="noopener">Team Shop</a></li><li><a href="/media">Photos &amp; Media</a></li></ul></div></div><div class="footer-btm"><span>&copy; 2026 St. Paul Central Mountain Bike Team. All rights reserved.</span></div></footer>
   <script>
-    var hamBtn=document.getElementById('hamBtn'),mobMenu=document.getElementById('mobMenu');hamBtn.addEventListener('click',function(){var o=mobMenu.classList.toggle('open');hamBtn.classList.toggle('active');hamBtn.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':'';});for(var ml=mobMenu.querySelectorAll('a'),i=0;i<ml.length;i++)ml[i].addEventListener('click',function(){mobMenu.classList.remove('open');hamBtn.classList.remove('active');hamBtn.setAttribute('aria-expanded','false');document.body.style.overflow='';});
+    var hamBtn=document.getElementById("hamBtn"),mobMenu=document.getElementById("mobMenu");hamBtn.addEventListener("click",function(){var o=mobMenu.classList.toggle("open");hamBtn.classList.toggle("active");hamBtn.setAttribute("aria-expanded",o);document.body.style.overflow=o?"hidden":"";});for(var ml=mobMenu.querySelectorAll("a"),i=0;i<ml.length;i++)ml[i].addEventListener("click",function(){mobMenu.classList.remove("open");hamBtn.classList.remove("active");hamBtn.setAttribute("aria-expanded","false");document.body.style.overflow="";});
+    function openModal(card) {
+      document.getElementById('modalName').textContent = card.getAttribute('data-name');
+      document.getElementById('modalPronouns').textContent = card.getAttribute('data-pronouns');
+      document.getElementById('modalImg').src = card.getAttribute('data-img');
+      document.getElementById('modalImg').alt = card.getAttribute('data-name');
+      document.getElementById('modalBio').textContent = card.getAttribute('data-bio') || 'Bio coming soon!';
+      document.getElementById('modalOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(e) {
+      if (e && e.target !== document.getElementById('modalOverlay')) return;
+      document.getElementById('modalOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
   </script>
-</body>
-</html>
+</body></html>
