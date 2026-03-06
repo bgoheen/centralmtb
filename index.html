@@ -12,7 +12,7 @@
   <meta property="og:description" content="Join the St. Paul Central Mountain Bike Team - youth cycling for grades 6-12. All skill levels welcome. Coaching, trail rides, and optional MCA racing across Twin Cities trails.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://centralmtb.com/">
-  <meta property="og:image" content="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1200,fit=crop,q=80/AMqlGL5ErPhwawxo/mountain-biking-minnesota-YX4aZklpDXfb70gw.jpg">
+  <meta property="og:image" content="/images/hero-desktop.jpg">
   <meta property="og:site_name" content="St. Paul Central Mountain Bike Team">
 
   <!-- Schema.org structured data -->
@@ -44,19 +44,15 @@
   </script>
 
   <!-- Preload hero image for fast LCP -->
-  <link rel="preload" as="image" href="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,fit=crop,q=80/AMqlGL5ErPhwawxo/mountain-biking-minnesota-YX4aZklpDXfb70gw.jpg"
-        imagesrcset="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop,q=75/AMqlGL5ErPhwawxo/mountain-biking-minnesota-YX4aZklpDXfb70gw.jpg 768w,
-                     https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1280,fit=crop,q=80/AMqlGL5ErPhwawxo/mountain-biking-minnesota-YX4aZklpDXfb70gw.jpg 1280w,
-                     https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,fit=crop,q=80/AMqlGL5ErPhwawxo/mountain-biking-minnesota-YX4aZklpDXfb70gw.jpg 1920w"
+  <link rel="preload" as="image" href="/images/hero-desktop.jpg">
         imagesizes="100vw">
 
   <!-- Preconnect to font + image CDNs -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://assets.zyrosite.com">
 
   <!-- Fonts with display:swap to prevent render blocking -->
-  <link rel="icon" type="image/png" href="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=64,fit=crop,q=90/AMqlGL5ErPhwawxo/sticker-A85ENn3nz5UPZjN1.png">
+  <link rel="icon" type="image/png" href="/images/logo-64.png">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
 
   <style>
@@ -702,7 +698,7 @@
   <nav class="nav" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
       <a href="/" class="nav-logo" aria-label="Central MTB Home">
-        <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=200,fit=crop,q=90/AMqlGL5ErPhwawxo/sticker-A85ENn3nz5UPZjN1.png" alt="St. Paul Central MTB logo" width="120" height="44">
+        <img src="/images/logo.png" alt="St. Paul Central MTB logo" width="120" height="44">
       </a>
 
       <ul class="nav-links">
@@ -770,14 +766,14 @@
   <!-- ====== HERO ====== -->
   <section class="hero">
     <div class="hero-img">
-      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1280,fit=crop,q=80/AMqlGL5ErPhwawxo/mountain-biking-minnesota-YX4aZklpDXfb70gw.jpg"
-           srcset="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop,q=75/AMqlGL5ErPhwawxo/mountain-biking-minnesota-YX4aZklpDXfb70gw.jpg 768w,
-                   https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1280,fit=crop,q=80/AMqlGL5ErPhwawxo/mountain-biking-minnesota-YX4aZklpDXfb70gw.jpg 1280w,
-                   https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,fit=crop,q=80/AMqlGL5ErPhwawxo/mountain-biking-minnesota-YX4aZklpDXfb70gw.jpg 1920w"
-           sizes="100vw"
-           alt="St. Paul Central youth mountain bikers racing at an MCA event in Minnesota"
-           width="1920" height="1080"
-           fetchpriority="high" decoding="async">
+      <picture>
+        <source media="(max-width:767px)" srcset="hero-mobile.jpg">
+        <img src="/images/hero-desktop.jpg"
+             sizes="100vw"
+             alt="St. Paul Central youth mountain bikers racing at an MCA event in Minnesota"
+             width="1920" height="1080"
+             fetchpriority="high" decoding="async">
+      </picture>
     </div>
     <div class="hero-content">
       <span class="hero-tag">Grades 6–12 · All Skill Levels</span>
@@ -799,7 +795,7 @@
           <span class="s-label">About Us</span>
           <h2 class="s-title">A Supportive Community<br>on Two Wheels</h2>
           <div class="about-text">
-            <p>We're a youth mountain biking team where riders of all abilities explore the Twin Cities' best trails - Battle Creek, Lebanon Hills, Theo Wirth, and more. Our July through October season includes coaching, practice rides, and optional MCA racing.</p>
+            <p>We're a youth mountain biking team where riders of all abilities explore the Twin Cities best trails - Lebanon Hills, Battle Creek, Theo Wirth, and more. Our July through October season includes coaching, practice rides, and optional MCA racing.</p>
             <p>New to mountain biking? Perfect. We'll teach you everything, help you earn a varsity letter, and make sure you have a blast doing it.</p>
           </div>
           <div class="about-stats">
@@ -830,12 +826,12 @@
         <div class="card">
           <div class="card-icon">📅</div>
           <h3>Practice Schedule</h3>
-          <p>Tuesday &amp; Thursday evenings, 5:30–7:30pm. Saturday mornings, 9:30–11:30am. We ride trails like Battle Creek, Carver Lake, and Sunfish Park.</p>
+          <p>Tuesday &amp; Thursday: 5:30-7:30pm<br>Saturday: 9:30-11:30am<br>Carver Lake, Battle Creek, Sunfish Park &amp; more</p>
         </div>
         <div class="card">
           <div class="card-icon">🚴</div>
           <h3>All Levels Welcome</h3>
-          <p>No experience needed. Our coaches work with every skill level from first-time riders to experienced racers. Racing is completely optional.</p>
+          <p>No experience needed. Our coaches work with every skill level from first-time riders to experienced racers. Racing is optional.</p>
         </div>
         <div class="card">
           <div class="card-icon">🎓</div>
@@ -857,7 +853,7 @@
           <thead><tr><th>Item</th><th>Required?</th><th>Est. Cost</th></tr></thead>
           <tbody>
             <tr><td>Mountain Bike (hardtail or full suspension)</td><td class="req">Required</td><td>$500+</td></tr>
-            <tr><td>MIPS Helmet</td><td class="req">Required</td><td>~$60</td></tr>
+            <tr><td>Helmet (MIPS recommended)</td><td class="req">Required</td><td>~$60</td></tr>
             <tr><td>Cycling Gloves</td><td class="opt">Recommended</td><td>~$25</td></tr>
             <tr><td>Protective Eyewear</td><td class="opt">Recommended</td><td>~$50</td></tr>
             <tr><td>MCA Athlete Registration</td><td class="req">Required</td><td>$100</td></tr>
@@ -870,7 +866,7 @@
         <!-- Mobile card layout - shown below 600px, table hidden -->
         <div class="cost-cards">
           <div class="cost-card"><div class="cost-card-info"><div class="cost-card-name">Mountain Bike</div><div class="cost-card-req req">Required</div></div><div class="cost-card-price">$500+</div></div>
-          <div class="cost-card"><div class="cost-card-info"><div class="cost-card-name">MIPS Helmet</div><div class="cost-card-req req">Required</div></div><div class="cost-card-price">~$60</div></div>
+          <div class="cost-card"><div class="cost-card-info"><div class="cost-card-name">Helmet (MIPS recommended)</div><div class="cost-card-req req">Required</div></div><div class="cost-card-price">~$60</div></div>
           <div class="cost-card"><div class="cost-card-info"><div class="cost-card-name">Cycling Gloves</div><div class="cost-card-req opt">Recommended</div></div><div class="cost-card-price">~$25</div></div>
           <div class="cost-card"><div class="cost-card-info"><div class="cost-card-name">Protective Eyewear</div><div class="cost-card-req opt">Recommended</div></div><div class="cost-card-price">~$50</div></div>
           <div class="cost-card"><div class="cost-card-info"><div class="cost-card-name">MCA Athlete Registration</div><div class="cost-card-req req">Required</div></div><div class="cost-card-price">$100</div></div>
@@ -925,14 +921,14 @@
           <h2 class="s-title">Team Communication on Heja</h2>
           <p style="color:var(--text-mid);line-height:1.7">All team communication happens through <strong style="color:var(--text)">Heja</strong>, a free team management app. No email clutter - just real-time updates when you need them.</p>
           <div class="comm-features">
-            <div class="comm-feat"><div class="comm-feat-ic">📍</div><p><strong>Practice locations &amp; times</strong> - always know where to go</p></div>
-            <div class="comm-feat"><div class="comm-feat-ic">🌧️</div><p><strong>Weather cancellations</strong> - instant updates, no guessing</p></div>
-            <div class="comm-feat"><div class="comm-feat-ic">🏁</div><p><strong>Race information</strong> - schedules, logistics, results</p></div>
-            <div class="comm-feat"><div class="comm-feat-ic">✉️</div><p><strong>After you register</strong>, we'll send you an invitation link</p></div>
+            <div class="comm-feat"><div class="comm-feat-ic">📍</div><p><strong>Practice locations &amp; times</strong></p></div>
+            <div class="comm-feat"><div class="comm-feat-ic">🌧️</div><p><strong>Weather cancellations</strong></p></div>
+            <div class="comm-feat"><div class="comm-feat-ic">🏁</div><p><strong>Race schedules &amp; results</strong></p></div>
+            <div class="comm-feat"><div class="comm-feat-ic">✉️</div><p><strong>Join the team</strong> and we'll send an invite</p></div>
           </div>
         </div>
         <div class="comm-img">
-          <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=358,fit=crop,q=80/AMqlGL5ErPhwawxo/heja-8R4wt2OcRPIcfyeR.png"
+          <img src="/images/heja.png"
                alt="Heja app showing St. Paul Central MTB practice notifications and event calendar"
                width="375" height="358" loading="lazy" decoding="async">
         </div>
@@ -946,14 +942,14 @@
       <span class="s-label">Gallery</span>
       <h2 class="s-title">Life on the Trails</h2>
       <div class="gallery">
-        <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=400,h=400,fit=crop,q=75/AMqlGL5ErPhwawxo/scr-20260118-orst-7LsTRZLzWYY3D1yE.jpeg" alt="St. Paul Central MTB riders on a wooded trail during practice" width="400" height="400" loading="lazy" decoding="async">
-        <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=400,h=400,fit=crop,q=75/AMqlGL5ErPhwawxo/20250927_183138_baeb29-su9tCbpyuNiSRzYq.JPEG" alt="Central MTB team members at a fall trail ride" width="400" height="400" loading="lazy" decoding="async">
-        <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=400,h=400,fit=crop,q=75/AMqlGL5ErPhwawxo/20250906_190625_2faf64-vgMxj8EN8jVqRnK3.JPEG" alt="Youth mountain biker navigating singletrack at Battle Creek" width="400" height="400" loading="lazy" decoding="async">
-        <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=400,h=400,fit=crop,q=75/AMqlGL5ErPhwawxo/20251002_193918_14349b-SQcW4O23DpW1pz2I.JPEG" alt="Central MTB team riding at sunset on a Twin Cities trail" width="400" height="400" loading="lazy" decoding="async">
-        <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=400,h=400,fit=crop,q=75/AMqlGL5ErPhwawxo/scr-20260118-otne-hH1T8RpKjctVPGJI.jpeg" alt="St. Paul Central mountain bikers at an MCA cross-country race" width="400" height="400" loading="lazy" decoding="async">
-        <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=400,h=400,fit=crop,q=75/AMqlGL5ErPhwawxo/20251013_134908_906474-KmosYTY9MY1Skp2s.JPEG" alt="Central MTB riders celebrating after a race finish" width="400" height="400" loading="lazy" decoding="async">
-        <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=400,h=400,fit=crop,q=75/AMqlGL5ErPhwawxo/20240912_185551-m7V5LnLX66hPbpQM.JPG" alt="St. Paul Central Mountain Bike team at Battle Creek trail" width="400" height="400" loading="lazy" decoding="async">
-        <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=400,h=400,fit=crop,q=75/AMqlGL5ErPhwawxo/2025-team-YbN40Ev2JrcalJzb.jpg" alt="Full team photo of St. Paul Central MTB at Sunfish Lake" width="400" height="400" loading="lazy" decoding="async">
+        <img src="/images/gallery-1.jpg" alt="St. Paul Central MTB riders on a wooded trail during practice" width="400" height="400" loading="lazy" decoding="async">
+        <img src="/images/gallery-2.jpg" alt="Central MTB team members at a fall trail ride" width="400" height="400" loading="lazy" decoding="async">
+        <img src="/images/gallery-3.jpg" alt="Youth mountain biker navigating singletrack at Battle Creek" width="400" height="400" loading="lazy" decoding="async">
+        <img src="/images/gallery-4.jpg" alt="Central MTB team riding at sunset on a Twin Cities trail" width="400" height="400" loading="lazy" decoding="async">
+        <img src="/images/gallery-5.jpg" alt="St. Paul Central mountain bikers at an MCA cross-country race" width="400" height="400" loading="lazy" decoding="async">
+        <img src="/images/gallery-6.jpg" alt="Central MTB riders celebrating after a race finish" width="400" height="400" loading="lazy" decoding="async">
+        <img src="/images/gallery-7.jpg" alt="St. Paul Central Mountain Bike team at Battle Creek trail" width="400" height="400" loading="lazy" decoding="async">
+        <img src="/images/gallery-8.jpg" alt="Full team photo of St. Paul Central MTB at Sunfish Lake" width="400" height="400" loading="lazy" decoding="async">
       </div>
     </div>
   </section>
@@ -987,7 +983,7 @@
   <footer class="footer">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=320,fit=crop,q=90/AMqlGL5ErPhwawxo/sticker-A85ENn3nz5UPZjN1.png" alt="St. Paul Central Mountain Bike Team logo" loading="lazy">
+        <img src="/images/logo.png" alt="St. Paul Central Mountain Bike Team logo" loading="lazy">
         <p>Youth mountain biking for grades 6–12 in the St. Paul school district. All skill levels welcome.</p>
       </div>
       <div>
