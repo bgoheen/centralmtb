@@ -235,13 +235,15 @@
     ======================================== */
     .hero {
       position:relative;
-      height:65vh;
-      min-height:420px;
-      max-height:600px;
+      height:calc(65vh + var(--nav-h));
+      min-height:calc(420px + var(--nav-h));
+      max-height:calc(600px + var(--nav-h));
       display:flex;
       align-items:flex-end;
       overflow:hidden;
-      margin-top:var(--nav-h);
+      margin-top:0;
+      padding-top:var(--nav-h);
+      background:var(--dark);
     }
 
     .hero-img { position:absolute; inset:0; z-index:0; }
@@ -659,7 +661,7 @@
       .section { padding:80px 24px; }
       .hero-content { padding:0 24px 64px; }
       .hero-sub { font-size:18px; }
-      .hero { height:85vh; max-height:880px; }
+      .hero { height:calc(85vh + var(--nav-h)); max-height:calc(880px + var(--nav-h)); }
       .hero-img img { object-position:center 35%; }
       .hero-btns { flex-direction:row; }
 
