@@ -439,6 +439,8 @@
         color:var(--dark);
         white-space:nowrap;
       }
+
+      .footer-col h4 { font-size:14px; }
     }
 
     /* ========================================
