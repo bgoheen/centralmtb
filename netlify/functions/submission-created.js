@@ -50,12 +50,19 @@ function sendEmail({ apiKey, from, to, subject, html }) {
 // Season logic
 // ---------------------------------------------------------------------------
 function getSeason(date) {
-  const m = date.getMonth(); // 0-indexed
-  // In-season:  June (5) through September (8)
-  // Pre-season: March (2) through May (4)
-  // Off-season: October (9) through February (1)
-  if (m >= 5 && m <= 8) return "in-season";
-  if (m >= 2 && m <= 4) return "pre-season";
+  const m = date.getMonth(); // 0-indexed (0=Jan, 11=Dec)
+  const d = date.getDate();
+
+  // Registration Open: April 1 (m=3,d>=1) through June 30 (m=5)
+  if ((m === 3 && d >= 1) || m === 4 || m === 5) return "registration-open";
+
+  // Early Season (can still join): July 1 (m=6) through August 31 (m=7)
+  if (m === 6 || m === 7) return "early-season";
+
+  // Late Season (suggest next year): September 1 (m=8) through October 14 (m=9,d<=14)
+  if (m === 8 || (m === 9 && d <= 14)) return "late-season";
+
+  // Off-Season: October 15 (m=9,d>=15) through March 31 (m=2)
   return "off-season";
 }
 
@@ -77,40 +84,44 @@ function getTemplate(season, data) {
       "",
     ].join("\n"),
     signoff: [
-      "Rebecca and I are happy to help with any other questions. You can find us on Heja, or just shoot us a text or email.",
+      "Rebecca and I are happy to help with any other questions. You can find us on Heja, or just send us a text or email.",
       "",
       `We're looking forward to having ${riderFirst} on the team!`,
       "",
       "Ben Goheen",
-      "Team Admin, St. Paul Central Mountain Bike Team",
-      "hello@centralmtb.com | centralmtb.com",
+      "651-983-4040",
+      "",
+      "Rebecca Goheen",
+      "651-442-0653",
     ].join("\n"),
   };
 
   const greeting = parentFirst ? `Hi ${parentFirst},` : "Hi,";
 
-  if (season === "pre-season") {
+  const intro = "Thanks for reaching out! My name is Ben Goheen, and I'm the team admin. I've copied our head coach and my wife, Rebecca, here as well.";
+
+  if (season === "registration-open") {
     return {
       subject: `Welcome to Central MTB, ${riderFirst}!`,
       text: [
         greeting,
         "",
-        "Thanks for reaching out! My name is Ben Goheen, and I'm the team admin. I've copied our head coach and my wife, Rebecca, here as well.",
+        intro,
         "",
-        "Registration for the team and the Minnesota Cycling Association (MCA) opens on April 1st, and practices will start in early July.",
+        "Registration for the team and the Minnesota Cycling Association (MCA) is now open, and practices will start in early July.",
         common.hejaBlock,
         common.signoff,
       ].join("\n"),
     };
   }
 
-  if (season === "in-season") {
+  if (season === "early-season") {
     return {
       subject: `Welcome to Central MTB, ${riderFirst}!`,
       text: [
         greeting,
         "",
-        "Thanks for reaching out! My name is Ben Goheen, and I'm the team admin. I've copied our head coach and my wife, Rebecca, here as well.",
+        intro,
         "",
         "Great news: the season is underway and practices are happening now! We will get you the details on joining a practice and completing registration so you can jump right in.",
         common.hejaBlock,
@@ -119,15 +130,30 @@ function getTemplate(season, data) {
     };
   }
 
-  // off-season (default)
+  if (season === "late-season") {
+    return {
+      subject: `Welcome to Central MTB, ${riderFirst}!`,
+      text: [
+        greeting,
+        "",
+        intro,
+        "",
+        "The season is well underway at this point, so the best time to join would be next year. Registration opens on April 1st and practices start in early July. In the meantime, feel free to check out our Parent Guide at centralmtb.com/parent-guide for information about the team, equipment, costs, and what to expect.",
+        common.hejaBlock,
+        common.signoff,
+      ].join("\n"),
+    };
+  }
+
+  // off-season (default): October 15 - March 31
   return {
     subject: `Welcome to Central MTB, ${riderFirst}!`,
     text: [
       greeting,
       "",
-      "Thanks for reaching out! My name is Ben Goheen, and I'm the team admin. I've copied our head coach and my wife, Rebecca, here as well.",
+      intro,
       "",
-      "The season is still a ways off, but we are glad you are interested! Registration for the team and the Minnesota Cycling Association (MCA) typically opens on April 1st, and practices start in early July. We will reach out again closer to the season with all the details.",
+      "We are glad you are interested in joining the team! Registration for the team and the Minnesota Cycling Association (MCA) opens on April 1st, and practices start in early July. We will reach out again closer to the season with all the details.",
       "",
       "In the meantime, feel free to check out our Parent Guide at centralmtb.com/parent-guide for information about the team, equipment, costs, and what to expect.",
       common.hejaBlock,
@@ -155,12 +181,13 @@ function buildApprovalEmail(season, data, draftText, siteUrl) {
 
   const approvePageUrl = `${siteUrl}/approve?payload=${encodeURIComponent(payload)}`;
 
-  const seasonLabel =
-    season === "pre-season"
-      ? "Pre-Season"
-      : season === "in-season"
-      ? "In-Season"
-      : "Off-Season";
+  const seasonLabels = {
+    "registration-open": "Registration Open",
+    "early-season": "Early Season",
+    "late-season": "Late Season",
+    "off-season": "Off-Season",
+  };
+  const seasonLabel = seasonLabels[season] || season;
 
   return `
 <!DOCTYPE html>
