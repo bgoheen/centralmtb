@@ -3,7 +3,48 @@
 // It selects a seasonal email template, fills in the rider's info, and sends an
 // approval email to Ben with a one-click "Approve & Send" link.
 
-const sgMail = require("@sendgrid/mail");
+const https = require("https");
+
+// ---------------------------------------------------------------------------
+// Brevo send helper (uses their REST API directly — no SDK needed)
+// ---------------------------------------------------------------------------
+function sendEmail({ apiKey, from, to, subject, html }) {
+  return new Promise((resolve, reject) => {
+    const payload = JSON.stringify({
+      sender: from,
+      to: to.map((email) => ({ email })),
+      subject,
+      htmlContent: html,
+    });
+
+    const options = {
+      hostname: "api.brevo.com",
+      path: "/v3/smtp/email",
+      method: "POST",
+      headers: {
+        "api-key": apiKey,
+        "Content-Type": "application/json",
+        "Content-Length": Buffer.byteLength(payload),
+      },
+    };
+
+    const req = https.request(options, (res) => {
+      let body = "";
+      res.on("data", (chunk) => (body += chunk));
+      res.on("end", () => {
+        if (res.statusCode >= 200 && res.statusCode < 300) {
+          resolve(JSON.parse(body || "{}"));
+        } else {
+          reject(new Error(`Brevo API ${res.statusCode}: ${body}`));
+        }
+      });
+    });
+
+    req.on("error", reject);
+    req.write(payload);
+    req.end();
+  });
+}
 
 // ---------------------------------------------------------------------------
 // Season logic
@@ -185,7 +226,7 @@ exports.handler = async (event) => {
       return { statusCode: 200, body: "Bot detected, skipping." };
     }
 
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    const apiKey = process.env.BREVO_API_KEY;
     const siteUrl = process.env.URL || "https://centralmtb.com";
     const adminEmail = process.env.ADMIN_EMAIL || "bgoheen@gmail.com";
     // TODO: Add Rebecca back after testing
@@ -201,7 +242,8 @@ exports.handler = async (event) => {
     );
 
     // Send approval email to Ben (add rebeccaEmail back after testing)
-    await sgMail.send({
+    await sendEmail({
+      apiKey,
       from: { email: "hello@centralmtb.com", name: "Central MTB" },
       to: [adminEmail],
       subject: `[Action Required] New Signup: ${data["Rider First Name"] || "Unknown"} ${data["Rider Last Name"] || ""}`,

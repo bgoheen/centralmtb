@@ -1,8 +1,56 @@
 // approve-send.js
 // Called from the approval page when Ben or Rebecca clicks "Send".
-// Receives the (possibly edited) email text + recipient info and sends via SendGrid.
+// Receives the (possibly edited) email text + recipient info and sends via Brevo.
 
-const sgMail = require("@sendgrid/mail");
+const https = require("https");
+
+// ---------------------------------------------------------------------------
+// Brevo send helper (uses their REST API directly — no SDK needed)
+// ---------------------------------------------------------------------------
+function sendEmail({ apiKey, from, to, cc, subject, text, html }) {
+  const payload = {
+    sender: from,
+    to: to.map((email) => ({ email })),
+    subject,
+    htmlContent: html,
+    textContent: text,
+  };
+
+  if (cc && cc.length) {
+    payload.cc = cc.map((email) => ({ email }));
+  }
+
+  const body = JSON.stringify(payload);
+
+  return new Promise((resolve, reject) => {
+    const options = {
+      hostname: "api.brevo.com",
+      path: "/v3/smtp/email",
+      method: "POST",
+      headers: {
+        "api-key": apiKey,
+        "Content-Type": "application/json",
+        "Content-Length": Buffer.byteLength(body),
+      },
+    };
+
+    const req = https.request(options, (res) => {
+      let data = "";
+      res.on("data", (chunk) => (data += chunk));
+      res.on("end", () => {
+        if (res.statusCode >= 200 && res.statusCode < 300) {
+          resolve(JSON.parse(data || "{}"));
+        } else {
+          reject(new Error(`Brevo API ${res.statusCode}: ${data}`));
+        }
+      });
+    });
+
+    req.on("error", reject);
+    req.write(body);
+    req.end();
+  });
+}
 
 // ---------------------------------------------------------------------------
 // Build a clean, branded HTML email from plain text
@@ -71,24 +119,18 @@ exports.handler = async (event) => {
       };
     }
 
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
+    const apiKey = process.env.BREVO_API_KEY;
     const html = textToHtml(text);
 
-    const emailPayload = {
+    await sendEmail({
+      apiKey,
       from: { email: "hello@centralmtb.com", name: "Central MTB" },
       to: recipientEmails,
+      cc: ccEmails,
       subject: subject || "Welcome to Central MTB!",
       text: text,
       html: html,
-    };
-
-    // CC head coach + Rebecca if provided
-    if (ccEmails && ccEmails.length) {
-      emailPayload.cc = ccEmails;
-    }
-
-    await sgMail.send(emailPayload);
+    });
 
     return {
       statusCode: 200,
