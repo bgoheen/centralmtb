@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Approve Welcome Email | Central MTB</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="/images/logo-64.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #C2282D;
+      --red-hover: #a12024;
+      --dark: #0f1114;
+      --text: #2d2d2d;
+      --text-muted: #777;
+      --border: #e5e5e5;
+      --bg: #f5f5f5;
+      --white: #ffffff;
+      --font-d: 'Barlow Condensed', sans-serif;
+      --font-b: 'Roboto', sans-serif;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-b);
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Header */
+    .header {
+      background: var(--dark);
+      padding: 20px 0;
+      text-align: center;
+    }
+    .header img { display: inline-block; }
+
+    /* Main container */
+    .container {
+      max-width: 680px;
+      margin: 32px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .card-header {
+      padding: 20px 28px;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-header h2 {
+      font-family: var(--font-d);
+      font-size: 18px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--red);
+      margin: 0;
+    }
+    .card-body { padding: 24px 28px; }
+
+    /* Rider summary table */
+    .info-table { width: 100%; font-size: 14px; }
+    .info-table td { padding: 4px 0; vertical-align: top; }
+    .info-table .label { color: var(--text-muted); padding-right: 16px; white-space: nowrap; width: 120px; }
+
+    /* Season badge */
+    .badge {
+      display: inline-block;
+      background: var(--red);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    /* Email editor */
+    .editor-area {
+      width: 100%;
+      min-height: 320px;
+      font-family: var(--font-b);
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      resize: vertical;
+      transition: border-color 0.2s;
+    }
+    .editor-area:focus {
+      outline: none;
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(194,40,45,0.1);
+    }
+
+    /* Recipients */
+    .recipients {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .recipient-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 14px;
+    }
+    .recipient-chip .email { font-weight: 400; }
+    .recipient-chip .role { color: var(--text-muted); font-size: 12px; }
+
+    /* CC section */
+    .cc-section { margin-top: 16px; }
+    .cc-label { font-size: 13px; color: var(--text-muted); margin-bottom: 6px; }
+    .cc-checkboxes label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      margin-bottom: 6px;
+      cursor: pointer;
+    }
+    .cc-checkboxes input[type="checkbox"] { accent-color: var(--red); }
+
+    /* Subject line */
+    .subject-input {
+      width: 100%;
+      font-family: var(--font-b);
+      font-size: 15px;
+      font-weight: 400;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      transition: border-color 0.2s;
+    }
+    .subject-input:focus {
+      outline: none;
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(194,40,45,0.1);
+    }
+
+    .field-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    /* Buttons */
+    .actions {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+      padding: 20px 28px;
+      border-top: 1px solid var(--border);
+    }
+    .btn {
+      font-family: var(--font-b);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 12px 32px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, opacity 0.2s;
+    }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-primary { background: var(--red); color: #fff; }
+    .btn-primary:hover:not(:disabled) { background: var(--red-hover); }
+    .btn-secondary { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
+    .btn-secondary:hover:not(:disabled) { background: #eee; }
+
+    /* Status messages */
+    .status {
+      text-align: center;
+      padding: 24px;
+      font-size: 15px;
+      display: none;
+    }
+    .status.success { color: #166534; background: #f0fdf4; }
+    .status.error { color: #991b1b; background: #fef2f2; }
+
+    /* Loading state */
+    .loading .btn-primary { position: relative; color: transparent; }
+    .loading .btn-primary::after {
+      content: '';
+      position: absolute;
+      width: 18px; height: 18px;
+      top: 50%; left: 50%;
+      margin: -9px 0 0 -9px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Error state on load */
+    .error-page {
+      text-align: center;
+      padding: 80px 20px;
+    }
+    .error-page h1 { font-family: var(--font-d); color: var(--red); font-size: 28px; margin-bottom: 8px; }
+    .error-page p { color: var(--text-muted); }
+
+    @media (max-width: 600px) {
+      .container { margin: 16px auto; }
+      .card-body { padding: 20px; }
+      .actions { padding: 16px 20px; flex-direction: column; }
+      .btn { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <a href="/"><img src="/images/logo.png" alt="Central MTB" width="120" height="44"></a>
+  </div>
+
+  <!-- Error state (shown if payload is missing/invalid) -->
+  <div class="container error-page" id="errorPage" style="display:none;">
+    <h1>Invalid Link</h1>
+    <p>This approval link is missing data or has expired. Check for a newer notification email.</p>
+  </div>
+
+  <!-- Main approval UI -->
+  <div class="container" id="mainUI" style="display:none;">
+
+    <!-- Rider Info Card -->
+    <div class="card">
+      <div class="card-header">
+        <h2>New Signup <span class="badge" id="seasonBadge"></span></h2>
+      </div>
+      <div class="card-body">
+        <table class="info-table">
+          <tr><td class="label">Rider</td><td id="infoRider"></td></tr>
+          <tr><td class="label">Grade</td><td id="infoGrade"></td></tr>
+          <tr><td class="label">Has Bike</td><td id="infoBike"></td></tr>
+          <tr><td class="label">Experience</td><td id="infoExp"></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Email Editor Card -->
+    <div class="card" id="editorCard">
+      <div class="card-header">
+        <h2>Welcome Email</h2>
+      </div>
+      <div class="card-body">
+
+        <div style="margin-bottom:16px;">
+          <div class="field-label">To</div>
+          <div class="recipients" id="recipientList"></div>
+        </div>
+
+        <div class="cc-section">
+          <div class="field-label">CC</div>
+          <div class="cc-checkboxes">
+            <label>
+              <input type="checkbox" id="ccCoach" checked>
+              <span>Head Coach (<span id="ccCoachEmail"></span>)</span>
+            </label>
+            <label>
+              <input type="checkbox" id="ccRebecca" checked>
+              <span>Rebecca Goheen</span>
+            </label>
+          </div>
+        </div>
+
+        <div style="margin:16px 0;">
+          <div class="field-label">Subject</div>
+          <input type="text" class="subject-input" id="subjectInput">
+        </div>
+
+        <div>
+          <div class="field-label">Message</div>
+          <textarea class="editor-area" id="emailBody"></textarea>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-secondary" id="resetBtn" title="Reset to original draft">Reset Draft</button>
+        <button class="btn btn-primary" id="sendBtn">Approve &amp; Send</button>
+      </div>
+    </div>
+
+    <!-- Status messages -->
+    <div class="status success" id="successMsg">
+      Email sent successfully! You can close this page.
+    </div>
+    <div class="status error" id="errorMsg"></div>
+
+  </div>
+
+  <script>
+    // ---------------------------------------------------------------------------
+    // Parse payload from URL
+    // ---------------------------------------------------------------------------
+    const params = new URLSearchParams(window.location.search);
+    const raw = params.get('payload');
+
+    let payload;
+    try {
+      payload = JSON.parse(atob(decodeURIComponent(raw)));
+    } catch (e) {
+      document.getElementById('errorPage').style.display = 'block';
+      throw new Error('Invalid payload');
+    }
+
+    const { season, data, draftText } = payload;
+
+    // Show main UI
+    document.getElementById('mainUI').style.display = 'block';
+
+    // ---------------------------------------------------------------------------
+    // Populate rider info
+    // ---------------------------------------------------------------------------
+    const riderFirst = data['Rider First Name'] || '';
+    const riderLast = data['Rider Last Name'] || '';
+    const seasonLabels = {
+      'pre-season': 'Pre-Season',
+      'in-season': 'In-Season',
+      'off-season': 'Off-Season',
+    };
+
+    document.getElementById('seasonBadge').textContent = seasonLabels[season] || season;
+    document.getElementById('infoRider').textContent = `${riderFirst} ${riderLast}`;
+    document.getElementById('infoGrade').textContent = data['Rider Grade'] || '-';
+    document.getElementById('infoBike').textContent = data['Has Mountain Bike'] || '-';
+    document.getElementById('infoExp').textContent = data['Biking Experience'] || '-';
+
+    // ---------------------------------------------------------------------------
+    // Recipients
+    // ---------------------------------------------------------------------------
+    const p1Email = data['Parent 1 Email'] || '';
+    const p2Email = data['Parent 2 Email'] || '';
+    const recipientEmails = [p1Email, p2Email].filter(Boolean);
+
+    const recipientList = document.getElementById('recipientList');
+    recipientEmails.forEach(function(email, i) {
+      var chip = document.createElement('div');
+      chip.className = 'recipient-chip';
+      chip.innerHTML = '<span class="email">' + email + '</span><span class="role">Parent ' + (i + 1) + '</span>';
+      recipientList.appendChild(chip);
+    });
+
+    // CC emails
+    const coachEmail = ''; // Will be filled from env or you can hardcode
+    document.getElementById('ccCoachEmail').textContent = 'headcoach@centralmtb.com';
+
+    // ---------------------------------------------------------------------------
+    // Populate email editor
+    // ---------------------------------------------------------------------------
+    const subjectInput = document.getElementById('subjectInput');
+    const emailBody = document.getElementById('emailBody');
+
+    subjectInput.value = 'Welcome to Central MTB, ' + riderFirst + '!';
+    emailBody.value = draftText;
+    const originalDraft = draftText;
+
+    // Reset button
+    document.getElementById('resetBtn').addEventListener('click', function() {
+      emailBody.value = originalDraft;
+      subjectInput.value = 'Welcome to Central MTB, ' + riderFirst + '!';
+    });
+
+    // ---------------------------------------------------------------------------
+    // Send
+    // ---------------------------------------------------------------------------
+    var sending = false;
+    document.getElementById('sendBtn').addEventListener('click', function() {
+      if (sending) return;
+      sending = true;
+
+      var btn = this;
+      var card = document.getElementById('editorCard');
+      card.classList.add('loading');
+      btn.disabled = true;
+
+      // Build CC list
+      var ccList = [];
+      if (document.getElementById('ccCoach').checked) {
+        ccList.push('headcoach@centralmtb.com');
+      }
+      // Add Rebecca's email
+      if (document.getElementById('ccRebecca').checked) {
+        ccList.push('rebeccagoheen1@gmail.com');
+      }
+
+      var payload = {
+        recipientEmails: recipientEmails,
+        subject: subjectInput.value,
+        text: emailBody.value,
+        riderFirst: riderFirst,
+        ccEmails: ccList,
+      };
+
+      fetch('/.netlify/functions/approve-send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+        .then(function(res) { return res.json().then(function(d) { return { ok: res.ok, data: d }; }); })
+        .then(function(result) {
+          card.classList.remove('loading');
+          if (result.ok) {
+            card.style.display = 'none';
+            document.getElementById('successMsg').style.display = 'block';
+          } else {
+            var errMsg = document.getElementById('errorMsg');
+            errMsg.textContent = 'Error: ' + (result.data.error || 'Something went wrong. Try again.');
+            errMsg.style.display = 'block';
+            btn.disabled = false;
+            sending = false;
+          }
+        })
+        .catch(function(err) {
+          card.classList.remove('loading');
+          var errMsg = document.getElementById('errorMsg');
+          errMsg.textContent = 'Network error. Check your connection and try again.';
+          errMsg.style.display = 'block';
+          btn.disabled = false;
+          sending = false;
+        });
+    });
+  </script>
+
+</body>
+</html>
