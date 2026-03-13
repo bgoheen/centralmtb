@@ -1,9 +1,9 @@
 // submission-created.js
 // Netlify automatically triggers this function when any form submission is received.
 // It selects a seasonal email template, fills in the rider's info, and sends an
-// approval email to Ben + head coach with a one-click "Approve & Send" link.
+// approval email to Ben with a one-click "Approve & Send" link.
 
-const { Resend } = require("resend");
+const sgMail = require("@sendgrid/mail");
 
 // ---------------------------------------------------------------------------
 // Season logic
@@ -20,7 +20,7 @@ function getSeason(date) {
 
 // ---------------------------------------------------------------------------
 // Email templates — plain-text versions (sent to families)
-// Each returns { subject, text, html }
+// Each returns { subject, text }
 // ---------------------------------------------------------------------------
 function getTemplate(season, data) {
   const riderFirst = data["Rider First Name"] || "your rider";
@@ -96,7 +96,7 @@ function getTemplate(season, data) {
 }
 
 // ---------------------------------------------------------------------------
-// Build the approval email HTML (sent to Ben + head coach)
+// Build the approval email HTML (sent to Ben)
 // ---------------------------------------------------------------------------
 function buildApprovalEmail(season, data, draftText, siteUrl) {
   const riderFirst = data["Rider First Name"] || "Unknown";
@@ -185,7 +185,7 @@ exports.handler = async (event) => {
       return { statusCode: 200, body: "Bot detected, skipping." };
     }
 
-    const resend = new Resend(process.env.RESEND_API_KEY);
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     const siteUrl = process.env.URL || "https://centralmtb.com";
     const adminEmail = process.env.ADMIN_EMAIL || "bgoheen@gmail.com";
     // TODO: Add Rebecca back after testing
@@ -201,8 +201,8 @@ exports.handler = async (event) => {
     );
 
     // Send approval email to Ben (add rebeccaEmail back after testing)
-    await resend.emails.send({
-      from: "Central MTB <hello@centralmtb.com>",
+    await sgMail.send({
+      from: { email: "hello@centralmtb.com", name: "Central MTB" },
       to: [adminEmail],
       subject: `[Action Required] New Signup: ${data["Rider First Name"] || "Unknown"} ${data["Rider Last Name"] || ""}`,
       html: approvalHtml,

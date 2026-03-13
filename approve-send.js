@@ -1,13 +1,13 @@
 // approve-send.js
-// Called from the approval page when Ben or the head coach clicks "Send".
-// Receives the (possibly edited) email text + recipient info and sends via Resend.
+// Called from the approval page when Ben or Rebecca clicks "Send".
+// Receives the (possibly edited) email text + recipient info and sends via SendGrid.
 
-const { Resend } = require("resend");
+const sgMail = require("@sendgrid/mail");
 
 // ---------------------------------------------------------------------------
 // Build a clean, branded HTML email from plain text
 // ---------------------------------------------------------------------------
-function textToHtml(text, riderFirst) {
+function textToHtml(text) {
   const escapedText = text
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
@@ -71,14 +71,14 @@ exports.handler = async (event) => {
       };
     }
 
-    const resend = new Resend(process.env.RESEND_API_KEY);
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-    const html = textToHtml(text, riderFirst);
+    const html = textToHtml(text);
 
     const emailPayload = {
-      from: "Central MTB <hello@centralmtb.com>",
+      from: { email: "hello@centralmtb.com", name: "Central MTB" },
       to: recipientEmails,
-      subject: subject || `Welcome to Central MTB!`,
+      subject: subject || "Welcome to Central MTB!",
       text: text,
       html: html,
     };
@@ -88,11 +88,11 @@ exports.handler = async (event) => {
       emailPayload.cc = ccEmails;
     }
 
-    const result = await resend.emails.send(emailPayload);
+    await sgMail.send(emailPayload);
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: "Email sent!", id: result.data?.id }),
+      body: JSON.stringify({ message: "Email sent!" }),
     };
   } catch (err) {
     console.error("approve-send error:", err);
