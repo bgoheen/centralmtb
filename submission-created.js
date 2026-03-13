@@ -188,7 +188,8 @@ exports.handler = async (event) => {
     const resend = new Resend(process.env.RESEND_API_KEY);
     const siteUrl = process.env.URL || "https://centralmtb.com";
     const adminEmail = process.env.ADMIN_EMAIL || "bgoheen@gmail.com";
-    const rebeccaEmail = process.env.REBECCA_EMAIL || "rebeccagoheen1@gmail.com";
+    // TODO: Add Rebecca back after testing
+    // const rebeccaEmail = process.env.REBECCA_EMAIL || "rebeccagoheen1@gmail.com";
 
     const season = getSeason(new Date());
     const template = getTemplate(season, data);
@@ -199,10 +200,10 @@ exports.handler = async (event) => {
       siteUrl
     );
 
-    // Send approval email to Ben + Rebecca
+    // Send approval email to Ben (add rebeccaEmail back after testing)
     await resend.emails.send({
       from: "Central MTB <hello@centralmtb.com>",
-      to: [adminEmail, rebeccaEmail],
+      to: [adminEmail],
       subject: `[Action Required] New Signup: ${data["Rider First Name"] || "Unknown"} ${data["Rider Last Name"] || ""}`,
       html: approvalHtml,
     });

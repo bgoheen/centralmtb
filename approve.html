@@ -286,10 +286,12 @@
               <input type="checkbox" id="ccCoach" checked>
               <span>Head Coach (<span id="ccCoachEmail"></span>)</span>
             </label>
+            <!-- TODO: Add Rebecca back after testing
             <label>
               <input type="checkbox" id="ccRebecca" checked>
               <span>Rebecca Goheen</span>
             </label>
+            -->
           </div>
         </div>
 
@@ -408,10 +410,10 @@
       if (document.getElementById('ccCoach').checked) {
         ccList.push('headcoach@centralmtb.com');
       }
-      // Add Rebecca's email
-      if (document.getElementById('ccRebecca').checked) {
-        ccList.push('rebeccagoheen1@gmail.com');
-      }
+      // TODO: Add Rebecca back after testing
+      // if (document.getElementById('ccRebecca').checked) {
+      //   ccList.push('rebeccagoheen1@gmail.com');
+      // }
 
       var payload = {
         recipientEmails: recipientEmails,
