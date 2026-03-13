@@ -1,8 +1,5 @@
 {
   "name": "centralmtb-email-functions",
   "version": "1.0.0",
-  "description": "Netlify Functions for Central MTB welcome email workflow",
-  "dependencies": {
-    "@sendgrid/mail": "^8.0.0"
-  }
+  "description": "Netlify Functions for Central MTB welcome email workflow"
 }
