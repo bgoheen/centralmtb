@@ -20,52 +20,58 @@
     <hr class="section-divider">
 
     <h2>2024 Season Slideshow</h2>
-    <div id="ss-viewer" style="border:1px solid lightgray;border-radius:10px;overflow:hidden;background:#1a1a1a;position:relative">
-      <div id="ss-toolbar" style="display:flex;align-items:center;justify-content:center;gap:12px;padding:10px 16px;background:#111;color:#fff;font-family:'Roboto',sans-serif;font-size:14px;user-select:none">
-        <button class="ss-btn" id="ss-prev" aria-label="Previous page">&larr;</button>
-        <span id="ss-info" style="min-width:80px;text-align:center">1 / 148</span>
-        <button class="ss-btn" id="ss-next" aria-label="Next page">&rarr;</button>
-        <button class="ss-btn" id="ss-fs" aria-label="Fullscreen" style="margin-left:8px;font-size:16px" title="Fullscreen">&#x26F6;</button>
+    <div id="pdf-viewer" style="border:1px solid lightgray;border-radius:10px;overflow:hidden;background:#1a1a1a;position:relative">
+      <div id="pdf-toolbar" style="display:flex;align-items:center;justify-content:center;gap:12px;padding:10px 16px;background:#111;color:#fff;font-family:'Roboto',sans-serif;font-size:14px;user-select:none">
+        <button class="pdf-btn" id="pdf-prev" aria-label="Previous page">&larr;</button>
+        <span id="pdf-info" style="min-width:80px;text-align:center">Loading...</span>
+        <button class="pdf-btn" id="pdf-next" aria-label="Next page">&rarr;</button>
+        <button class="pdf-btn" id="pdf-fs" aria-label="Fullscreen" style="margin-left:8px;font-size:16px" title="Fullscreen">&#x26F6;</button>
       </div>
-      <div id="ss-img-wrap" style="display:flex;justify-content:center;align-items:center;min-height:400px;background:#000;cursor:pointer">
-        <img id="ss-img" src="/media/slides/slide-001.jpg" alt="2024 Season Slideshow - Page 1" style="max-width:100%;max-height:70vh;display:block">
+      <div id="pdf-canvas-wrap" style="display:flex;justify-content:center;align-items:center;min-height:460px;padding:12px;box-sizing:border-box;background:#000">
+        <canvas id="pdf-canvas" style="max-width:100%;height:auto;display:block;border-radius:4px;box-shadow:0 2px 12px rgba(0,0,0,.4)"></canvas>
       </div>
     </div>
     <style>
-      .ss-btn{background:none;border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:6px;padding:6px 14px;cursor:pointer;font-size:14px;font-family:inherit;transition:border-color .2s,background .2s}
-      .ss-btn:hover{border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.08)}
-      #ss-viewer:fullscreen,#ss-viewer:-webkit-full-screen{border-radius:0;border:none}
-      #ss-viewer:fullscreen #ss-img,#ss-viewer:-webkit-full-screen #ss-img{max-height:calc(100vh - 50px)}
-      #ss-viewer:fullscreen #ss-img-wrap,#ss-viewer:-webkit-full-screen #ss-img-wrap{min-height:calc(100vh - 50px)}
+      .pdf-btn{background:none;border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:6px;padding:6px 14px;cursor:pointer;font-size:14px;font-family:inherit;transition:border-color .2s,background .2s}
+      .pdf-btn:hover{border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.08)}
+      #pdf-viewer:fullscreen,#pdf-viewer:-webkit-full-screen{border-radius:0;border:none}
+      #pdf-viewer:fullscreen #pdf-canvas-wrap,#pdf-viewer:-webkit-full-screen #pdf-canvas-wrap{min-height:calc(100vh - 50px)}
     </style>
-    <script>
-    (function(){
-      var total=148,cur=1,img=document.getElementById("ss-img"),info=document.getElementById("ss-info");
-      function pad(n){return n<10?"00"+n:n<100?"0"+n:""+n;}
-      function go(n){
-        if(n<1||n>total)return;cur=n;
-        img.src="/media/slides/slide-"+pad(cur)+".jpg";
-        img.alt="2024 Season Slideshow - Page "+cur;
-        info.textContent=cur+" / "+total;
+    <script type="module">
+      import*as pdfjsLib from"https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs";
+      pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs";
+      const url="/media/2024-slideshow.pdf";
+      let pdfDoc=null,pageNum=1,rendering=false,pendingPage=null;
+      const canvas=document.getElementById("pdf-canvas"),ctx=canvas.getContext("2d"),info=document.getElementById("pdf-info"),viewer=document.getElementById("pdf-viewer"),wrap=document.getElementById("pdf-canvas-wrap");
+      function renderPage(num){
+        rendering=true;
+        pdfDoc.getPage(num).then(page=>{
+          const maxW=wrap.clientWidth-24;
+          const maxH=document.fullscreenElement?window.innerHeight-74:undefined;
+          const vp=page.getViewport({scale:1});
+          let scale=Math.min(maxW/vp.width,2);
+          if(maxH)scale=Math.min(scale,maxH/vp.height);
+          const viewport=page.getViewport({scale});
+          canvas.width=viewport.width;canvas.height=viewport.height;
+          page.render({canvasContext:ctx,viewport}).promise.then(()=>{
+            rendering=false;
+            if(pendingPage!==null){const p=pendingPage;pendingPage=null;renderPage(p);}
+          });
+        });
+        info.textContent=num+" / "+pdfDoc.numPages;
       }
-      document.getElementById("ss-prev").addEventListener("click",function(){go(cur-1);});
-      document.getElementById("ss-next").addEventListener("click",function(){go(cur+1);});
-      document.getElementById("ss-img-wrap").addEventListener("click",function(e){
-        if(e.target.id==="ss-img"){go(cur+1);}
+      function go(num){if(!pdfDoc||num<1||num>pdfDoc.numPages)return;pageNum=num;if(rendering){pendingPage=num;}else{renderPage(num);}}
+      document.getElementById("pdf-prev").addEventListener("click",()=>go(pageNum-1));
+      document.getElementById("pdf-next").addEventListener("click",()=>go(pageNum+1));
+      wrap.addEventListener("click",e=>{if(e.target===canvas)go(pageNum+1);});
+      document.addEventListener("keydown",e=>{if(e.key==="ArrowLeft")go(pageNum-1);if(e.key==="ArrowRight")go(pageNum+1);});
+      document.getElementById("pdf-fs").addEventListener("click",()=>{
+        if(document.fullscreenElement)document.exitFullscreen();
+        else if(viewer.requestFullscreen)viewer.requestFullscreen();
+        else if(viewer.webkitRequestFullscreen)viewer.webkitRequestFullscreen();
       });
-      document.addEventListener("keydown",function(e){
-        if(e.key==="ArrowLeft")go(cur-1);
-        if(e.key==="ArrowRight")go(cur+1);
-      });
-      var viewer=document.getElementById("ss-viewer");
-      document.getElementById("ss-fs").addEventListener("click",function(){
-        if(document.fullscreenElement){document.exitFullscreen();}
-        else{viewer.requestFullscreen||viewer.webkitRequestFullscreen?viewer.requestFullscreen?viewer.requestFullscreen():viewer.webkitRequestFullscreen():0;}
-      });
-      var preloadNext=new Image();
-      var origGo=go;
-      go=function(n){origGo(n);if(n<total)preloadNext.src="/media/slides/slide-"+pad(n+1)+".jpg";};
-    })();
+      document.addEventListener("fullscreenchange",()=>{if(pdfDoc)renderPage(pageNum);});
+      pdfjsLib.getDocument(url).promise.then(pdf=>{pdfDoc=pdf;renderPage(1);});
     </script>
 
   </div></div></section>
