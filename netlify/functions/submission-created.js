@@ -290,8 +290,7 @@ exports.handler = async (event) => {
     const apiKey = process.env.BREVO_API_KEY;
     const siteUrl = process.env.URL || "https://centralmtb.com";
     const adminEmail = process.env.ADMIN_EMAIL || "bgoheen@gmail.com";
-    // TODO: Add Rebecca back after testing
-    // const rebeccaEmail = process.env.REBECCA_EMAIL || "rebeccagoheen1@gmail.com";
+    const rebeccaEmail = process.env.REBECCA_EMAIL || "rebeccagoheen1@gmail.com";
 
     const season = getSeason(new Date());
     const template = getTemplate(season, data);
@@ -302,11 +301,11 @@ exports.handler = async (event) => {
       siteUrl
     );
 
-    // Send approval email to Ben (add rebeccaEmail back after testing)
+    // Send approval email to Ben + Rebecca
     await sendEmail({
       apiKey,
       from: { email: "hello@centralmtb.com", name: "Central MTB" },
-      to: [adminEmail],
+      to: [adminEmail, rebeccaEmail],
       subject: `[Action Required] New Signup: ${data["Rider First Name"] || "Unknown"} ${data["Rider Last Name"] || ""}`,
       html: approvalHtml,
     });
