@@ -71,8 +71,9 @@ function getSeason(date) {
 // Each returns { subject, text }
 // ---------------------------------------------------------------------------
 function getTemplate(season, data) {
-  const riderFirst = data["Rider First Name"] || "your rider";
+  const riderFirst = data["Rider First Name"] || "there";
   const parentFirst = data["Parent 1 First Name"] || "";
+  const parent2First = data["Parent 2 First Name"] || "";
 
   const common = {
     hejaBlock: [
@@ -86,7 +87,7 @@ function getTemplate(season, data) {
     signoff: [
       "Rebecca and I are happy to help with any other questions. You can find us on Heja, or just send us a text or email.",
       "",
-      `We're looking forward to having ${riderFirst} on the team!`,
+      "We're looking forward to having you on the team!",
       "",
       "Ben Goheen",
       "651-983-4040",
@@ -96,7 +97,14 @@ function getTemplate(season, data) {
     ].join("\n"),
   };
 
-  const greeting = parentFirst ? `Hi ${parentFirst},` : "Hi,";
+  // Build greeting: "Hi RiderName (and Parent1, and Parent2),"
+  let greeting = `Hi ${riderFirst}`;
+  if (parentFirst && parent2First) {
+    greeting += ` (and ${parentFirst} and ${parent2First})`;
+  } else if (parentFirst) {
+    greeting += ` (and ${parentFirst})`;
+  }
+  greeting += ",";
 
   const intro = "Thanks for reaching out! My name is Ben Goheen, and I'm the team admin. I've copied our head coach and my wife, Rebecca, here as well.";
 
@@ -168,8 +176,17 @@ function getTemplate(season, data) {
 function buildApprovalEmail(season, data, draftText, siteUrl) {
   const riderFirst = data["Rider First Name"] || "Unknown";
   const riderLast = data["Rider Last Name"] || "";
+  const riderPhone = data["Rider Phone"] || "";
+  const riderEmail = data["Rider Email"] || "";
   const riderGrade = data["Rider Grade"] || "";
+  const riderGender = data["Rider Gender"] || "";
+  const p1First = data["Parent 1 First Name"] || "";
+  const p1Last = data["Parent 1 Last Name"] || "";
+  const p1Phone = data["Parent 1 Phone"] || "";
   const p1Email = data["Parent 1 Email"] || "";
+  const p2First = data["Parent 2 First Name"] || "";
+  const p2Last = data["Parent 2 Last Name"] || "";
+  const p2Phone = data["Parent 2 Phone"] || "";
   const p2Email = data["Parent 2 Email"] || "";
   const hasBike = data["Has Mountain Bike"] || "";
   const experience = data["Biking Experience"] || "";
@@ -189,6 +206,13 @@ function buildApprovalEmail(season, data, draftText, siteUrl) {
   };
   const seasonLabel = seasonLabels[season] || season;
 
+  // Build Parent 2 rows only if provided
+  const parent2Rows = p2First ? `
+        <tr><td colspan="2" style="padding-top:12px;"><strong style="color:#C2282D;font-size:13px;text-transform:uppercase;letter-spacing:0.04em;">Parent / Guardian 2</strong></td></tr>
+        <tr><td style="padding-right:16px;color:#777;">Name</td><td>${p2First} ${p2Last}</td></tr>
+        <tr><td style="padding-right:16px;color:#777;">Phone</td><td>${p2Phone}</td></tr>
+        <tr><td style="padding-right:16px;color:#777;">Email</td><td>${p2Email}</td></tr>` : "";
+
   return `
 <!DOCTYPE html>
 <html>
@@ -206,13 +230,23 @@ function buildApprovalEmail(season, data, draftText, siteUrl) {
       </p>
     </div>
 
-    <!-- Rider summary -->
+    <!-- Full form details -->
     <div style="padding:24px 32px;border-bottom:1px solid #e5e5e5;">
-      <h2 style="margin:0 0 12px;font-size:15px;text-transform:uppercase;letter-spacing:0.05em;color:#C2282D;">Rider Info</h2>
-      <table style="font-size:14px;color:#333;line-height:1.6;">
-        <tr><td style="padding-right:16px;color:#777;">Name</td><td>${riderFirst} ${riderLast}</td></tr>
+      <table style="font-size:14px;color:#333;line-height:1.6;width:100%;">
+        <tr><td colspan="2"><strong style="color:#C2282D;font-size:13px;text-transform:uppercase;letter-spacing:0.04em;">Rider Information</strong></td></tr>
+        <tr><td style="padding-right:16px;color:#777;width:120px;">Name</td><td>${riderFirst} ${riderLast}</td></tr>
+        <tr><td style="padding-right:16px;color:#777;">Phone</td><td>${riderPhone}</td></tr>
+        <tr><td style="padding-right:16px;color:#777;">Email</td><td>${riderEmail}</td></tr>
         <tr><td style="padding-right:16px;color:#777;">Grade</td><td>${riderGrade}</td></tr>
-        <tr><td style="padding-right:16px;color:#777;">Parent Email</td><td>${p1Email}${p2Email ? ", " + p2Email : ""}</td></tr>
+        <tr><td style="padding-right:16px;color:#777;">Gender</td><td>${riderGender}</td></tr>
+
+        <tr><td colspan="2" style="padding-top:12px;"><strong style="color:#C2282D;font-size:13px;text-transform:uppercase;letter-spacing:0.04em;">Parent / Guardian 1</strong></td></tr>
+        <tr><td style="padding-right:16px;color:#777;">Name</td><td>${p1First} ${p1Last}</td></tr>
+        <tr><td style="padding-right:16px;color:#777;">Phone</td><td>${p1Phone}</td></tr>
+        <tr><td style="padding-right:16px;color:#777;">Email</td><td>${p1Email}</td></tr>
+        ${parent2Rows}
+
+        <tr><td colspan="2" style="padding-top:12px;"><strong style="color:#C2282D;font-size:13px;text-transform:uppercase;letter-spacing:0.04em;">Experience</strong></td></tr>
         <tr><td style="padding-right:16px;color:#777;">Has Bike</td><td>${hasBike}</td></tr>
         <tr><td style="padding-right:16px;color:#777;vertical-align:top;">Experience</td><td>${experience}</td></tr>
       </table>
