@@ -252,15 +252,33 @@
   <!-- Main approval UI -->
   <div class="container" id="mainUI" style="display:none;">
 
-    <!-- Rider Info Card -->
+    <!-- Signup Info Card -->
     <div class="card">
       <div class="card-header">
         <h2>New Signup <span class="badge" id="seasonBadge"></span></h2>
       </div>
       <div class="card-body">
         <table class="info-table">
-          <tr><td class="label">Rider</td><td id="infoRider"></td></tr>
+          <tr><td colspan="2" style="padding-bottom:4px;"><strong style="color:var(--red);font-size:12px;text-transform:uppercase;letter-spacing:0.04em;">Rider Information</strong></td></tr>
+          <tr><td class="label">Name</td><td id="infoRider"></td></tr>
+          <tr><td class="label">Phone</td><td id="infoRiderPhone"></td></tr>
+          <tr><td class="label">Email</td><td id="infoRiderEmail"></td></tr>
           <tr><td class="label">Grade</td><td id="infoGrade"></td></tr>
+          <tr><td class="label">Gender</td><td id="infoGender"></td></tr>
+
+          <tr><td colspan="2" style="padding-top:12px;padding-bottom:4px;"><strong style="color:var(--red);font-size:12px;text-transform:uppercase;letter-spacing:0.04em;">Parent / Guardian 1</strong></td></tr>
+          <tr><td class="label">Name</td><td id="infoP1Name"></td></tr>
+          <tr><td class="label">Phone</td><td id="infoP1Phone"></td></tr>
+          <tr><td class="label">Email</td><td id="infoP1Email"></td></tr>
+
+          <tbody id="parent2Section" style="display:none;">
+          <tr><td colspan="2" style="padding-top:12px;padding-bottom:4px;"><strong style="color:var(--red);font-size:12px;text-transform:uppercase;letter-spacing:0.04em;">Parent / Guardian 2</strong></td></tr>
+          <tr><td class="label">Name</td><td id="infoP2Name"></td></tr>
+          <tr><td class="label">Phone</td><td id="infoP2Phone"></td></tr>
+          <tr><td class="label">Email</td><td id="infoP2Email"></td></tr>
+          </tbody>
+
+          <tr><td colspan="2" style="padding-top:12px;padding-bottom:4px;"><strong style="color:var(--red);font-size:12px;text-transform:uppercase;letter-spacing:0.04em;">Experience</strong></td></tr>
           <tr><td class="label">Has Bike</td><td id="infoBike"></td></tr>
           <tr><td class="label">Experience</td><td id="infoExp"></td></tr>
         </table>
@@ -354,7 +372,22 @@
 
     document.getElementById('seasonBadge').textContent = seasonLabels[season] || season;
     document.getElementById('infoRider').textContent = `${riderFirst} ${riderLast}`;
+    document.getElementById('infoRiderPhone').textContent = data['Rider Phone'] || '-';
+    document.getElementById('infoRiderEmail').textContent = data['Rider Email'] || '-';
     document.getElementById('infoGrade').textContent = data['Rider Grade'] || '-';
+    document.getElementById('infoGender').textContent = data['Rider Gender'] || '-';
+
+    document.getElementById('infoP1Name').textContent = ((data['Parent 1 First Name'] || '') + ' ' + (data['Parent 1 Last Name'] || '')).trim() || '-';
+    document.getElementById('infoP1Phone').textContent = data['Parent 1 Phone'] || '-';
+    document.getElementById('infoP1Email').textContent = data['Parent 1 Email'] || '-';
+
+    if (data['Parent 2 First Name']) {
+      document.getElementById('parent2Section').style.display = '';
+      document.getElementById('infoP2Name').textContent = ((data['Parent 2 First Name'] || '') + ' ' + (data['Parent 2 Last Name'] || '')).trim();
+      document.getElementById('infoP2Phone').textContent = data['Parent 2 Phone'] || '-';
+      document.getElementById('infoP2Email').textContent = data['Parent 2 Email'] || '-';
+    }
+
     document.getElementById('infoBike').textContent = data['Has Mountain Bike'] || '-';
     document.getElementById('infoExp').textContent = data['Biking Experience'] || '-';
 
