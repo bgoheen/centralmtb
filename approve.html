@@ -297,22 +297,6 @@
           <div class="recipients" id="recipientList"></div>
         </div>
 
-        <div class="cc-section">
-          <div class="field-label">CC</div>
-          <div class="cc-checkboxes">
-            <label>
-              <input type="checkbox" id="ccCoach" checked>
-              <span>Head Coach (<span id="ccCoachEmail"></span>)</span>
-            </label>
-            <!-- TODO: Add Rebecca back after testing
-            <label>
-              <input type="checkbox" id="ccRebecca" checked>
-              <span>Rebecca Goheen</span>
-            </label>
-            -->
-          </div>
-        </div>
-
         <div style="margin:16px 0;">
           <div class="field-label">Subject</div>
           <input type="text" class="subject-input" id="subjectInput">
@@ -394,21 +378,31 @@
     // ---------------------------------------------------------------------------
     // Recipients
     // ---------------------------------------------------------------------------
+    const riderEmail = data['Rider Email'] || '';
     const p1Email = data['Parent 1 Email'] || '';
     const p2Email = data['Parent 2 Email'] || '';
-    const recipientEmails = [p1Email, p2Email].filter(Boolean);
+    const recipientEmails = [riderEmail, p1Email, p2Email].filter(Boolean);
 
     const recipientList = document.getElementById('recipientList');
-    recipientEmails.forEach(function(email, i) {
+    var recipientLabels = {};
+    if (riderEmail) recipientLabels[riderEmail] = 'Rider';
+    if (p1Email) recipientLabels[p1Email] = 'Parent 1';
+    if (p2Email) recipientLabels[p2Email] = 'Parent 2';
+
+    recipientEmails.forEach(function(email) {
       var chip = document.createElement('div');
       chip.className = 'recipient-chip';
-      chip.innerHTML = '<span class="email">' + email + '</span><span class="role">Parent ' + (i + 1) + '</span>';
+      chip.innerHTML = '<span class="email">' + email + '</span><span class="role">' + (recipientLabels[email] || '') + '</span>';
       recipientList.appendChild(chip);
     });
 
     // CC emails
-    const coachEmail = ''; // Will be filled from env or you can hardcode
-    document.getElementById('ccCoachEmail').textContent = 'headcoach@centralmtb.com';
+    // Add head coach as a recipient
+    var coachChip = document.createElement('div');
+    coachChip.className = 'recipient-chip';
+    coachChip.innerHTML = '<span class="email">headcoach@centralmtb.com</span><span class="role">Head Coach</span>';
+    recipientList.appendChild(coachChip);
+    recipientEmails.push('headcoach@centralmtb.com');
 
     // ---------------------------------------------------------------------------
     // Populate email editor
@@ -439,22 +433,11 @@
       card.classList.add('loading');
       btn.disabled = true;
 
-      // Build CC list
-      var ccList = [];
-      if (document.getElementById('ccCoach').checked) {
-        ccList.push('headcoach@centralmtb.com');
-      }
-      // TODO: Add Rebecca back after testing
-      // if (document.getElementById('ccRebecca').checked) {
-      //   ccList.push('rebeccagoheen1@gmail.com');
-      // }
-
       var payload = {
         recipientEmails: recipientEmails,
         subject: subjectInput.value,
         text: emailBody.value,
         riderFirst: riderFirst,
-        ccEmails: ccList,
       };
 
       fetch('/.netlify/functions/approve-send', {
