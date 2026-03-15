@@ -242,4 +242,15 @@
       }).then(function(res) {
         if (res.ok) {
           document.getElementById('formWrap').style.display = 'none';
-          document.getElementById('successMsg').style.displa
+          document.getElementById('successMsg').style.display = 'block';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          alert('Something went wrong. Please try again.');
+        }
+      }).catch(function() {
+        alert('Something went wrong. Please try again.');
+      });
+    });
+  </script>
+</body>
+</html>
