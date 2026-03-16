@@ -185,12 +185,5 @@
   </section>
 
 <script src="/includes/footer.js"></script>
-  
-  <script>
-    var hamBtn=document.getElementById('hamBtn'),mobMenu=document.getElementById('mobMenu');
-    hamBtn.addEventListener('click',function(){var o=mobMenu.classList.toggle('open');hamBtn.classList.toggle('active');hamBtn.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':'';});
-    for(var ml=mobMenu.querySelectorAll('a'),i=0;i<ml.length;i++)ml[i].addEventListener('click',function(){mobMenu.classList.remove('open');hamBtn.classList.remove('active');hamBtn.setAttribute('aria-expanded','false');document.body.style.overflow='';});
-    for(var fq=document.querySelectorAll('.faq-q'),j=0;j<fq.length;j++)fq[j].addEventListener('click',function(){var it=this.parentElement,an=it.querySelector('.faq-a'),w=it.classList.contains('on');for(var ai=document.querySelectorAll('.faq-item'),k=0;k<ai.length;k++){ai[k].classList.remove('on');ai[k].querySelector('.faq-q').setAttribute('aria-expanded','false');ai[k].querySelector('.faq-a').style.maxHeight=null;}if(!w){it.classList.add('on');this.setAttribute('aria-expanded','true');an.style.maxHeight=an.scrollHeight+'px';}});
-  </script>
 </body>
 </html>
