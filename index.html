@@ -772,7 +772,7 @@
         <div class="card">
           <div class="card-icon">🎓</div>
           <h3>Who Can Join</h3>
-          <p>Students grades 6–12 from St. Paul Central, Harding, Johnson, Como Park, and most other St. Paul schools. <a href="mailto:hello@centralmtb.com">Not sure? Ask us.</a></p>
+          <p>Students grades 6–12 from St. Paul Central, Harding, Johnson, Como Park, and most other St. Paul schools. <a href="/cdn-cgi/l/email-protection#147c7178787b5477717a606675787960763a777b79">Not sure? Ask us.</a></p>
         </div>
       </div>
     </div>
@@ -826,7 +826,7 @@
         </div>
         <div class="faq-item">
           <button class="faq-q" aria-expanded="false">What kind of bike or equipment is needed?<span class="faq-ic" aria-hidden="true">+</span></button>
-          <div class="faq-a" role="region"><div class="faq-a-inner">Riders need a mountain bike (hardtail or full suspension), helmet, and basic gear like gloves and water bottles. See our <a href="/equipment-guide">equipment guide</a> for details, and <a href="mailto:hello@centralmtb.com">contact us</a> if you need help finding affordable options.</div></div>
+          <div class="faq-a" role="region"><div class="faq-a-inner">Riders need a mountain bike (hardtail or full suspension), helmet, and basic gear like gloves and water bottles. See our <a href="/equipment-guide">equipment guide</a> for details, and <a href="/cdn-cgi/l/email-protection#771f121b1b18371412190305161b1a03155914181a">contact us</a> if you need help finding affordable options.</div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q" aria-expanded="false">What is the time commitment?<span class="faq-ic" aria-hidden="true">+</span></button>
@@ -838,7 +838,7 @@
         </div>
         <div class="faq-item">
           <button class="faq-q" aria-expanded="false">Which schools can join the team?<span class="faq-ic" aria-hidden="true">+</span></button>
-          <div class="faq-a" role="region"><div class="faq-a-inner">We welcome students in grades 6–12 from St. Paul Central, Harding, Johnson, Como Park, and most other St. Paul schools. Highland Park students should contact the <a href="https://www.spymtb.org/" target="_blank" rel="noopener">SPY MTB team</a>. Not sure if you're eligible? <a href="mailto:hello@centralmtb.com">Contact us</a> and we'll help!</div></div>
+          <div class="faq-a" role="region"><div class="faq-a-inner">We welcome students in grades 6–12 from St. Paul Central, Harding, Johnson, Como Park, and most other St. Paul schools. Highland Park students should contact the <a href="https://www.spymtb.org/" target="_blank" rel="noopener">SPY MTB team</a>. Not sure if you're eligible? <a href="/cdn-cgi/l/email-protection#f49c9198989bb497919a80869598998096da979b99">Contact us</a> and we'll help!</div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q" aria-expanded="false">How much does it cost to join?<span class="faq-ic" aria-hidden="true">+</span></button>
@@ -895,12 +895,30 @@
     <div class="container">
       <h2>Ready to Ride?</h2>
       <p>Join the team and experience the trails with us.</p>
-      <a href="/join" class="btn btn-white">Join the Team →</a>
+      <a href="/join" class="btn btn-white">Join the Team</a>
     </div>
   </section>
 
-  <!-- Footer include -->
   <script src="/includes/footer.js"></script>
 
+  <!-- FAQ toggle -->
+  <script>
+  document.querySelectorAll(".faq-q").forEach(function(btn){
+    btn.addEventListener("click",function(){
+      var item=this.closest(".faq-item");
+      var isOpen=item.classList.contains("on");
+      var answer=this.nextElementSibling;
+      if(isOpen){
+        answer.style.maxHeight="0";
+        item.classList.remove("on");
+        this.setAttribute("aria-expanded","false");
+      }else{
+        answer.style.maxHeight=answer.scrollHeight+"px";
+        item.classList.add("on");
+        this.setAttribute("aria-expanded","true");
+      }
+    });
+  });
+  </script>
 </body>
 </html>
