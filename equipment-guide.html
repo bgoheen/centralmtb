@@ -107,11 +107,5 @@
   </section>
 
 <script src="/includes/footer.js"></script>
-  
-  <script>
-    var hamBtn=document.getElementById('hamBtn'),mobMenu=document.getElementById('mobMenu');
-    hamBtn.addEventListener('click',function(){var o=mobMenu.classList.toggle('open');hamBtn.classList.toggle('active');hamBtn.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':'';});
-    for(var ml=mobMenu.querySelectorAll('a'),i=0;i<ml.length;i++)ml[i].addEventListener('click',function(){mobMenu.classList.remove('open');hamBtn.classList.remove('active');hamBtn.setAttribute('aria-expanded','false');document.body.style.overflow='';});
-  </script>
 </body>
 </html>
