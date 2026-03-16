@@ -190,12 +190,15 @@
     btn.addEventListener("click",function(){
       var item=this.closest(".faq-item");
       var isOpen=item.classList.contains("on");
-      var answer=this.nextElementSibling;
-      if(isOpen){
-        answer.style.maxHeight="0";
-        item.classList.remove("on");
-        this.setAttribute("aria-expanded","false");
-      }else{
+      // Close all open items first
+      document.querySelectorAll(".faq-item.on").forEach(function(openItem){
+        openItem.classList.remove("on");
+        openItem.querySelector(".faq-q").setAttribute("aria-expanded","false");
+        openItem.querySelector(".faq-a").style.maxHeight="0";
+      });
+      // If it wasn't already open, open it
+      if(!isOpen){
+        var answer=this.nextElementSibling;
         answer.style.maxHeight=answer.scrollHeight+"px";
         item.classList.add("on");
         this.setAttribute("aria-expanded","true");
@@ -203,7 +206,6 @@
     });
   });
   </script>
-
   <script src="/includes/footer.js"></script>
 </body>
 </html>
