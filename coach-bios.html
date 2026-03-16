@@ -224,5 +224,26 @@
       <div class="modal-close-bar"><button class="modal-close-btn" onclick="closeModal()">Close</button></div>
     </div>
   </div>
+  <script>
+function openModal(card){
+  var overlay=document.getElementById("modalOverlay");
+  document.getElementById("modalImg").src=card.getAttribute("data-img");
+  document.getElementById("modalImg").alt=card.getAttribute("data-name");
+  document.getElementById("modalName").textContent=card.getAttribute("data-name");
+  document.getElementById("modalPronouns").textContent=card.getAttribute("data-pronouns");
+  var bio=card.getAttribute("data-bio");
+  document.getElementById("modalBio").textContent=bio||"Bio coming soon.";
+  overlay.classList.add("open");
+  document.body.style.overflow="hidden";
+}
+function closeModal(e){
+  if(e&&e.target&&e.target!==document.getElementById("modalOverlay"))return;
+  document.getElementById("modalOverlay").classList.remove("open");
+  document.body.style.overflow="";
+}
+document.addEventListener("keydown",function(e){
+  if(e.key==="Escape")closeModal();
+});
+</script>
 <script src="/includes/footer.js"></script>
 </body></html>
