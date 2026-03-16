@@ -184,6 +184,26 @@
     </div>
   </section>
 
-<script src="/includes/footer.js"></script>
+  <!-- FAQ toggle -->
+  <script>
+  document.querySelectorAll(".faq-q").forEach(function(btn){
+    btn.addEventListener("click",function(){
+      var item=this.closest(".faq-item");
+      var isOpen=item.classList.contains("on");
+      var answer=this.nextElementSibling;
+      if(isOpen){
+        answer.style.maxHeight="0";
+        item.classList.remove("on");
+        this.setAttribute("aria-expanded","false");
+      }else{
+        answer.style.maxHeight=answer.scrollHeight+"px";
+        item.classList.add("on");
+        this.setAttribute("aria-expanded","true");
+      }
+    });
+  });
+  </script>
+
+  <script src="/includes/footer.js"></script>
 </body>
 </html>
