@@ -33,6 +33,7 @@ document.write(`
             <li><a href="/coach-bios">Coach Bios</a></li>
             <li><a href="/captain">Captain Application</a></li>
             <li><a href="/media">Photos &amp; Media</a></li>
+            <li><a href="/sponsor">Become a Sponsor</a></li>
           </ul>
         </li>
         <li><a href="https://shop.centralmtb.com/" target="_blank" rel="noopener">Shop</a></li>
@@ -62,6 +63,7 @@ document.write(`
       <a href="/coach-bios">Coach Bios</a>
       <a href="/captain">Captain Application</a>
       <a href="/media">Photos &amp; Media</a>
+      <a href="/sponsor">Become a Sponsor</a>
     </div>
     <a href="https://shop.centralmtb.com/" target="_blank" rel="noopener">Shop</a>
     <a href="/join" class="mob-cta">Join the Team</a>
