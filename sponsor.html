@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Become a Sponsor | St. Paul Central Mountain Bike Team</title>
+  <meta name="description" content="Partner with the St. Paul Central Mountain Bike Team. Your sponsorship puts kids on bikes and keeps them riding all season long.">
+  <link rel="canonical" href="https://centralmtb.com/sponsor">
+  <link rel="icon" type="image/png" href="/images/logo-64.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Sponsor tiers */
+    .tier-cards { display:grid; grid-template-columns:1fr; gap:16px; margin:24px 0; }
+    .tier-card {
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:28px 24px;
+      position:relative;
+    }
+    .tier-card.featured {
+      border-color:var(--red);
+      box-shadow:0 4px 24px rgba(194,40,45,0.1);
+    }
+    .tier-amount {
+      font-family:var(--font-d);
+      font-weight:800;
+      font-size:36px;
+      color:var(--red);
+      line-height:1;
+      margin-bottom:4px;
+    }
+    .tier-amount span {
+      font-size:18px;
+      font-weight:700;
+      color:var(--text-muted);
+    }
+    .tier-label {
+      font-size:13px;
+      font-weight:500;
+      color:var(--text-muted);
+      text-transform:uppercase;
+      letter-spacing:0.06em;
+      margin-bottom:16px;
+    }
+    .tier-list {
+      list-style:none;
+      margin:0;
+      padding:0;
+    }
+    .tier-list li {
+      font-size:15px;
+      line-height:1.5;
+      color:var(--text-mid);
+      font-weight:300;
+      padding:6px 0;
+      padding-left:22px;
+      position:relative;
+    }
+    .tier-list li::before {
+      content:'';
+      position:absolute;
+      left:0;
+      top:12px;
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:rgba(194,40,45,0.15);
+      border:2px solid var(--red);
+    }
+
+    /* Custom partnership callout */
+    .custom-cta {
+      background:var(--dark);
+      border-radius:var(--radius);
+      padding:28px 24px;
+      margin-top:16px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .custom-cta h3 {
+      font-family:var(--font-d);
+      font-weight:700;
+      font-size:22px;
+      color:#fff;
+      margin:0;
+    }
+    .custom-cta p {
+      font-size:15px;
+      line-height:1.6;
+      color:rgba(255,255,255,0.6);
+      margin:0;
+    }
+    .custom-cta a {
+      color:var(--red) !important;
+      font-weight:600;
+      text-decoration:underline !important;
+      text-underline-offset:2px;
+    }
+    .custom-cta a:hover { color:var(--red-hover) !important; }
+
+    /* Sponsor form */
+    .form-section { margin-top:32px; }
+    .form-section-title {
+      font-family:var(--font-d); font-weight:700; font-size:16px;
+      text-transform:uppercase; letter-spacing:0.08em;
+      color:var(--red); margin-bottom:20px; padding-bottom:8px;
+      border-bottom:2px solid var(--red);
+    }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+    .form-row.single { grid-template-columns:1fr; }
+    .form-group { display:flex; flex-direction:column; }
+    .form-group label {
+      font-size:14px; font-weight:500; color:var(--dark);
+      margin-bottom:6px;
+    }
+    .form-group label .req { color:var(--red); margin-left:2px; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      font-family:var(--font-b); font-size:16px; font-weight:300;
+      padding:12px 14px; border:1px solid var(--border);
+      border-radius:8px; background:#fff;
+      color:var(--dark); transition:border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline:none; border-color:var(--red);
+      box-shadow:0 0 0 3px rgba(194,40,45,0.1);
+    }
+    .form-group select { appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; padding-right:36px; }
+    .form-group textarea { resize:vertical; min-height:100px; }
+    .form-submit {
+      font-family:var(--font-b); font-weight:600; font-size:16px;
+      color:#fff; background:var(--red); border:none;
+      padding:16px 48px; border-radius:8px; cursor:pointer;
+      transition:background 0.2s; margin-top:8px;
+    }
+    .form-submit:hover { background:#a82025; }
+    .success-msg {
+      background:#f0fdf4; border:1px solid #bbf7d0; border-radius:10px;
+      padding:32px; text-align:center; display:none;
+    }
+    .success-msg h3 { color:#166534; margin-bottom:8px; }
+    .success-msg p { color:#15803d; }
+
+    @media(max-width:600px) {
+      .form-row { grid-template-columns:1fr; }
+    }
+    @media(min-width:768px) {
+      .tier-cards { grid-template-columns:repeat(3,1fr); }
+    }
+  </style>
+</head>
+<body>
+  <script src="/includes/header.js"></script>
+
+  <header class="page-header">
+    <div class="container">
+      <div class="breadcrumb"><a href="/">Home</a> / Sponsor</div>
+      <h1>Become a Sponsor</h1>
+      <p>Help us keep more kids on bikes.</p>
+    </div>
+  </header>
+
+  <!-- PITCH -->
+  <section class="section">
+    <div class="container">
+      <div class="content" style="max-width:800px">
+        <p>The St. Paul Central Mountain Bike Team is a volunteer-run program serving roughly 50 student-athletes in grades 6 through 12 across the St. Paul school district. We are not funded by the school. Every dollar that keeps this team running comes from families, community partners, and sponsors like you.</p>
+
+        <p>Your sponsorship reaches far beyond the riders. Parents, siblings, and volunteers show up every week at practices and at races across the metro all season long. When your name is on our banner, hundreds of people see it, and they see a business that invests in kids.</p>
+
+        <p>This is not a donation. It is a partnership. You help us cover the real costs of running a youth cycling team, and we put your business in front of an engaged, community-minded audience.</p>
+
+        <hr class="section-divider">
+
+        <h2>Where Your Sponsorship Goes</h2>
+        <div class="org-cards">
+          <div class="org-card">
+            <h4>Race Day Food and Supplies</h4>
+            <p>Feeding riders and volunteers at all-day race events throughout the season.</p>
+          </div>
+          <div class="org-card">
+            <h4>Tools and Bike Maintenance</h4>
+            <p>Trail-side repair kits, spare tubes, pumps, and workshop supplies to keep riders rolling.</p>
+          </div>
+          <div class="org-card">
+            <h4>Team Loaner Bikes</h4>
+            <p>Purchasing bikes so that any student can ride regardless of what they own.</p>
+          </div>
+          <div class="org-card">
+            <h4>Rider Scholarships</h4>
+            <p>Covering registration fees so cost is never the reason a kid misses the season.</p>
+          </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <h2>Sponsorship Levels</h2>
+        <p>Choose the level that works for your business. Every tier makes a direct impact on student-athletes.</p>
+      </div>
+
+      <div style="max-width:800px">
+        <div class="tier-cards">
+          <!-- $100 -->
+          <div class="tier-card">
+            <div class="tier-amount">$100</div>
+            <div class="tier-label">Sponsor</div>
+            <ul class="tier-list">
+              <li>Logo on team website</li>
+              <li>Social media recognition</li>
+            </ul>
+          </div>
+
+          <!-- $250 -->
+          <div class="tier-card featured">
+            <div class="tier-amount">$250</div>
+            <div class="tier-label">Sponsor</div>
+            <ul class="tier-list">
+              <li>Logo on team website</li>
+              <li>Social media recognition</li>
+              <li>Name on race day banner, seen by hundreds of students, parents, and volunteers at every race</li>
+            </ul>
+          </div>
+
+          <!-- $500+ -->
+          <div class="tier-card">
+            <div class="tier-amount">$500<span>+</span></div>
+            <div class="tier-label">Sponsor</div>
+            <ul class="tier-list">
+              <li>Logo on team website</li>
+              <li>Social media recognition</li>
+              <li>Name on race day banner</li>
+              <li>Featured social media post about your business</li>
+              <li>Premium banner placement at races</li>
+              <li>Recognition at end-of-season team banquet</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="custom-cta">
+          <h3>Want to do more?</h3>
+          <p>We are happy to work with businesses interested in a larger or custom partnership. In-kind donations of food, gear, or services are also welcome. <a href="#sponsor-form">Reach out below</a> and we will find the right fit.</p>
+        </div>
+      </div>
+
+      <div class="content" style="max-width:800px">
+        <hr class="section-divider">
+
+        <h2 id="sponsor-form">Get in Touch</h2>
+        <p>Interested in sponsoring the team? Fill out the form below and we will follow up to get things rolling.</p>
+
+        <div id="formWrap">
+        <form name="sponsor-central-mtb" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="sponsorForm">
+          <input type="hidden" name="form-name" value="sponsor-central-mtb">
+          <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+          <div class="form-section">
+            <div class="form-section-title">Contact Information</div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="biz-name">Business Name <span class="req">*</span></label>
+                <input type="text" id="biz-name" name="Business Name" required>
+              </div>
+              <div class="form-group">
+                <label for="contact-name">Contact Name <span class="req">*</span></label>
+                <input type="text" id="contact-name" name="Contact Name" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contact-email">Email <span class="req">*</span></label>
+                <input type="email" id="contact-email" name="Email" required>
+              </div>
+              <div class="form-group">
+                <label for="contact-phone">Phone <span style="font-weight:400;color:var(--text-muted)">(optional)</span></label>
+                <input type="tel" id="contact-phone" name="Phone" placeholder="(651) 555-1234" maxlength="14">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="form-section-title">Sponsorship Interest</div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="tier">Which level interests you?</label>
+                <select id="tier" name="Tier Interest">
+                  <option value="">Select...</option>
+                  <option>$100 Sponsor</option>
+                  <option>$250 Sponsor</option>
+                  <option>$500+ Sponsor</option>
+                  <option>Custom / In-Kind Partnership</option>
+                  <option>Not sure yet</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row single">
+              <div class="form-group">
+                <label for="message">Questions or Comments</label>
+                <textarea id="message" name="Message" placeholder="Anything else you would like us to know..."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="form-submit">Send</button>
+        </form>
+        </div>
+
+        <div class="success-msg" id="successMsg">
+          <h3>Thank you!</h3>
+          <p>We received your inquiry and will follow up soon. We appreciate your support of Central MTB.</p>
+        </div>
+
+        <hr class="section-divider">
+
+        <p>Rather just send an email? Reach us at <a href="mailto:hello@centralmtb.com">hello@centralmtb.com</a>.</p>
+
+        <p style="margin-top:24px;font-size:15px;color:var(--text-muted)">Every dollar goes directly to supporting student-athletes. Central MTB is a 100% volunteer-run program with no paid staff.</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="/includes/footer.js"></script>
+
+  <script>
+    // Auto-format phone numbers to (XXX) XXX-XXXX
+    function formatPhone(e) {
+      var x = e.target.value.replace(/\D/g, '').substring(0, 10);
+      var a = x.substring(0, 3), b = x.substring(3, 6), c = x.substring(6, 10);
+      if (x.length > 6) e.target.value = '(' + a + ') ' + b + '-' + c;
+      else if (x.length > 3) e.target.value = '(' + a + ') ' + b;
+      else if (x.length > 0) e.target.value = '(' + a;
+      else e.target.value = '';
+    }
+    document.querySelectorAll('input[type="tel"]').forEach(function(el) {
+      el.addEventListener('input', formatPhone);
+    });
+
+    // Form submission
+    document.getElementById('sponsorForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var form = this;
+      var data = new FormData(form);
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data).toString()
+      }).then(function(res) {
+        if (res.ok) {
+          document.getElementById('formWrap').style.display = 'none';
+          document.getElementById('successMsg').style.display = 'block';
+          window.scrollTo({ top: document.getElementById('sponsor-form').offsetTop - 100, behavior: 'smooth' });
+        } else {
+          alert('Something went wrong. Please try again.');
+        }
+      }).catch(function() {
+        alert('Something went wrong. Please try again.');
+      });
+    });
+  </script>
+</body>
+</html>
