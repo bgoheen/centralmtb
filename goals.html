@@ -20,7 +20,7 @@
     .form-row.single { grid-template-columns:1fr; }
     .form-group { display:flex; flex-direction:column; }
     .form-group label {
-      font-size:14px; font-weight:500; color:var(--dark);
+      font-family:var(--font-b); font-size:15px; font-weight:500; color:var(--dark);
       margin-bottom:6px;
     }
     .form-group label .req { color:var(--red); margin-left:2px; }
@@ -38,18 +38,20 @@
       outline:none; border-color:var(--red);
       box-shadow:0 0 0 3px rgba(194,40,45,0.1);
     }
-    .form-group textarea { resize:vertical; min-height:100px; }
+    .form-group textarea { resize:vertical; min-height:100px; line-height:1.6; }
     .form-help {
-      font-size:13px; color:var(--text-muted); margin-top:6px; margin-bottom:10px; line-height:1.5;
+      font-family:var(--font-b); font-size:14px; font-weight:400;
+      color:var(--text-mid); margin-top:4px; margin-bottom:10px; line-height:1.6;
     }
     .form-help a { color:var(--red); font-weight:500; text-decoration:underline; text-underline-offset:2px; }
     .form-help a:hover { color:#a82025; }
     .form-examples {
+      font-family:var(--font-b); font-size:14px; font-weight:400;
       background:var(--alt-bg); border:1px solid var(--border);
       border-radius:8px; padding:16px 18px; margin-top:10px;
-      font-size:13px; color:var(--text-muted); line-height:1.6;
+      color:var(--text-muted); line-height:1.6;
     }
-    .form-examples strong { color:var(--text-mid); font-weight:500; }
+    .form-examples strong { color:var(--text-mid); font-weight:600; }
     .form-submit {
       font-family:var(--font-b); font-weight:600; font-size:16px;
       color:#fff; background:var(--red); border:none;
@@ -57,9 +59,6 @@
       transition:background 0.2s; margin-top:8px;
     }
     .form-submit:hover { background:#a82025; }
-    .form-note {
-      font-size:14px; color:var(--text-muted); margin-top:12px;
-    }
     .success-msg {
       background:#f0fdf4; border:1px solid #bbf7d0; border-radius:10px;
       padding:32px; text-align:center; display:none;
@@ -74,8 +73,6 @@
 <script src="/includes/header.js"></script>
   <header class="page-header"><div class="container"><div class="breadcrumb"></div><h1>2026 Season Goals</h1><p>Tell your coaches what you want to accomplish this season.</p></div></header>
   <section class="section"><div class="container"><div class="content" style="max-width:680px">
-
-    <p>We want to help you have the best season possible. Take a moment to share your goal for the year and the kind of riding you enjoy — your coaches will use this to shape practices and help you grow.</p>
 
     <div id="formWrap">
     <form name="goals" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="goalsForm">
@@ -125,7 +122,6 @@
       </div>
 
       <button type="submit" class="form-submit">Submit</button>
-      <p class="form-note">Your responses will be shared with the coaching staff.</p>
     </form>
     </div>
 
