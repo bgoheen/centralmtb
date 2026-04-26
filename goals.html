@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 Season Goals | St. Paul Central Mountain Bike Team</title>
+  <meta name="description" content="Set your 2026 season goals for the St. Paul Central Mountain Bike Team. Share your riding goals and practice preferences with your coaches.">
+  <link rel="canonical" href="https://centralmtb.com/goals">
+  <link rel="icon" type="image/png" href="/images/logo-64.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .form-section { margin-top:32px; }
+    .form-section:first-of-type { margin-top:0; }
+    .form-section-title {
+      font-family:var(--font-d); font-weight:700; font-size:16px;
+      text-transform:uppercase; letter-spacing:0.08em;
+      color:var(--red); margin-bottom:20px; padding-bottom:8px;
+      border-bottom:2px solid var(--red);
+    }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+    .form-row.single { grid-template-columns:1fr; }
+    .form-group { display:flex; flex-direction:column; }
+    .form-group label {
+      font-size:14px; font-weight:500; color:var(--dark);
+      margin-bottom:6px;
+    }
+    .form-group label .req { color:var(--red); margin-left:2px; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      font-family:var(--font-b); font-size:16px; font-weight:400;
+      padding:12px 14px; border:1px solid var(--border);
+      border-radius:8px; background:#fff;
+      color:var(--dark); transition:border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline:none; border-color:var(--red);
+      box-shadow:0 0 0 3px rgba(194,40,45,0.1);
+    }
+    .form-group textarea { resize:vertical; min-height:100px; }
+    .form-help {
+      font-size:13px; color:var(--text-muted); margin-top:6px; margin-bottom:10px; line-height:1.5;
+    }
+    .form-help a { color:var(--red); font-weight:500; text-decoration:underline; text-underline-offset:2px; }
+    .form-help a:hover { color:#a82025; }
+    .form-examples {
+      background:var(--alt-bg); border:1px solid var(--border);
+      border-radius:8px; padding:16px 18px; margin-top:10px;
+      font-size:13px; color:var(--text-muted); line-height:1.6;
+    }
+    .form-examples strong { color:var(--text-mid); font-weight:500; }
+    .form-submit {
+      font-family:var(--font-b); font-weight:600; font-size:16px;
+      color:#fff; background:var(--red); border:none;
+      padding:16px 48px; border-radius:8px; cursor:pointer;
+      transition:background 0.2s; margin-top:8px;
+    }
+    .form-submit:hover { background:#a82025; }
+    .form-note {
+      font-size:14px; color:var(--text-muted); margin-top:12px;
+    }
+    .success-msg {
+      background:#f0fdf4; border:1px solid #bbf7d0; border-radius:10px;
+      padding:32px; text-align:center; display:none;
+    }
+    .success-msg h3 { color:#166534; margin-bottom:8px; }
+    .success-msg p { color:#15803d; }
+    @media(max-width:600px) {
+      .form-row { grid-template-columns:1fr; }
+    }
+  </style>
+</head><body>
+<script src="/includes/header.js"></script>
+  <header class="page-header"><div class="container"><div class="breadcrumb"></div><h1>2026 Season Goals</h1><p>Tell your coaches what you want to accomplish this season.</p></div></header>
+  <section class="section"><div class="container"><div class="content" style="max-width:680px">
+
+    <p>We want to help you have the best season possible. Take a moment to share your goal for the year and the kind of riding you enjoy — your coaches will use this to shape practices and help you grow.</p>
+
+    <div id="formWrap">
+    <form name="goals" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="goalsForm">
+      <input type="hidden" name="form-name" value="goals">
+      <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+      <!-- RIDER NAME -->
+      <div class="form-section">
+        <div class="form-section-title">Rider Information</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="rider-first">Rider First Name <span class="req">*</span></label>
+            <input type="text" id="rider-first" name="Rider First Name" required>
+          </div>
+          <div class="form-group">
+            <label for="rider-last">Rider Last Name <span class="req">*</span></label>
+            <input type="text" id="rider-last" name="Rider Last Name" required>
+          </div>
+        </div>
+      </div>
+
+      <!-- GOALS -->
+      <div class="form-section">
+        <div class="form-section-title">Your Goals</div>
+
+        <div class="form-row single">
+          <div class="form-group">
+            <label for="season-goal">What is your 2026 season goal? <span class="req">*</span></label>
+            <p class="form-help">Please provide 1–2 sentences. Your goal can be about developing skills, trying new things, or racing. It should be measurable, meaning you and your coaches can objectively observe that you achieved it. An example of a goal that is not measurable would be, "I want to feel stronger" or "I want to improve at racing." If you want help creating your goal, please email <a href="#" id="coachEmailLink">headcoach@centralmtb.com</a>.</p>
+            <textarea id="season-goal" name="Season Goal" required placeholder="e.g., Ride berms without braking through them by the end of the season."></textarea>
+            <div class="form-examples">
+              <strong>Examples:</strong> Ride berms without braking through them by the end of the season. Master uphill starts, observed as more than half of attempts successful at the end of the season. Ride drops (MCA-allowed heights) by the end of the season. Increase the number of hill repeats I do by the end of the season. Participate in at least one race. Achieve eligibility for the State Championship race.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row single" style="margin-top:24px;">
+          <div class="form-group">
+            <label for="riding-pref">What kind of riding do you want to experience at practices? <span class="req">*</span></label>
+            <p class="form-help">Please provide 1–2 sentences. Feel free to use your own words to describe the kind of riding you would like at practices. Coaches will do their best to provide a variety of riding experiences, but note that trail type, condition, and riders in attendance affect the types of riding offer at each practice. We appreciate your openness to riding various styles and skills throughout the season.</p>
+            <textarea id="riding-pref" name="Riding Preference" required placeholder="e.g., I enjoy trail riding, so I want to ride trails with lots of rocks and features that challenge me."></textarea>
+            <div class="form-examples">
+              <strong>Examples:</strong> I prefer to ride with my friends. I want to improve my speed and endurance, so I want to ride at fast speeds with minimal breaks. I enjoy trail riding, so I want to ride trails with lots of rocks and features that challenge me. I prefer easy trails without a lot of features.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="form-submit">Submit</button>
+      <p class="form-note">Your responses will be shared with the coaching staff.</p>
+    </form>
+    </div>
+
+    <div class="success-msg" id="successMsg">
+      <h3>Goals Submitted!</h3>
+      <p>Thanks for sharing your goals for the season. Your coaches will review them and use your input to help shape practices. Let's have a great year!</p>
+    </div>
+
+  </div></div></section>
+
+<script src="/includes/footer.js"></script>
+
+    <script>
+    // Coach email obfuscation (prevent Cloudflare from breaking mailto)
+    (function(){
+      var u='headcoach',d='centralmtb.com',el=document.getElementById('coachEmailLink');
+      if(el){el.href='mailto:'+u+'@'+d;}
+    })();
+
+    // AJAX form submission
+    document.getElementById('goalsForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var form = this;
+      var data = new FormData(form);
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data).toString()
+      }).then(function(res) {
+        if (res.ok) {
+          document.getElementById('formWrap').style.display = 'none';
+          document.getElementById('successMsg').style.display = 'block';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          alert('Something went wrong. Please try again or email hello@centralmtb.com.');
+        }
+      }).catch(function() {
+        alert('Something went wrong. Please try again or email hello@centralmtb.com.');
+      });
+    });
+    </script>
+</body>
+</html>
