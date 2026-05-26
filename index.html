@@ -299,8 +299,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   content: "";
   position: absolute; inset: 0;
   background:
-    radial-gradient(120% 80% at 0% 100%, rgba(20,17,14,0.92) 0%, rgba(20,17,14,0.55) 45%, rgba(20,17,14,0.15) 75%, rgba(20,17,14,0) 100%),
-    linear-gradient(180deg, rgba(20,17,14,0.35) 0%, rgba(20,17,14,0.05) 35%, rgba(20,17,14,0.85) 100%);
+    radial-gradient(140% 100% at 0% 100%, rgba(20,17,14,0.95) 0%, rgba(20,17,14,0.72) 38%, rgba(20,17,14,0.32) 68%, rgba(20,17,14,0) 100%),
+    linear-gradient(180deg, rgba(20,17,14,0.55) 0%, rgba(20,17,14,0.12) 30%, rgba(20,17,14,0.88) 100%);
 }
 .hero__inner {
   position: relative; z-index: 2;
@@ -319,20 +319,24 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   font-size: 14px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--acid);
+  color: var(--bone);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.55);
 }
 .eyebrow .pill {
   display: inline-block;
   background: var(--acid);
-  color: var(--ink);
+  color: var(--bone);
   padding: 4px 10px;
   border-radius: 3px;
   font-weight: 900;
+  text-shadow: none;
 }
-.eyebrow .line { width: 32px; height: 1px; background: var(--acid); display: inline-block; }
-.eyebrow .eyebrow__rest { display: none; }
+.eyebrow .eyebrow__rest { display: none; color: var(--bone-dim); }
 @media (min-width: 720px) {
   .eyebrow .eyebrow__rest { display: inline; }
+}
+.hero__sub {
+  text-shadow: 0 2px 12px rgba(0,0,0,0.6);
 }
 
 .hero h1 {
@@ -358,96 +362,27 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   line-height: 1.55;
 }
 
-.hero__ctas { display: flex; flex-wrap: wrap; gap: 12px; padding-top: 6px; }
-
-/* Floating sticker badge on hero */
-.sticker {
-  position: absolute;
-  z-index: 3;
-  background: var(--bone);
-  color: var(--ink);
-  font-family: var(--display);
-  font-weight: 900;
-  text-transform: uppercase;
-  padding: 12px 16px;
-  border-radius: 4px;
-  line-height: 0.95;
-  letter-spacing: 0.02em;
-  text-align: center;
-  box-shadow: 0 18px 40px -20px rgba(0,0,0,0.6);
-  transform: rotate(-7deg);
-  animation: bob 5.5s ease-in-out infinite;
+.hero__ctas {
+  display: flex;
+  gap: 10px;
+  padding-top: 6px;
 }
-.sticker--alt {
-  background: var(--ink);
-  color: var(--acid);
-  border: 2px solid var(--acid);
-  transform: rotate(5deg);
-  animation-delay: -2s;
+.hero__ctas .btn {
+  flex: 1 1 0;
+  justify-content: center;
+  padding: 14px 12px;
+  font-size: 15px;
+  white-space: nowrap;
+  min-width: 0;
 }
-.sticker--hero1 {
-  top: clamp(110px, 14vw, 180px);
-  right: clamp(18px, 5vw, 60px);
-  font-size: clamp(18px, 1.8vw, 22px);
-}
-.sticker--hero1 small {
-  display: block;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  color: var(--bone-low);
-  margin-bottom: 4px;
-}
-@media (max-width: 720px) {
-  .sticker--hero1 { display: none; }
-}
-.sticker--hero2 {
-  bottom: clamp(180px, 22vw, 280px);
-  right: clamp(40px, 7vw, 120px);
-  font-size: clamp(13px, 1.2vw, 15px);
-  letter-spacing: 0.12em;
-  padding: 10px 14px;
-}
-@media (max-width: 720px) {
-  .sticker--hero2 { display: none; }
-}
-@keyframes bob {
-  0%, 100% { transform: rotate(-7deg) translateY(0); }
-  50%      { transform: rotate(-7deg) translateY(-6px); }
-}
-.sticker--alt {
-  animation-name: bobAlt;
-}
-@keyframes bobAlt {
-  0%, 100% { transform: rotate(5deg) translateY(0); }
-  50%      { transform: rotate(5deg) translateY(-6px); }
-}
-
-/* Scroll cue */
-.scroll-cue {
-  position: absolute;
-  bottom: 22px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 4;
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--bone-dim);
-  display: inline-flex; align-items: center; gap: 10px;
-}
-.scroll-cue .l { width: 24px; height: 1px; background: var(--bone-dim); display: block; }
-.scroll-cue::after {
-  content: ""; width: 1px; height: 20px;
-  background: var(--bone-dim);
-  position: absolute; bottom: -28px; left: 50%;
-  animation: drip 2.2s ease-in-out infinite;
-  transform-origin: top;
-}
-@keyframes drip {
-  0%, 100% { transform: scaleY(0.2); opacity: 0.4; }
-  50%      { transform: scaleY(1); opacity: 1; }
+.hero__ctas .btn .arrow { margin-left: 6px; }
+@media (min-width: 720px) {
+  .hero__ctas { gap: 12px; }
+  .hero__ctas .btn {
+    flex: 0 0 auto;
+    padding: 14px 22px;
+    font-size: 17px;
+  }
 }
 
 /* ===========================================================
@@ -567,18 +502,19 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 .vibe__media {
   position: relative;
-  aspect-ratio: 4 / 5;
-  /* overflow stays visible so sticker can poke out */
+  /* no fixed aspect — let image dictate its own dimensions */
 }
 .vibe__media-frame {
   position: relative;
-  width: 100%; height: 100%;
+  width: 100%;
   border-radius: 14px;
   overflow: hidden;
   background: var(--ink-3);
 }
 .vibe__media-frame img {
-  width: 100%; height: 100%; object-fit: cover;
+  width: 100%;
+  height: auto;
+  display: block;
 }
 .vibe__media-frame::after {
   content: "";
@@ -587,30 +523,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   border-radius: 14px;
   pointer-events: none;
 }
-.vibe__sticker {
-  position: absolute;
-  bottom: -22px; right: -22px;
-  background: var(--acid);
-  color: var(--ink);
-  font-family: var(--display);
-  font-weight: 900;
-  font-size: 18px;
-  text-transform: uppercase;
-  padding: 16px 18px;
-  border-radius: 6px;
-  transform: rotate(8deg);
-  line-height: 0.95;
-  box-shadow: 0 20px 40px -16px rgba(0,0,0,0.5);
-  letter-spacing: 0.02em;
-}
-.vibe__sticker small {
-  display: block; font-size: 10px; letter-spacing: 0.18em; color: var(--acid-deep);
-  margin-bottom: 4px;
-}
-@media (max-width: 720px) {
-  .vibe__sticker { right: 12px; bottom: 12px; font-size: 15px; padding: 12px 14px; }
-}
-
 .vibe__body { display: grid; gap: 22px; }
 .vibe__body p {
   font-size: clamp(17px, 1.4vw, 19px);
@@ -1110,17 +1022,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   <section class="hero">
     <div class="hero__img" role="img" aria-label="St. Paul Central youth mountain bikers racing at an MCA event in Minnesota"></div>
 
-    <div class="sticker sticker--hero1" aria-hidden="true">
-      <small>Est. 2012</small>
-      Saint Paul,<br>Minnesota
-    </div>
-    <div class="sticker sticker--alt sticker--hero2" aria-hidden="true">
-      MN Cycling Assoc.
-    </div>
-
     <div class="hero__inner">
       <div class="eyebrow">
-        <span class="line"></span>
         <span class="pill">Grades 6–12</span>
         <span class="eyebrow__rest">All Skill Levels · No Experience Needed</span>
       </div>
@@ -1128,7 +1031,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
       <h1>The rides of <em>your</em> life.</h1>
 
       <p class="hero__sub">
-        We're a youth mountain bike team in Saint Paul. Twin Cities trails, three practices a week, and the most fun you can have on two wheels. Whether it's your first ride or your fiftieth — you're in.
+        We're a youth mountain bike team in Saint Paul. Twin Cities trails, three practices a week, and the most fun you can have on two wheels. Whether it's your 1st ride or your 50th — you're in.
       </p>
 
       <div class="hero__ctas">
@@ -1138,11 +1041,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
         </a>
         <a href="/parent-guide" class="btn btn--ghost">Parent Guide</a>
       </div>
-    </div>
-
-    <div class="scroll-cue" aria-hidden="true">
-      <span class="l"></span>
-      Scroll
     </div>
   </section>
 
@@ -1162,7 +1060,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
         <div class="stat__label">Grades Welcome</div>
       </div>
       <div class="stat">
-        <div class="stat__num">5<span>+</span></div>
+        <div class="stat__num">5</div>
         <div class="stat__label">Races / Season</div>
       </div>
     </div>
@@ -1176,10 +1074,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
         <div class="vibe__media reveal">
           <div class="vibe__media-frame">
             <img src="/team-photo.jpg" alt="St. Paul Central Mountain Bike Team group photo — students and coaches in team jerseys" loading="lazy">
-          </div>
-          <div class="vibe__sticker" aria-hidden="true">
-            <small>Roughly</small>
-            50 Riders Strong
           </div>
         </div>
 
@@ -1249,7 +1143,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
           </div>
           <h3>Who Can Join</h3>
           <p>Students in grades 6–12 from <strong style="color:var(--bone)">St. Paul Central, Harding, Johnson, Como Park</strong>, and most other St. Paul schools.</p>
-          <p style="margin-top:12px; font-size:14.5px; color:var(--bone-low);">Highland Park students: check out the <a href="https://www.spymtb.org/" style="color:var(--acid); border-bottom:1px solid var(--acid-deep);">SPY MTB team</a>.</p>
         </article>
 
         <article class="card card--4 reveal">
@@ -1260,7 +1153,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
           <h3>Coaching, Crew, Letters</h3>
           <ul>
             <li>Skill-building from certified coaches</li>
-            <li>Optional MCA race series (5+ races)</li>
+            <li>Optional MCA race series (5 races)</li>
             <li>Varsity letter eligibility</li>
             <li>A team jersey if you race</li>
           </ul>
@@ -1286,7 +1179,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
         <div class="cost-row">
           <div class="cost-name">
             Mountain Bike
-            <small>Hardtail or full suspension — we can help you find one</small>
+            <small>Hardtail or full suspension</small>
           </div>
           <span class="tag tag--req">Required</span>
           <div class="cost-price">$500+</div>
@@ -1301,7 +1194,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
         </div>
         <div class="cost-row">
           <div class="cost-name">
-            MCA Athlete Registration
+            League Registration
             <small>Minnesota Cycling Association membership</small>
           </div>
           <span class="tag tag--req">Required</span>
@@ -1318,7 +1211,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
         <div class="cost-row">
           <div class="cost-name">
             Cycling Gloves
-            <small>Protect your hands when you go down (you will go down)</small>
+            <small>Protect your hands</small>
           </div>
           <span class="tag tag--rec">Recommended</span>
           <div class="cost-price">~$25</div>
@@ -1413,7 +1306,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
             <span class="plus" aria-hidden="true">+</span>
           </summary>
           <div class="faq__answer">
-            Grades 6–12 from St. Paul Central, Harding, Johnson, Como Park, and most other St. Paul schools. If you're a Highland Park student, the <a href="https://www.spymtb.org/">SPY MTB team</a> is your fit. Not sure where you land? <a href="#" data-mail="hello">Drop us a line.</a>
+            Grades 6–12 from St. Paul Central, Harding, Johnson, Como Park, and most other St. Paul schools. Not sure where you land? <a href="#" data-mail="hello">Drop us a line.</a>
           </div>
         </details>
 
@@ -1508,7 +1401,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
       </div>
       <h2>Ready to ride?</h2>
       <p>
-        July gets here fast. Join the team and experience the trails with us — first-timers and seasoned shredders both. We'll teach you the rest.
+        Join the team and experience the trails with us — first-timers and seasoned shredders both. We'll teach you the rest.
       </p>
       <div style="display:flex; gap:12px; flex-wrap:wrap;">
         <a href="/join" class="btn btn--primary">
