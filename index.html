@@ -13,7 +13,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="St. Paul Central Mountain Bike Team">
 
-<!-- Fonts: Barlow Condensed (display) + Roboto (body) — already in CSP allowlist -->
+<!-- Fonts: Barlow Condensed (display) + Roboto (body) - already in CSP allowlist -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
@@ -26,17 +26,17 @@
    =========================================================== */
 
 :root {
-  /* Color system — neutral black + white + red */
+  /* Color system - neutral black + white + red */
   --ink:         #0A0A0A;   /* near-black (screen-comfortable, not pure #000) */
   --ink-2:       #161616;   /* slightly raised surface */
   --ink-3:       #242424;   /* card / border surface */
-  --bone:        #F5F5F5;   /* off-white — body text */
+  --bone:        #F5F5F5;   /* off-white - body text */
   --bone-dim:    #BABABA;   /* neutral mid gray */
   --bone-low:    #707070;   /* low-contrast text */
   --line:        rgba(245,245,245,0.12);
   --line-strong: rgba(245,245,245,0.28);
 
-  --acid:        #C2282D;   /* deep red — matches logo */
+  --acid:        #C2282D;   /* deep red - matches logo */
   --acid-dim:    #D63E43;   /* slightly brighter for hover */
   --acid-deep:   #7A1A1D;   /* darker red for borders / underlines */
 
@@ -96,7 +96,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 
 /* ===========================================================
-   Grain / noise overlay — fixed, pointer-events-none
+   Grain / noise overlay - fixed, pointer-events-none
    =========================================================== */
 .grain {
   position: fixed; inset: 0;
@@ -284,16 +284,21 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .hero {
   position: relative;
   overflow: hidden;
-  min-height: calc(100dvh - 95px);
+  min-height: calc(100svh - 95px);
   display: grid;
   align-items: end;
 }
 .hero__img {
   position: absolute; inset: 0;
-  background-image: url("/images/hero-desktop.jpg");
-  background-size: cover;
-  background-position: center 30%;
   z-index: 0;
+}
+.hero__img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 60%;
+}
+@media (min-width: 768px) {
+  .hero__img img { object-position: center 15%; }
 }
 .hero__img::after {
   content: "";
@@ -486,7 +491,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 
 /* ===========================================================
-   VIBE / ABOUT — asymmetric image + text
+   VIBE / ABOUT - asymmetric image + text
    =========================================================== */
 .vibe { position: relative; }
 .vibe__topo { position: absolute; inset: 0; opacity: 0.05; }
@@ -502,7 +507,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 .vibe__media {
   position: relative;
-  /* no fixed aspect — let image dictate its own dimensions */
+  /* no fixed aspect - let image dictate its own dimensions */
 }
 .vibe__media-frame {
   position: relative;
@@ -533,7 +538,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .vibe__body p strong { color: var(--bone); font-weight: 500; }
 
 /* ===========================================================
-   THE DEAL — 3 numbered cards in zig-zag/staggered layout
+   THE DEAL - 3 numbered cards in zig-zag/staggered layout
    =========================================================== */
 .deal { background: var(--ink-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .deal__header { display: grid; gap: 18px; margin-bottom: clamp(40px, 5vw, 70px); }
@@ -624,7 +629,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 
 /* ===========================================================
-   COSTS — visual breakdown table (custom, not stock table)
+   COSTS - visual breakdown table (custom, not stock table)
    =========================================================== */
 .costs { position: relative; }
 .cost-table {
@@ -700,7 +705,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 
 /* ===========================================================
-   FAQ — details/summary with custom styling
+   FAQ - details/summary with custom styling
    =========================================================== */
 .faq { background: var(--ink-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .faq__list { margin-top: clamp(40px, 5vw, 60px); display: grid; gap: 0; }
@@ -752,7 +757,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .faq__answer a:hover { border-bottom-color: var(--acid); }
 
 /* ===========================================================
-   HEJA — split section
+   HEJA - split section
    =========================================================== */
 .heja__grid {
   display: grid;
@@ -804,7 +809,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .heja__list strong { color: var(--bone); font-weight: 500; }
 
 /* ===========================================================
-   GALLERY — masonry-ish staggered grid
+   GALLERY - masonry-ish staggered grid
    =========================================================== */
 .gallery__grid {
   margin-top: clamp(40px, 5vw, 60px);
@@ -816,7 +821,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 @media (min-width: 720px) {
   .gallery__grid {
     grid-template-columns: repeat(6, 1fr);
-    grid-auto-rows: 180px;
+    grid-auto-rows: 220px;
   }
 }
 .gallery__item {
@@ -827,6 +832,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 .gallery__item img {
   width: 100%; height: 100%; object-fit: cover;
+  object-position: center 28%;
   transition: transform var(--t-slow) var(--ease), filter var(--t-med) var(--ease);
   filter: saturate(0.88);
 }
@@ -838,16 +844,16 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   border-radius: 10px;
   pointer-events: none;
 }
-/* Masonry pattern */
+/* Masonry pattern - tall cells for portrait/group photos, wide for action */
 @media (min-width: 720px) {
-  .gallery__item:nth-child(1) { grid-column: span 3; grid-row: span 2; }
-  .gallery__item:nth-child(2) { grid-column: span 3; grid-row: span 1; }
-  .gallery__item:nth-child(3) { grid-column: span 2; grid-row: span 1; }
-  .gallery__item:nth-child(4) { grid-column: span 1; grid-row: span 1; }
-  .gallery__item:nth-child(5) { grid-column: span 2; grid-row: span 2; }
-  .gallery__item:nth-child(6) { grid-column: span 2; grid-row: span 1; }
-  .gallery__item:nth-child(7) { grid-column: span 2; grid-row: span 1; }
-  .gallery__item:nth-child(8) { grid-column: span 4; grid-row: span 1; }
+  .gallery__item:nth-child(1) { grid-column: 1 / span 3; grid-row: 1 / span 2; }
+  .gallery__item:nth-child(2) { grid-column: 4 / span 3; grid-row: 1 / span 2; }
+  .gallery__item:nth-child(3) { grid-column: 5 / span 2; grid-row: 3 / span 1; }
+  .gallery__item:nth-child(4) { grid-column: 5 / span 2; grid-row: 4 / span 1; }
+  .gallery__item:nth-child(5) { grid-column: 1 / span 2; grid-row: 3 / span 2; }
+  .gallery__item:nth-child(6) { grid-column: 1 / span 3; grid-row: 5 / span 1; }
+  .gallery__item:nth-child(7) { grid-column: 3 / span 2; grid-row: 3 / span 2; }
+  .gallery__item:nth-child(8) { grid-column: 4 / span 3; grid-row: 5 / span 1; }
 }
 
 /* ===========================================================
@@ -954,7 +960,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 
 /* ===========================================================
-   Scroll-reveal — minimal, JS-progressive enhancement
+   Scroll-reveal - minimal, JS-progressive enhancement
    =========================================================== */
 .reveal {
   opacity: 0;
@@ -981,7 +987,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 <!-- Nav -->
 <header class="nav">
   <div class="nav__inner">
-    <a href="/" class="brand" aria-label="St. Paul Central Mountain Bike Team — Home">
+    <a href="/" class="brand" aria-label="St. Paul Central Mountain Bike Team - Home">
       <img src="/images/logo.png" alt="" width="127" height="240">
       <span class="sr-only">St. Paul Central Mountain Bike Team</span>
     </a>
@@ -1020,7 +1026,15 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero__img" role="img" aria-label="St. Paul Central youth mountain bikers racing at an MCA event in Minnesota"></div>
+    <div class="hero__img">
+      <picture>
+        <source media="(max-width:767px)" srcset="hero-mobile.jpg">
+        <img src="/images/hero-desktop.jpg"
+             alt="St. Paul Central youth mountain bikers racing at an MCA event in Minnesota"
+             width="1920" height="1080"
+             fetchpriority="high" decoding="async">
+      </picture>
+    </div>
 
     <div class="hero__inner">
       <div class="eyebrow">
@@ -1031,7 +1045,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
       <h1>The rides of <em>your</em> life.</h1>
 
       <p class="hero__sub">
-        We're a youth mountain bike team in Saint Paul. Twin Cities trails, three practices a week, and the most fun you can have on two wheels. Whether it's your 1st ride or your 50th — you're in.
+        We're a youth mountain bike team in Saint Paul. Twin Cities trails, three practices a week, and the most fun you can have on two wheels. Whether it's your 1st ride or your 50th - you're in.
       </p>
 
       <div class="hero__ctas">
@@ -1073,7 +1087,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
       <div class="vibe__grid">
         <div class="vibe__media reveal">
           <div class="vibe__media-frame">
-            <img src="/team-photo.jpg" alt="St. Paul Central Mountain Bike Team group photo — students and coaches in team jerseys" loading="lazy">
+            <img src="/team-photo.jpg" alt="St. Paul Central Mountain Bike Team group photo - students and coaches in team jerseys" loading="lazy">
           </div>
         </div>
 
@@ -1083,7 +1097,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
           </div>
           <h2 class="section__title">A supportive crew on <em>two wheels.</em></h2>
           <p>
-            We ride the Twin Cities' best trails — <strong>Lebanon Hills, Battle Creek, Theo Wirth, Carver, Sunfish</strong> — and a bunch in between. Our coaches teach skills, build confidence, and keep the energy loose. We're a team, not a tryout.
+            We ride the Twin Cities' best trails - <strong>Lebanon Hills, Battle Creek, Theo Wirth, Carver, Sunfish</strong> - and a bunch in between. Our coaches teach skills, build confidence, and keep the energy loose. We're a team, not a tryout.
           </p>
           <p>
             <strong>New to mountain biking? Perfect.</strong> We'll teach you everything from balance to berms. Earn a varsity letter, race if you want to (totally optional), and finish the season with a crew that gets you.
@@ -1133,7 +1147,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 17H9l-3-7 4-3 2 4h4l3 6"/></svg>
           </div>
           <h3>All Levels Welcome</h3>
-          <p>From your first time on singletrack to weekend racers — we ride together. Coaches break into skill groups. Racing is 100% optional.</p>
+          <p>From your first time on singletrack to weekend racers - we ride together. Coaches break into skill groups. Racing is 100% optional.</p>
         </article>
 
         <article class="card card--3 reveal">
@@ -1155,7 +1169,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
             <li>Skill-building from certified coaches</li>
             <li>Optional MCA race series (5 races)</li>
             <li>Varsity letter eligibility</li>
-            <li>A team jersey if you race</li>
           </ul>
         </article>
       </div>
@@ -1171,7 +1184,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
         </div>
         <h2 class="section__title">What it actually <em>costs.</em></h2>
         <p class="section__lede">
-          No surprise fees, no hidden charges. Here's the full breakdown — the required stuff, the recommended stuff, and the optional stuff.
+          No surprise fees, no hidden charges. Here's the full breakdown - the required stuff, the recommended stuff, and the optional stuff.
         </p>
       </div>
 
@@ -1243,7 +1256,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
       </div>
 
       <p class="cost-note">
-        Need help finding affordable gear? We've helped a lot of families source used bikes and equipment. <a href="#" data-mail="hello" style="color:var(--acid); border-bottom:1px solid var(--acid-deep);">Get in touch</a> — we'll figure it out together.
+        Need help finding affordable gear? We've helped a lot of families source used bikes and equipment. <a href="#" data-mail="hello" style="color:var(--acid); border-bottom:1px solid var(--acid-deep);">Get in touch</a> - we'll figure it out together.
       </p>
     </div>
   </section>
@@ -1276,7 +1289,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
             <span class="plus" aria-hidden="true">+</span>
           </summary>
           <div class="faq__answer">
-            A mountain bike (hardtail or full suspension), a helmet (MIPS recommended), and basic gear like gloves and a water bottle. Check the <a href="/equipment-guide">equipment guide</a> for specifics, and <a href="#" data-mail="hello">contact us</a> if you need help finding affordable options — we know the local shops and the used market.
+            A mountain bike (hardtail or full suspension), a helmet (MIPS recommended), and basic gear like gloves and a water bottle. Check the <a href="/equipment-guide">equipment guide</a> for specifics, and <a href="#" data-mail="hello">contact us</a> if you need help finding affordable options - we know the local shops and the used market.
           </div>
         </details>
 
@@ -1286,7 +1299,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
             <span class="plus" aria-hidden="true">+</span>
           </summary>
           <div class="faq__answer">
-            Three practices a week — Tuesday and Thursday evenings (5:30–7:30 pm) and Saturday mornings (9:30–11:30 am) — at Twin Cities trails. The season runs from the first week of July through mid-October. Participation is flexible; we know summer plans happen.
+            Three practices a week - Tuesday and Thursday evenings (5:30–7:30 pm) and Saturday mornings (9:30–11:30 am) - at Twin Cities trails. The season runs from the first week of July through mid-October. Participation is flexible; we know summer plans happen.
           </div>
         </details>
 
@@ -1296,7 +1309,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
             <span class="plus" aria-hidden="true">+</span>
           </summary>
           <div class="faq__answer">
-            Nope. Racing is completely optional. A lot of our riders focus on trail rides and skill-building and never pin on a number. Others go after every MCA race they can. You decide what fits.
+            Nope. Racing is completely optional. A lot of our riders focus on trail rides and skill-building and never pin on a number. Others go after every race they can. You decide what fits.
           </div>
         </details>
 
@@ -1339,7 +1352,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
           </div>
           <h2 class="section__title">No email clutter. <em>Just Heja.</em></h2>
           <p class="section__lede" style="margin-top:0;">
-            All team communication happens through Heja, a free team management app. When weather changes, when a practice location moves, when results come in — you'll know.
+            All team communication happens through Heja, a free team management app. When weather changes, when a practice location moves, when results come in - you'll know.
           </p>
 
           <ul class="heja__list">
@@ -1349,11 +1362,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
             </li>
             <li>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16c2-1 4-1 6 0s4 1 6 0 4-1 6 0"/><path d="M3 12c2-1 4-1 6 0s4 1 6 0 4-1 6 0"/><path d="M3 8c2-1 4-1 6 0s4 1 6 0 4-1 6 0"/></svg>
-              <span><strong>Weather cancellations</strong> the moment we call them</span>
+              <span><strong>Weather cancellations</strong>, called live</span>
             </li>
             <li>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V3l8 5 8-5v18"/><path d="M4 21h16"/></svg>
-              <span><strong>Race schedules and results</strong> from the MCA season</span>
+              <span><strong>Race schedules and results</strong>, all season</span>
             </li>
             <li>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
@@ -1401,7 +1414,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
       </div>
       <h2>Ready to ride?</h2>
       <p>
-        Join the team and experience the trails with us — first-timers and seasoned shredders both. We'll teach you the rest.
+        Join the team and experience the trails with us - first-timers and seasoned shredders both. We'll teach you the rest.
       </p>
       <div style="display:flex; gap:12px; flex-wrap:wrap;">
         <a href="/join" class="btn btn--primary">
@@ -1477,6 +1490,20 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
     sheet.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', close); });
     document.addEventListener('keydown', function(e){
       if (e.key === 'Escape' && sheet.getAttribute('data-open') === 'true') close();
+    });
+  })();
+
+  // ---- FAQ accordion: only one open at a time ----
+  (function(){
+    var items = document.querySelectorAll('.faq__item');
+    items.forEach(function(item){
+      item.addEventListener('toggle', function(){
+        if (item.open) {
+          items.forEach(function(other){
+            if (other !== item && other.open) other.open = false;
+          });
+        }
+      });
     });
   })();
 
