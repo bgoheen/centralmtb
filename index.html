@@ -26,17 +26,17 @@
    =========================================================== */
 
 :root {
-  /* Color system — warm dark base, single accent */
-  --ink:         #14110E;   /* warm near-black (trail-dirt) */
-  --ink-2:       #1C1815;   /* slightly raised surface */
-  --ink-3:       #2A241F;   /* card / border surface */
-  --bone:        #F4EEDF;   /* warm cream — body text */
-  --bone-dim:    #CDC6B5;   /* muted cream */
-  --bone-low:    #8C8676;   /* low-contrast text */
-  --line:        rgba(244,238,223,0.12);
-  --line-strong: rgba(244,238,223,0.28);
+  /* Color system — neutral black + white + red */
+  --ink:         #0A0A0A;   /* near-black (screen-comfortable, not pure #000) */
+  --ink-2:       #161616;   /* slightly raised surface */
+  --ink-3:       #242424;   /* card / border surface */
+  --bone:        #F5F5F5;   /* off-white — body text */
+  --bone-dim:    #BABABA;   /* neutral mid gray */
+  --bone-low:    #707070;   /* low-contrast text */
+  --line:        rgba(245,245,245,0.12);
+  --line-strong: rgba(245,245,245,0.28);
 
-  --acid:        #C2282D;   /* deep red — matches logo shades */
+  --acid:        #C2282D;   /* deep red — matches logo */
   --acid-dim:    #D63E43;   /* slightly brighter for hover */
   --acid-deep:   #7A1A1D;   /* darker red for borders / underlines */
 
@@ -113,7 +113,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .nav {
   position: sticky; top: 0;
   z-index: 50;
-  background: rgba(20, 17, 14, 0.82);
+  background: rgba(10,10,10, 0.82);
   backdrop-filter: blur(14px) saturate(140%);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
   border-bottom: 1px solid var(--line);
@@ -274,7 +274,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   position: absolute; inset: 0;
   pointer-events: none;
   opacity: 0.08;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'><g fill='none' stroke='%23F4EEDF' stroke-width='1'><path d='M0,400 Q200,300 400,400 T800,400'/><path d='M0,440 Q200,340 400,440 T800,440'/><path d='M0,480 Q200,380 400,480 T800,480'/><path d='M0,520 Q200,420 400,520 T800,520'/><path d='M0,360 Q200,260 400,360 T800,360'/><path d='M0,320 Q200,220 400,320 T800,320'/><path d='M0,280 Q200,180 400,280 T800,280'/><path d='M0,560 Q200,460 400,560 T800,560'/><path d='M0,600 Q200,500 400,600 T800,600'/></g></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'><g fill='none' stroke='%23F5F5F5' stroke-width='1'><path d='M0,400 Q200,300 400,400 T800,400'/><path d='M0,440 Q200,340 400,440 T800,440'/><path d='M0,480 Q200,380 400,480 T800,480'/><path d='M0,520 Q200,420 400,520 T800,520'/><path d='M0,360 Q200,260 400,360 T800,360'/><path d='M0,320 Q200,220 400,320 T800,320'/><path d='M0,280 Q200,180 400,280 T800,280'/><path d='M0,560 Q200,460 400,560 T800,560'/><path d='M0,600 Q200,500 400,600 T800,600'/></g></svg>");
   background-size: 800px 800px;
 }
 
@@ -299,8 +299,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   content: "";
   position: absolute; inset: 0;
   background:
-    radial-gradient(140% 100% at 0% 100%, rgba(20,17,14,0.95) 0%, rgba(20,17,14,0.72) 38%, rgba(20,17,14,0.32) 68%, rgba(20,17,14,0) 100%),
-    linear-gradient(180deg, rgba(20,17,14,0.55) 0%, rgba(20,17,14,0.12) 30%, rgba(20,17,14,0.88) 100%);
+    radial-gradient(140% 100% at 0% 100%, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.72) 38%, rgba(10,10,10,0.32) 68%, rgba(10,10,10,0) 100%),
+    linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.12) 30%, rgba(10,10,10,0.88) 100%);
 }
 .hero__inner {
   position: relative; z-index: 2;
@@ -519,7 +519,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .vibe__media-frame::after {
   content: "";
   position: absolute; inset: 0;
-  box-shadow: inset 0 0 0 1px rgba(244,238,223,0.08);
+  box-shadow: inset 0 0 0 1px rgba(245,245,245,0.08);
   border-radius: 14px;
   pointer-events: none;
 }
@@ -640,7 +640,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   border-bottom: 1px solid var(--line);
   transition: background var(--t-fast) var(--ease);
 }
-.cost-row:hover { background: rgba(244,238,223,0.02); }
+.cost-row:hover { background: rgba(245,245,245,0.02); }
 .cost-name {
   font-family: var(--display);
   font-weight: 700;
@@ -834,7 +834,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .gallery__item::after {
   content: "";
   position: absolute; inset: 0;
-  box-shadow: inset 0 0 0 1px rgba(244,238,223,0.06);
+  box-shadow: inset 0 0 0 1px rgba(245,245,245,0.06);
   border-radius: 10px;
   pointer-events: none;
 }
@@ -880,7 +880,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 .cta-final p {
   font-size: clamp(17px, 1.5vw, 19px);
-  color: rgba(20, 17, 14, 0.78);
+  color: rgba(10,10,10, 0.78);
   max-width: 56ch;
   line-height: 1.55;
 }
@@ -889,11 +889,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   color: var(--bone);
   box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset;
 }
-.cta-final .btn--primary:hover { background: #1F1B17; }
+.cta-final .btn--primary:hover { background: #1A1A1A; }
 
 .cta-final__topo {
   position: absolute; inset: 0; opacity: 0.16; z-index: 1;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'><g fill='none' stroke='%2314110E' stroke-width='1.2'><path d='M0,400 Q200,300 400,400 T800,400'/><path d='M0,440 Q200,340 400,440 T800,440'/><path d='M0,480 Q200,380 400,480 T800,480'/><path d='M0,520 Q200,420 400,520 T800,520'/><path d='M0,360 Q200,260 400,360 T800,360'/><path d='M0,320 Q200,220 400,320 T800,320'/><path d='M0,280 Q200,180 400,280 T800,280'/><path d='M0,560 Q200,460 400,560 T800,560'/><path d='M0,600 Q200,500 400,600 T800,600'/></g></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'><g fill='none' stroke='%230A0A0A' stroke-width='1.2'><path d='M0,400 Q200,300 400,400 T800,400'/><path d='M0,440 Q200,340 400,440 T800,440'/><path d='M0,480 Q200,380 400,480 T800,480'/><path d='M0,520 Q200,420 400,520 T800,520'/><path d='M0,360 Q200,260 400,360 T800,360'/><path d='M0,320 Q200,220 400,320 T800,320'/><path d='M0,280 Q200,180 400,280 T800,280'/><path d='M0,560 Q200,460 400,560 T800,560'/><path d='M0,600 Q200,500 400,600 T800,600'/></g></svg>");
   background-size: 800px 800px;
   pointer-events: none;
 }
@@ -1408,7 +1408,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
           Join the Team
           <span class="arrow" aria-hidden="true">→</span>
         </a>
-        <a href="/parent-guide" class="btn btn--ghost" style="border-color:rgba(20,17,14,0.25); color:var(--ink);">Parent Guide</a>
+        <a href="/parent-guide" class="btn btn--ghost" style="border-color:rgba(10,10,10,0.25); color:var(--ink);">Parent Guide</a>
       </div>
     </div>
   </section>
