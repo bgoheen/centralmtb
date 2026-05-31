@@ -1,6 +1,8 @@
 // Central MTB Footer Include
 
-document.write(`
+(function(){
+  var footer = document.createElement('div');
+  footer.innerHTML = `
 <footer class="footer">
   <div class="footer__inner">
     <div>
@@ -46,18 +48,17 @@ document.write(`
     <span>&copy; <span id="footer-year"></span> St. Paul Central Mountain Bike Team</span>
     <span>Built by riders &amp; parents. Powered by dirt.</span>
   </div>
-</footer>
+</footer>`;
 
-<script>
-  (function(){
-    // Year
-    var y = document.getElementById('footer-year');
-    if (y) y.textContent = new Date().getFullYear();
-    // Email hydration
-    var d1 = 'centralmtb', d2 = 'com';
-    document.querySelectorAll('a[data-mail]').forEach(function(a){
-      a.setAttribute('href', 'mailto:' + a.getAttribute('data-mail') + '@' + d1 + '.' + d2);
-    });
-  })();
-<\/script>
-`);
+  document.body.appendChild(footer.firstElementChild);
+
+  // Year
+  var y = document.getElementById('footer-year');
+  if (y) y.textContent = new Date().getFullYear();
+
+  // Email hydration (Cloudflare-safe)
+  var d1 = 'centralmtb', d2 = 'com';
+  document.querySelectorAll('a[data-mail]').forEach(function(a){
+    a.setAttribute('href', 'mailto:' + a.getAttribute('data-mail') + '@' + d1 + '.' + d2);
+  });
+})();
