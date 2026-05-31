@@ -425,12 +425,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .elig-card--no  .elig-card__head span { color: var(--bone-low); }
 .elig-card ul { list-style: none; display: grid; gap: 10px; }
 .elig-card ul li {
-  display: flex; gap: 12px; align-items: baseline;
-  color: var(--bone-dim); font-size: 15px; line-height: 1.5;
+  display: block;
+  padding-left: 18px;
+  position: relative;
+  color: var(--bone-dim); font-size: 15px; line-height: 1.6;
 }
 .elig-card ul li::before {
-  content: ""; flex: 0 0 6px; height: 1px;
-  display: inline-block; transform: translateY(-4px);
+  content: ""; position: absolute; left: 0; top: 0.7em;
+  width: 6px; height: 1px; display: block;
 }
 .elig-card--yes ul li::before { background: var(--acid); }
 .elig-card--no  ul li::before { background: var(--bone-low); }
@@ -931,6 +933,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 </main>
 
 <script>
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
   // FAQ one-open-at-a-time
   (function(){
     var items = document.querySelectorAll('.faq__item');
@@ -976,6 +981,38 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   })();
 </script>
 
-<script src="/includes/footer.js"></script>
+<footer class="footer">
+  <div class="footer__inner">
+    <div>
+      <div class="footer__brand">
+        <img src="/images/logo.png" alt="St. Paul Central Mountain Bike Team" width="127" height="240">
+        <p>Youth mountain biking for grades 6–12 in Saint Paul, Minnesota. A volunteer-run program affiliated with the Minnesota Cycling Association.</p>
+      </div>
+    </div>
+    <div class="footer__col">
+      <h4>The Team</h4>
+      <ul>
+        <li><a href="/join">Join</a></li>
+        <li><a href="/parent-guide">Parent Guide</a></li>
+        <li><a href="/equipment-guide">Equipment Guide</a></li>
+        <li><a href="/coaches">Coaches</a></li>
+        <li><a href="/media">Media</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="/sponsors">Sponsors</a></li>
+        <li><a href="/shop">Shop</a></li>
+        <li><a href="#" data-mail="hello">Contact</a></li>
+        <li><a href="https://minnesotacycling.org/">MN Cycling Assoc.</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <span>&copy; <span id="year">2026</span> St. Paul Central Mountain Bike Team</span>
+    <span>Built by riders &amp; parents. Powered by dirt.</span>
+  </div>
+</footer>
 </body>
 </html>
