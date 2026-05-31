@@ -1,43 +1,63 @@
 // Central MTB Footer Include
-// This file contains the footer with Stay Connected section
 
 document.write(`
-  <footer class="footer">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <img src="/images/logo.png" alt="St. Paul Central Mountain Bike Team logo" loading="lazy">
-        <p>Youth mountain biking for grades 6–12 in the St. Paul school district. All skill levels welcome.</p>
-      </div>
-      <div>
-        <h4>Team</h4>
-        <ul>
-          <li><a href="/parent-guide">Parent Guide</a></li>
-          <li><a href="/equipment-guide">Equipment Guide</a></li>
-          <li><a href="/lettering-criteria">Lettering Criteria</a></li>
-          <li><a href="/coach-bios">Coach Bios</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Get Involved</h4>
-        <ul>
-          <li><a href="/join">Join the Team</a></li>
-          <li><a href="/try-it-ride">Try-It-Ride</a></li>
-          <li><a href="/girls">Girls Try-It-Ride</a></li>
-          <li><a href="/captain">Captain Application</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Stay Connected</h4>
-        <ul>
-          <li><a href="https://www.instagram.com/spcmtb_official/" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="https://www.tiktok.com/@centralmtb" target="_blank" rel="noopener">TikTok</a></li>
-          <li><a href="https://shop.centralmtb.com/" target="_blank" rel="noopener">Team Shop</a></li>
-          <li><a href="/media">Photos &amp; Media</a></li>
-        </ul>
+<footer class="footer">
+  <div class="footer__inner">
+    <div>
+      <div class="footer__brand">
+        <img src="/images/logo.png" alt="St. Paul Central Mountain Bike Team" width="127" height="240">
+        <p>Youth mountain biking for grades 6&ndash;12 in St. Paul, Minnesota. A volunteer-run program affiliated with the Minnesota Cycling Association.</p>
+        <div class="footer__social">
+          <a href="https://www.instagram.com/spcmtb_official" target="_blank" rel="noopener" aria-label="Central MTB on Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@centralmtb" target="_blank" rel="noopener" aria-label="Central MTB on TikTok">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+          </a>
+        </div>
       </div>
     </div>
-    <div class="footer-btm">
-      <span>© 2026 St. Paul Central Mountain Bike Team. All rights reserved.</span>
+    <div class="footer__col">
+      <h4>Ride</h4>
+      <ul>
+        <li><a href="/parent-guide">Parent Guide</a></li>
+        <li><a href="/equipment-guide">Equipment Guide</a></li>
+        <li><a href="/lettering-criteria">Lettering Criteria</a></li>
+      </ul>
     </div>
-  </footer>
+    <div class="footer__col">
+      <h4>The Team</h4>
+      <ul>
+        <li><a href="/coach-bios">Coach Bios</a></li>
+        <li><a href="/captain">Captain Application</a></li>
+        <li><a href="/media">Media</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="/sponsor">Become a Sponsor</a></li>
+        <li><a href="https://shop.centralmtb.com/">Shop</a></li>
+        <li><a href="#" data-mail="hello">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <span>&copy; <span id="footer-year"></span> St. Paul Central Mountain Bike Team</span>
+    <span>Built by riders &amp; parents. Powered by dirt.</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    // Year
+    var y = document.getElementById('footer-year');
+    if (y) y.textContent = new Date().getFullYear();
+    // Email hydration
+    var d1 = 'centralmtb', d2 = 'com';
+    document.querySelectorAll('a[data-mail]').forEach(function(a){
+      a.setAttribute('href', 'mailto:' + a.getAttribute('data-mail') + '@' + d1 + '.' + d2);
+    });
+  })();
+<\/script>
 `);
