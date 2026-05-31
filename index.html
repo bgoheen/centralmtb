@@ -1440,9 +1440,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 <!-- Footer -->
 
 <script>
-  // ---- Year ----
-  document.getElementById('year').textContent = new Date().getFullYear();
-
   // ---- FAQ accordion: only one open at a time ----
   (function(){
     var items = document.querySelectorAll('.faq__item');
@@ -1462,30 +1459,12 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
     var d1 = 'centralmtb', d2 = 'com';
     document.querySelectorAll('a[data-mail]').forEach(function(a){
       var user = a.getAttribute('data-mail') || 'hello';
-      var addr = user + '@' + d1 + '.' + d2;
-      a.setAttribute('href', 'mailto:' + addr);
+      a.setAttribute('href', 'mailto:' + user + '@' + d1 + '.' + d2);
     });
   })();
 
-  // ---- Scroll reveal (IntersectionObserver) ----
-  (function(){
-    var els = document.querySelectorAll('.reveal');
-    function showAll(){ els.forEach(function(el){ el.classList.add('is-in'); }); }
-    if (!('IntersectionObserver' in window)) { showAll(); return; }
-    // Hard fallback - if observer hasn't fired within 1s, show everything
-    var fallback = setTimeout(showAll, 1000);
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-in');
-          io.unobserve(entry.target);
-        }
-      });
-      // Cancel fallback once observer starts firing
-      clearTimeout(fallback);
-    }, { threshold: 0, rootMargin: '0px' });
-    els.forEach(function(el){ io.observe(el); });
-  })();
+  // ---- Show all reveal elements immediately ----
+  document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
 </script>
 
 
