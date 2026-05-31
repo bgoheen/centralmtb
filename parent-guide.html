@@ -804,37 +804,37 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
                 <span class="cost-price">$500+</span>
               </div>
               <div class="cost-row">
-                <div class="cost-name">Helmet<small>MIPS recommended</small></div>
+                <div class="cost-name">Helmet<small>MIPS recommended for added protection</small></div>
                 <span class="tag tag--req">Required</span>
                 <span class="cost-price">~$60</span>
               </div>
               <div class="cost-row">
-                <div class="cost-name">Cycling Gloves</div>
-                <span class="tag tag--rec">Recommended</span>
-                <span class="cost-price">~$25</span>
-              </div>
-              <div class="cost-row">
-                <div class="cost-name">Protective Eyewear</div>
-                <span class="tag tag--rec">Recommended</span>
-                <span class="cost-price">~$50</span>
-              </div>
-              <div class="cost-row">
-                <div class="cost-name">MCA Athlete Registration</div>
+                <div class="cost-name">League Registration<small>Minnesota Cycling Association membership</small></div>
                 <span class="tag tag--req">Required</span>
                 <span class="cost-price">$125</span>
               </div>
               <div class="cost-row">
-                <div class="cost-name">St. Paul Central MTB Team Dues</div>
+                <div class="cost-name">St. Paul Central Team Dues<small>Covers coaching, logistics, and team operations</small></div>
                 <span class="tag tag--req">Required</span>
                 <span class="cost-price">$90</span>
               </div>
               <div class="cost-row">
-                <div class="cost-name">Team Jersey<small>Racing only</small></div>
-                <span class="tag tag--race">Racing</span>
+                <div class="cost-name">Cycling Gloves<small>Protect your hands</small></div>
+                <span class="tag tag--rec">Recommended</span>
+                <span class="cost-price">~$25</span>
+              </div>
+              <div class="cost-row">
+                <div class="cost-name">Protective Eyewear<small>Sunglasses or clear lenses for keeping dirt out</small></div>
+                <span class="tag tag--rec">Recommended</span>
+                <span class="cost-price">~$50</span>
+              </div>
+              <div class="cost-row">
+                <div class="cost-name">Team Jersey<small>Only required if you decide to race</small></div>
+                <span class="tag tag--race">Racing Only</span>
                 <span class="cost-price">~$60</span>
               </div>
               <div class="cost-row">
-                <div class="cost-name">Season Race Entry<small>5 races</small></div>
+                <div class="cost-name">Season Race Entry<small>Five MCA races across the season</small></div>
                 <span class="tag tag--opt">Optional</span>
                 <span class="cost-price">$175+</span>
               </div>
@@ -932,7 +932,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   document.getElementById('year').textContent = new Date().getFullYear();
 
   // FAQ one-open-at-a-time
-  (function(){
+  document.addEventListener('DOMContentLoaded', function(){
     var items = document.querySelectorAll('.faq__item');
     items.forEach(function(item){
       item.querySelector('summary').addEventListener('click', function(){
@@ -943,7 +943,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
         }
       });
     });
-  })();
+  });
 
   // Email hydration (Cloudflare-safe)
   (function(){
