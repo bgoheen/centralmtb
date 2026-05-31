@@ -26,6 +26,7 @@ document.write(`
 
   <div class="sheet" data-sheet aria-hidden="true" role="dialog" aria-label="Navigation menu">
     <button class="sheet__close" aria-label="Close menu" data-menu-close>&times;</button>
+    <a href="/">Home</a>
     <a href="/parent-guide">Parent Guide</a>
     <a href="/equipment-guide">Equipment Guide</a>
     <a href="/coach-bios">Coaches</a>
