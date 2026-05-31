@@ -9,11 +9,10 @@ document.write(`
       </a>
 
       <div class="nav__links">
-        <a href="/">Home</a>
         <a href="/parent-guide">Parent Guide</a>
-        <a href="/try-it-ride">Try-It-Ride</a>
-        <a href="/resources">Resources</a>
-        <a href="https://shop.centralmtb.com/" target="_blank" rel="noopener">Shop</a>
+        <a href="/equipment-guide">Equipment Guide</a>
+        <a href="/coach-bios">Coaches</a>
+        <a href="/media">Media</a>
       </div>
 
       <div class="nav__cta">
@@ -27,17 +26,10 @@ document.write(`
 
   <div class="sheet" data-sheet aria-hidden="true" role="dialog" aria-label="Navigation menu">
     <button class="sheet__close" aria-label="Close menu" data-menu-close>&times;</button>
-    <a href="/">Home</a>
     <a href="/parent-guide">Parent Guide</a>
-    <a href="/try-it-ride">Try-It-Ride</a>
-    <a href="/girls">Girls Try-It-Ride</a>
-    <a href="/resources">Resources</a>
-    <a href="/coach">Coach Info</a>
-    <a href="/coach-bios">Coach Bios</a>
-    <a href="/captain">Captain Application</a>
-    <a href="/media">Photos &amp; Media</a>
-    <a href="/sponsor">Become a Sponsor</a>
-    <a href="https://shop.centralmtb.com/" target="_blank" rel="noopener">Shop</a>
+    <a href="/equipment-guide">Equipment Guide</a>
+    <a href="/coach-bios">Coaches</a>
+    <a href="/media">Media</a>
     <a href="/join">Join the Team</a>
   </div>
 
