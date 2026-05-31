@@ -10,102 +10,674 @@
   <meta property="og:description" content="Everything you need to gear up for the St. Paul Central MTB team — bikes, helmets, gloves, and more.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://centralmtb.com/equipment-guide">
+  <meta property="og:image" content="/images/hero-desktop.jpg">
   <link rel="icon" type="image/png" href="/images/logo-64.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ===========================================================
+   CENTRAL MTB · EQUIPMENT GUIDE
+   Matches homepage + parent guide design system exactly.
+   =========================================================== */
+
+:root {
+  --ink:         #0A0A0A;
+  --ink-2:       #161616;
+  --ink-3:       #242424;
+  --bone:        #F5F5F5;
+  --bone-dim:    #BABABA;
+  --bone-low:    #707070;
+  --line:        rgba(245,245,245,0.12);
+  --line-strong: rgba(245,245,245,0.28);
+
+  --acid:        #C2282D;
+  --acid-dim:    #D63E43;
+  --acid-deep:   #7A1A1D;
+
+  --display: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+  --body:    "Roboto", system-ui, -apple-system, sans-serif;
+
+  --maxw:    1440px;
+  --gutter:  clamp(16px, 4vw, 40px);
+  --section-y: clamp(64px, 10vw, 120px);
+
+  --ease:    cubic-bezier(0.16, 1, 0.3, 1);
+  --t-fast:  180ms;
+  --t-med:   320ms;
+  --t-slow:  520ms;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--ink);
+  color: var(--bone);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.55;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; border: 0; background: 0; color: inherit; }
+::selection { background: var(--acid); color: var(--ink); }
+
+.skip {
+  position: absolute; left: -9999px; top: 0;
+  background: var(--acid); color: var(--ink);
+  padding: 12px 18px; font-weight: 700; z-index: 100;
+}
+.skip:focus { left: 12px; top: 12px; }
+
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--acid); outline-offset: 3px; border-radius: 2px;
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* ===========================================================
+   Grain overlay
+   =========================================================== */
+.grain {
+  position: fixed; inset: 0; z-index: 99; pointer-events: none;
+  opacity: 0.06; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.85'/></svg>");
+}
+
+/* ===========================================================
+   Nav
+   =========================================================== */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(10,10,10,0.82);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid var(--line);
+}
+.nav__inner {
+  max-width: var(--maxw); margin: 0 auto;
+  padding: 14px var(--gutter);
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+}
+.brand { display: inline-flex; align-items: center; line-height: 1; }
+.brand img { height: 44px; width: auto; display: block; transition: transform var(--t-fast) var(--ease); }
+.brand:hover img { transform: rotate(-3deg) scale(1.04); }
+
+.nav__links { display: none; gap: 28px; align-items: center; }
+@media (min-width: 960px) { .nav__links { display: inline-flex; } }
+.nav__links a {
+  font-family: var(--display); font-weight: 700; font-size: 16px;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--bone-dim); position: relative; padding: 4px 0;
+  transition: color var(--t-fast) var(--ease);
+}
+.nav__links a::after {
+  content: ""; position: absolute; left: 0; bottom: -2px;
+  height: 2px; width: 0; background: var(--acid);
+  transition: width var(--t-med) var(--ease);
+}
+.nav__links a:hover { color: var(--bone); }
+.nav__links a:hover::after { width: 100%; }
+
+.nav__cta { display: inline-flex; align-items: center; gap: 12px; }
+.nav__cta .btn { display: none; }
+@media (min-width: 720px) { .nav__cta .btn { display: inline-flex; } }
+
+.nav__burger {
+  display: inline-grid; place-items: center;
+  width: 44px; height: 44px;
+  border: 1px solid var(--line-strong); border-radius: 8px; background: transparent;
+}
+.nav__burger span { width: 18px; height: 2px; background: var(--bone); position: relative; }
+.nav__burger span::before, .nav__burger span::after {
+  content: ""; position: absolute; left: 0; width: 18px; height: 2px; background: var(--bone);
+}
+.nav__burger span::before { top: -6px; }
+.nav__burger span::after  { top: 6px; }
+@media (min-width: 960px) { .nav__burger { display: none; } }
+
+.sheet {
+  position: fixed; inset: 0; z-index: 60;
+  background: var(--ink);
+  padding: 80px var(--gutter) 40px;
+  transform: translateY(-100%);
+  transition: transform var(--t-slow) var(--ease);
+  visibility: hidden;
+}
+.sheet[data-open="true"] { transform: translateY(0); visibility: visible; }
+.sheet a {
+  display: block; font-family: var(--display); font-weight: 800;
+  font-size: clamp(36px, 9vw, 56px); letter-spacing: -0.01em; text-transform: uppercase;
+  color: var(--bone); padding: 14px 0; border-bottom: 1px solid var(--line);
+}
+.sheet a:hover { color: var(--acid); }
+.sheet__close {
+  position: absolute; top: 22px; right: var(--gutter);
+  width: 44px; height: 44px;
+  border: 1px solid var(--line-strong); border-radius: 8px;
+  display: grid; place-items: center;
+  font-family: var(--display); font-weight: 800; font-size: 28px; color: var(--bone);
+}
+
+/* ===========================================================
+   Buttons
+   =========================================================== */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--display); font-weight: 800; font-size: 17px;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 14px 22px; border-radius: 8px; line-height: 1;
+  transition: transform var(--t-fast) var(--ease), background var(--t-fast) var(--ease),
+              color var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
+  will-change: transform;
+}
+.btn--primary {
+  background: var(--acid); color: var(--bone);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.2) inset, 0 12px 28px -16px rgba(194,40,45,0.55);
+}
+.btn--primary:hover { background: var(--acid-dim); transform: translateY(-2px); }
+.btn--primary:active { transform: translateY(1px); }
+.btn--ghost { background: transparent; color: var(--bone); border: 1px solid var(--line-strong); }
+.btn--ghost:hover { background: var(--ink-2); border-color: var(--bone-dim); }
+.btn--small { padding: 10px 16px; font-size: 14px; }
+.btn .arrow { display: inline-block; transition: transform var(--t-med) var(--ease); }
+.btn:hover .arrow { transform: translateX(4px); }
+
+/* ===========================================================
+   Topo pattern
+   =========================================================== */
+.topo {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0.08;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'><g fill='none' stroke='%23F5F5F5' stroke-width='1'><path d='M0,400 Q200,300 400,400 T800,400'/><path d='M0,440 Q200,340 400,440 T800,440'/><path d='M0,480 Q200,380 400,480 T800,480'/><path d='M0,520 Q200,420 400,520 T800,520'/><path d='M0,360 Q200,260 400,360 T800,360'/><path d='M0,320 Q200,220 400,320 T800,320'/><path d='M0,280 Q200,180 400,280 T800,280'/><path d='M0,560 Q200,460 400,560 T800,560'/><path d='M0,600 Q200,500 400,600 T800,600'/></g></svg>");
+  background-size: 800px 800px;
+}
+
+/* ===========================================================
+   Section label utility
+   =========================================================== */
+.section__label {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: var(--display); font-weight: 700; font-size: 13px;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--acid); margin-bottom: 16px;
+}
+.section__label .num {
+  font-size: 12px; border: 1px solid var(--acid); padding: 2px 6px; border-radius: 2px;
+}
+
+/* ===========================================================
+   Page hero
+   =========================================================== */
+.page-hero {
+  position: relative; overflow: hidden;
+  background: var(--ink-2); border-bottom: 1px solid var(--line);
+  padding: clamp(60px, 10vw, 120px) 0 clamp(50px, 8vw, 100px);
+}
+.page-hero .topo { opacity: 0.06; }
+.page-hero__inner {
+  position: relative; z-index: 2;
+  max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter);
+  display: grid; gap: 20px;
+}
+.page-hero h1 {
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(56px, 11vw, 150px);
+  line-height: 0.86; letter-spacing: -0.025em; text-transform: uppercase;
+  color: var(--bone); text-wrap: balance; max-width: 14ch;
+}
+.page-hero h1 em { font-style: normal; color: var(--acid); }
+.page-hero__sub {
+  font-size: clamp(17px, 1.5vw, 19px); color: var(--bone-dim);
+  max-width: 56ch; line-height: 1.55;
+}
+
+/* ===========================================================
+   Two-column layout
+   =========================================================== */
+.content-layout {
+  display: grid; grid-template-columns: 1fr;
+  gap: clamp(40px, 6vw, 80px); align-items: start;
+  padding: var(--section-y) 0;
+  max-width: var(--maxw); margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter);
+}
+@media (min-width: 1024px) {
+  .content-layout { grid-template-columns: 1fr 280px; gap: clamp(40px, 5vw, 70px); }
+}
+
+/* ===========================================================
+   Sidebar
+   =========================================================== */
+.sidebar { position: sticky; top: 84px; display: none; }
+@media (min-width: 1024px) { .sidebar { display: block; } }
+.sidebar__card {
+  background: var(--ink-2); border: 1px solid var(--line);
+  border-radius: 14px; overflow: hidden;
+}
+.sidebar__section { padding: 22px 24px; border-bottom: 1px solid var(--line); }
+.sidebar__section:last-child { border-bottom: 0; }
+.sidebar__heading {
+  font-family: var(--display); font-weight: 700; font-size: 11px;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--bone-low); margin-bottom: 14px;
+}
+.sidebar__nav { display: grid; gap: 2px; }
+.sidebar__nav a {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--display); font-weight: 700; font-size: 15px;
+  letter-spacing: 0.02em; text-transform: uppercase;
+  color: var(--bone-dim); padding: 9px 12px; border-radius: 6px;
+  transition: color var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
+}
+.sidebar__nav a::before {
+  content: ""; display: block; width: 5px; height: 5px;
+  background: var(--acid-deep); border-radius: 50%; flex-shrink: 0;
+  transition: background var(--t-fast) var(--ease);
+}
+.sidebar__nav a:hover { color: var(--bone); background: rgba(245,245,245,0.04); }
+.sidebar__nav a:hover::before { background: var(--acid); }
+.sidebar__cta { padding: 22px 24px; }
+.sidebar__cta .btn { width: 100%; justify-content: center; }
+
+/* ===========================================================
+   Content sections
+   =========================================================== */
+.content-section {
+  padding: clamp(48px, 7vw, 84px) 0;
+  border-bottom: 1px solid var(--line);
+}
+.content-section:first-child { padding-top: 0; }
+.content-section:last-child { border-bottom: 0; padding-bottom: 0; }
+
+.section-head { margin-bottom: clamp(28px, 4vw, 44px); }
+.section-head h2 {
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(34px, 5vw, 58px);
+  line-height: 0.92; letter-spacing: -0.02em; text-transform: uppercase;
+  color: var(--bone); margin-top: 10px;
+}
+.section-head h2 em { font-style: normal; color: var(--acid); }
+
+/* ===========================================================
+   Gear items - card-based layout
+   =========================================================== */
+.gear-grid {
+  display: grid; grid-template-columns: 1fr; gap: 14px;
+}
+@media (min-width: 720px) {
+  .gear-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.gear-card {
+  background: var(--ink-2); border: 1px solid var(--line);
+  border-radius: 14px; padding: clamp(22px, 3vw, 32px);
+  transition: border-color var(--t-med) var(--ease), transform var(--t-med) var(--ease);
+}
+.gear-card:hover { border-color: var(--line-strong); transform: translateY(-3px); }
+.gear-card--wide {
+  grid-column: 1 / -1;
+}
+.gear-card__label {
+  font-family: var(--display); font-weight: 700; font-size: 11px;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--acid); margin-bottom: 10px;
+  display: flex; align-items: center; gap: 8px;
+}
+.gear-card__label .dot {
+  width: 5px; height: 5px; background: var(--acid); border-radius: 50%; flex-shrink: 0;
+}
+.gear-card h3 {
+  font-family: var(--display); font-weight: 800;
+  font-size: clamp(22px, 2.5vw, 32px); line-height: 1;
+  letter-spacing: -0.01em; text-transform: uppercase;
+  color: var(--bone); margin-bottom: 16px;
+}
+.gear-card p {
+  font-size: 15.5px; color: var(--bone-dim); line-height: 1.65;
+}
+.gear-card p + p { margin-top: 12px; }
+.gear-card ul {
+  list-style: none; display: grid; gap: 12px; margin-top: 4px;
+}
+.gear-card ul li {
+  display: block; padding-left: 18px; position: relative;
+  color: var(--bone-dim); font-size: 15.5px; line-height: 1.6;
+}
+.gear-card ul li::before {
+  content: ""; position: absolute; left: 0; top: 0.7em;
+  width: 6px; height: 1px; background: var(--acid); display: block;
+}
+.gear-card ul li strong { color: var(--bone); font-weight: 500; }
+
+/* Tag badge on cards */
+.tag {
+  display: inline-flex;
+  font-family: var(--display); font-weight: 700; font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 5px 10px; border-radius: 3px; white-space: nowrap; line-height: 1;
+  margin-bottom: 12px;
+}
+.tag--req  { background: var(--acid); color: var(--ink); }
+.tag--rec  { background: transparent; color: var(--bone-dim); border: 1px solid var(--line-strong); }
+.tag--opt  { background: transparent; color: var(--bone-low); border: 1px solid var(--line); }
+
+/* ===========================================================
+   Info box
+   =========================================================== */
+.info-box {
+  margin-top: 20px;
+  background: rgba(194,40,45,0.08);
+  border: 1px solid rgba(194,40,45,0.22);
+  border-radius: 10px; padding: 18px 22px;
+  font-size: 15px; color: var(--bone-dim); line-height: 1.6;
+}
+.info-box a { color: var(--acid); border-bottom: 1px solid var(--acid-deep); }
+.info-box a:hover { border-color: var(--acid); }
+
+/* ===========================================================
+   Final CTA
+   =========================================================== */
+.cta-final {
+  position: relative; background: var(--acid); color: var(--ink); overflow: hidden;
+}
+.cta-final__inner {
+  max-width: var(--maxw); margin: 0 auto;
+  padding: clamp(64px, 10vw, 120px) var(--gutter);
+  display: grid; gap: 22px; position: relative; z-index: 2;
+}
+.cta-final h2 {
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(56px, 12vw, 160px);
+  line-height: 0.86; letter-spacing: -0.025em; text-transform: uppercase;
+  color: var(--ink); text-wrap: balance; max-width: 14ch;
+}
+.cta-final p {
+  font-size: clamp(17px, 1.5vw, 19px); color: rgba(10,10,10,0.78);
+  max-width: 56ch; line-height: 1.55;
+}
+.cta-final .btn--primary {
+  background: var(--ink); color: var(--bone);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset;
+}
+.cta-final .btn--primary:hover { background: #1A1A1A; }
+.cta-final .btn--ghost { border-color: rgba(10,10,10,0.25); color: var(--ink); }
+.cta-final__topo {
+  position: absolute; inset: 0; opacity: 0.16; z-index: 1; pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'><g fill='none' stroke='%230A0A0A' stroke-width='1.2'><path d='M0,400 Q200,300 400,400 T800,400'/><path d='M0,440 Q200,340 400,440 T800,440'/><path d='M0,480 Q200,380 400,480 T800,480'/><path d='M0,520 Q200,420 400,520 T800,520'/><path d='M0,360 Q200,260 400,360 T800,360'/><path d='M0,320 Q200,220 400,320 T800,320'/><path d='M0,280 Q200,180 400,280 T800,280'/><path d='M0,560 Q200,460 400,560 T800,560'/><path d='M0,600 Q200,500 400,600 T800,600'/></g></svg>");
+  background-size: 800px 800px;
+}
+
+/* ===========================================================
+   Footer
+   =========================================================== */
+.footer {
+  background: var(--ink); border-top: 1px solid var(--line);
+  padding: 60px var(--gutter) 32px;
+}
+.footer__inner {
+  max-width: var(--maxw); margin: 0 auto; display: grid; gap: 40px;
+}
+@media (min-width: 720px) { .footer__inner { grid-template-columns: 2fr 1fr 1fr; } }
+.footer__brand img { height: 72px; width: auto; display: block; margin-bottom: 16px; }
+.footer__brand p { font-size: 13px; color: var(--bone-low); max-width: 36ch; line-height: 1.55; }
+.footer__col h4 {
+  font-family: var(--display); font-weight: 700; font-size: 13px;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--bone-low); margin-bottom: 14px;
+}
+.footer__col ul { list-style: none; display: grid; gap: 8px; }
+.footer__col a { color: var(--bone-dim); font-size: 15px; transition: color var(--t-fast) var(--ease); }
+.footer__col a:hover { color: var(--bone); }
+.footer__bottom {
+  max-width: var(--maxw); margin: 40px auto 0;
+  padding-top: 24px; border-top: 1px solid var(--line);
+  display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between;
+  font-size: 13px; color: var(--bone-low);
+}
+
+/* ===========================================================
+   Mobile text bumps
+   =========================================================== */
+@media (max-width: 767px) {
+  body { font-size: 17px; }
+  .gear-card p,
+  .gear-card ul li { font-size: 17px; }
+  .info-box { font-size: 16.5px; }
+  .footer__col a { font-size: 16px; }
+  .footer__brand p { font-size: 14px; }
+}
+</style>
 </head>
 <body>
-  <script src="/includes/header.js"></script>
 
-  <!-- ====== PAGE HEADER ====== -->
-  <header class="page-header">
-    <div class="container">
-      <div class="breadcrumb"><a href="/">Home</a> / <a href="/parent-guide">Parent Guide</a> / Equipment Guide</div>
-      <h1>Equipment Guide</h1>
-      <p>What to buy, what to look for, and what to skip — advice from our coaching staff.</p>
+<a href="#main" class="skip">Skip to content</a>
+<div class="grain" aria-hidden="true"></div>
+
+<script src="/includes/header.js"></script>
+
+<main id="main">
+
+  <!-- ====== PAGE HERO ====== -->
+  <div class="page-hero">
+    <div class="topo" aria-hidden="true"></div>
+    <div class="page-hero__inner">
+      <h1>Equipment<br><em>Guide.</em></h1>
+      <p class="page-hero__sub">What to buy, what to look for, and what to skip - advice from our coaching staff.</p>
     </div>
-  </header>
+  </div>
 
   <!-- ====== MAIN CONTENT ====== -->
-  <section class="section">
-    <div class="container">
-      <div class="page-grid">
-        <div class="content">
+  <div class="content-layout">
 
-          <!-- REQUIRED -->
-          <span class="s-label">Required</span>
-          <h2>Required Equipment</h2>
+    <!-- Main content -->
+    <div class="content-main">
 
-          <h3>Bike</h3>
-          <ul>
-            <li><strong>Suspension:</strong> We recommend front-suspension only for a new rider, as it will keep the cost down.</li>
-            <li><strong>Gears/Derailleur:</strong> We recommend a single chain ring in the front and as many gears as possible in the back within your price range. It's one less thing to think about while riding — just a single shifter up and down vs. managing front and rear gears. Less to maintain and less to go wrong with the bike.</li>
-            <li><strong>Wheel Size:</strong> We encourage athletes to look at a 29" wheel bike if it is comfortable. For the riding most of the team does, having 29" wheels will be a better ride on the non-technical sections and you can get a bit more mileage per pedal when cruising around and on straightaways. The correct frame size is best determined by a reputable sales person at one of the local bike stores.</li>
-            <li><strong>Brakes:</strong> Disc brakes are strongly suggested. If the rider has an older bike it may still have caliper brakes and they don't offer the braking power or responsiveness.</li>
-            <li><strong>Older Bikes:</strong> Older bikes work quite well. We recommend that any extras that have accumulated on the bike be removed, like bar-ends (not allowed for racing), streamers, things that make noise on the spokes, etc. Additionally, racing requires removing reflectors as they can become a projectile to injure other riders.</li>
-          </ul>
-
-          <div class="info-box">
-            <p>Not sure what type of bike to get? <a href="mailto:hello@centralmtb.com">Contact us</a> for guidance — our coaches are happy to help.</p>
-          </div>
-
-          <h3>Helmet</h3>
-          <p>A helmet is required. For optimal safety, a MIPS (Multi-directional Impact Protection System) helmet is strongly recommended. If you already own a helmet but are unsure of its effectiveness, please consult one of the coaches for guidance.</p>
-
-          <h3>Gloves</h3>
-          <p>You're going to run into a tree. Not if, but when. Gloves will help keep your fingers from getting scratched up from either a fall or from brush on the sides of the trails.</p>
-
-          <h3>Hydration</h3>
-          <ul>
-            <li><strong>Water Bottles:</strong> 1–2 water bottles depending on weather conditions. Even in cold conditions, hydration is very important to sustaining your body while riding.</li>
-            <li><strong>Water Pack:</strong> A water pack (e.g. Camelbak) is often easier to manage vs. a water-bottle as it can't fall off your bike.</li>
-          </ul>
-
-          <h3>Eyewear</h3>
-          <p>Clear or yellow lens glasses are popular. Sunglasses can be too dark for portions of trail riding and can make things difficult and unsafe for the riders. Eye protection is not required but very strongly recommended because of branches, bugs, and other objects that fly around while riding. Eyes are very difficult to heal.</p>
-
-          <h3>Trail Kit</h3>
-          <ul>
-            <li><strong>Multi-Tool:</strong> There are lots of options — focus on the tools you need for your bike that you know how to use.</li>
-            <li><strong>Spare Tube(s):</strong> Even if your bike is configured for tubeless operation, having a spare tube and air pump is key to fixing a stubborn flat and preventing a long walk. With the spare tube, you will need a pair of tire-levers.</li>
-            <li><strong>Air Source:</strong> A hand pump works well and is reliable. A CO2 system is much lighter but has a limited capacity. If you are not comfortable with CO2, there are several varieties of light-weight hand pumps.</li>
-          </ul>
-
-          <hr class="section-divider">
-
-          <!-- OPTIONAL -->
-          <span class="s-label">Optional</span>
-          <h2>Optional Equipment</h2>
-
-          <h3>Clipless Shoes</h3>
-          <p>Clip pedals are for more experienced riders and should be considered after the rider has some experience and is looking to improve their performance on the trail. Riders that convert to clips should get several dozen miles in with them before racing, as the mechanics of getting in/out of clips should be second-nature by the time they attend a race.</p>
-
-          <h3>Cycling Socks</h3>
-          <p>Wicking cycling socks are recommended as they help keep your feet dry by drawing sweat away from the skin, reducing the risk of blisters and discomfort. The breathable material also enhances comfort and prevents overheating during long, intense rides.</p>
-
-          <h3>Arm/Leg Warmers</h3>
-          <p>Our season runs from July to October, with weather shifting from summer heat to cooler fall days. Temperature changes can also occur during a single practice or race. Leg and arm warmers are handy for regulating body temperature without bulky gear. They're compact enough to fit in a pocket but provide extra warmth when needed.</p>
-
+      <!-- REQUIRED -->
+      <div class="content-section" id="required">
+        <div class="section-head">
+          <div class="section__label"><span class="num">01</span> Required</div>
+          <h2>Required <em>gear.</em></h2>
         </div>
 
-        <!-- Sidebar -->
-        <aside class="page-sidebar">
-          <h4>On This Page</h4>
-          <a href="#">Bike</a>
-          <a href="#">Helmet &amp; Gloves</a>
-          <a href="#">Hydration &amp; Trail Kit</a>
-          <a href="#">Optional Gear</a>
-          <h4 style="margin-top:20px">Related</h4>
-          <a href="/parent-guide#costs">Costs Overview</a>
-          <a href="/parent-guide">Parent Guide</a>
-          <a href="/join">Join the Team</a>
-        </aside>
+        <div class="gear-grid">
+
+          <!-- Bike - wide card -->
+          <div class="gear-card gear-card--wide" id="bike">
+            <div class="gear-card__label"><span class="dot"></span>The Bike</div>
+            <span class="tag tag--req">Required</span>
+            <h3>Mountain Bike</h3>
+            <ul>
+              <li><strong>Suspension:</strong> We recommend front-suspension only for a new rider, as it will keep the cost down.</li>
+              <li><strong>Gears:</strong> We recommend a single chain ring in the front and as many gears as possible in the back within your price range. It's one less thing to think about while riding - just a single shifter up and down vs. managing front and rear gears. Less to maintain and less to go wrong.</li>
+              <li><strong>Wheel Size:</strong> We encourage athletes to look at a 29" wheel bike if it is comfortable. 29" wheels perform better on non-technical sections and give you more mileage per pedal on straightaways. The correct frame size is best determined by a reputable sales person at one of the local bike stores.</li>
+              <li><strong>Brakes:</strong> Disc brakes are strongly suggested. Older caliper brakes don't offer the same braking power or responsiveness.</li>
+              <li><strong>Older Bikes:</strong> Older bikes work well. Remove any extras - bar-ends (not allowed for racing), streamers, spoke accessories, and reflectors (they can become projectiles).</li>
+            </ul>
+            <div class="info-box">
+              Not sure what type of bike to get? <a href="mailto:hello@centralmtb.com">Contact us</a> - our coaches are happy to help.
+            </div>
+          </div>
+
+          <!-- Helmet -->
+          <div class="gear-card" id="helmet">
+            <div class="gear-card__label"><span class="dot"></span>Head Protection</div>
+            <span class="tag tag--req">Required</span>
+            <h3>Helmet</h3>
+            <p>A helmet is required. For optimal safety, a MIPS (Multi-directional Impact Protection System) helmet is strongly recommended. If you already own a helmet but are unsure of its effectiveness, consult one of the coaches for guidance.</p>
+          </div>
+
+          <!-- Hydration -->
+          <div class="gear-card" id="hydration">
+            <div class="gear-card__label"><span class="dot"></span>Stay Hydrated</div>
+            <span class="tag tag--req">Required</span>
+            <h3>Hydration</h3>
+            <ul>
+              <li><strong>Water Bottles:</strong> 1-2 bottles depending on weather conditions. Even in cold conditions, hydration is critical to sustaining your body while riding.</li>
+              <li><strong>Water Pack:</strong> A hydration pack (e.g. Camelbak) is often easier to manage - it can't fall off your bike.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- OPTIONAL -->
+      <div class="content-section" id="optional">
+        <div class="section-head">
+          <div class="section__label"><span class="num">02</span> Optional</div>
+          <h2>Optional <em>gear.</em></h2>
+        </div>
+
+        <div class="gear-grid">
+
+          <div class="gear-card" id="gloves">
+            <div class="gear-card__label"><span class="dot"></span>Hand Protection</div>
+            <span class="tag tag--opt">Optional</span>
+            <h3>Gloves</h3>
+            <p>You're going to run into a tree. Not if, but when. Gloves will keep your fingers from getting scratched up from a fall or from brush on the sides of the trails.</p>
+          </div>
+
+          <div class="gear-card" id="eyewear">
+            <div class="gear-card__label"><span class="dot"></span>Eye Protection</div>
+            <span class="tag tag--opt">Optional</span>
+            <h3>Eyewear</h3>
+            <p>Clear or yellow lens glasses are popular. Sunglasses can be too dark for portions of trail riding and can make things unsafe. Strongly recommended because of branches, bugs, and other objects that fly around while riding.</p>
+          </div>
+
+          <div class="gear-card" id="shoes">
+            <div class="gear-card__label"><span class="dot"></span>Footwear</div>
+            <span class="tag tag--opt">Optional</span>
+            <h3>Clipless Shoes</h3>
+            <p>Clip pedals are for more experienced riders and should be considered after gaining some trail time. Riders converting to clips should get several dozen miles in before racing - getting in and out of clips needs to be second-nature before race day.</p>
+          </div>
+
+          <div class="gear-card" id="socks">
+            <div class="gear-card__label"><span class="dot"></span>Comfort</div>
+            <span class="tag tag--opt">Optional</span>
+            <h3>Cycling Socks</h3>
+            <p>Wicking cycling socks help keep your feet dry by drawing sweat away from the skin, reducing the risk of blisters and discomfort. Breathable material also prevents overheating during long, intense rides.</p>
+          </div>
+
+          <div class="gear-card gear-card--wide" id="trail-kit">
+            <div class="gear-card__label"><span class="dot"></span>On-Trail Essentials</div>
+            <span class="tag tag--opt">Optional</span>
+            <h3>Trail Kit</h3>
+            <ul>
+              <li><strong>Multi-Tool:</strong> Lots of options available - focus on the tools you need for your specific bike that you know how to use.</li>
+              <li><strong>Spare Tube(s):</strong> Even if your bike runs tubeless, a spare tube and pump is key to fixing a stubborn flat and preventing a long walk. You'll also need a pair of tire levers.</li>
+              <li><strong>Air Source:</strong> A hand pump is reliable. A CO2 system is lighter but has limited capacity. If you're not comfortable with CO2, there are several varieties of lightweight hand pumps.</li>
+            </ul>
+          </div>
+
+          <div class="gear-card gear-card--wide" id="warmers">
+            <div class="gear-card__label"><span class="dot"></span>Season-Long Comfort</div>
+            <span class="tag tag--opt">Optional</span>
+            <h3>Arm &amp; Leg Warmers</h3>
+            <p>Our season runs from July to October, with weather shifting from summer heat to cooler fall days. Temperature changes can also occur during a single practice or race. Leg and arm warmers are handy for regulating body temperature without bulky gear - compact enough to fit in a pocket but providing real warmth when needed.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /content-main -->
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar__card">
+        <div class="sidebar__section">
+          <div class="sidebar__heading">On This Page</div>
+          <nav class="sidebar__nav" aria-label="Page sections">
+            <a href="#bike">Bike</a>
+            <a href="#helmet">Helmet</a>
+            <a href="#hydration">Hydration</a>
+            <a href="#optional">Optional Gear</a>
+          </nav>
+        </div>
+        <div class="sidebar__section">
+          <div class="sidebar__heading">Related</div>
+          <nav class="sidebar__nav">
+            <a href="/parent-guide#costs">Costs Overview</a>
+            <a href="/parent-guide">Parent Guide</a>
+            <a href="/join">Join the Team</a>
+          </nav>
+        </div>
+        <div class="sidebar__cta">
+          <a href="/join" class="btn btn--primary">
+            Join the Team <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+  </div><!-- /content-layout -->
+
+  <!-- ====== FINAL CTA ====== -->
+  <section class="cta-final">
+    <div class="cta-final__topo" aria-hidden="true"></div>
+    <div class="cta-final__inner">
+      <div class="section__label" style="color:var(--ink);opacity:0.75;">
+        <span class="num" style="border-color:var(--ink);color:var(--ink);">03</span> Get Rolling
+      </div>
+      <h2>Ready to ride?</h2>
+      <p>Got your gear sorted - or close enough? Come ride with us. We'll help fill in the gaps.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="/join" class="btn btn--primary">
+          Join the Team <span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="/parent-guide" class="btn btn--ghost" style="border-color:rgba(10,10,10,0.25);color:var(--ink);">Parent Guide</a>
       </div>
     </div>
   </section>
 
-<script src="/includes/footer.js"></script>
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div>
+      <div class="footer__brand">
+        <img src="/images/logo.png" alt="St. Paul Central Mountain Bike Team" width="127" height="240">
+        <p>Youth mountain biking for grades 6–12 in Saint Paul, Minnesota. A volunteer-run program affiliated with the Minnesota Cycling Association.</p>
+      </div>
+    </div>
+    <div class="footer__col">
+      <h4>The Team</h4>
+      <ul>
+        <li><a href="/join">Join</a></li>
+        <li><a href="/parent-guide">Parent Guide</a></li>
+        <li><a href="/equipment-guide">Equipment Guide</a></li>
+        <li><a href="/coaches">Coaches</a></li>
+        <li><a href="/media">Media</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="/sponsors">Sponsors</a></li>
+        <li><a href="/shop">Shop</a></li>
+        <li><a href="#" data-mail="hello">Contact</a></li>
+        <li><a href="https://minnesotacycling.org/">MN Cycling Assoc.</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <span>&copy; <span id="year">2026</span> St. Paul Central Mountain Bike Team</span>
+    <span>Built by riders &amp; parents. Powered by dirt.</span>
+  </div>
+</footer>
+
+<script>
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Email hydration (Cloudflare-safe)
+  (function(){
+    var d1 = 'centralmtb', d2 = 'com';
+    document.querySelectorAll('a[data-mail]').forEach(function(a){
+      var user = a.getAttribute('data-mail') || 'hello';
+      a.setAttribute('href', 'mailto:' + user + '@' + d1 + '.' + d2);
+    });
+  })();
+</script>
 </body>
 </html>
