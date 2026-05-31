@@ -1,78 +1,72 @@
 // Central MTB Header Include
-// This file contains the navigation and mobile menu
+// Navigation + mobile sheet - matches homepage design system
 
 document.write(`
   <nav class="nav" role="navigation" aria-label="Main navigation">
-    <div class="nav-inner">
-      <a href="/" class="nav-logo" aria-label="Central MTB Home">
-        <img src="/images/logo.png" alt="St. Paul Central MTB logo" width="120" height="44">
+    <div class="nav__inner">
+      <a href="/" class="brand" aria-label="Central MTB Home">
+        <img src="/images/logo.png" alt="St. Paul Central MTB logo">
       </a>
-      <ul class="nav-links">
-        <li><a href="/">Home</a></li>
-        <li class="dropdown">
-          <a href="/parent-guide">Parent Guide</a>
-          <ul class="dropdown-menu">
-            <li><a href="/parent-guide">Welcome</a></li>
-            <li><a href="/parent-guide#eligibility">Eligibility</a></li>
-            <li><a href="/parent-guide#schedule">Practices &amp; Schedule</a></li>
-            <li><a href="/parent-guide#costs">Equipment &amp; Fees</a></li>
-            <li><a href="/equipment-guide">Equipment Guide</a></li>
-            <li><a href="/lettering-criteria">Lettering Criteria</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="/try-it-ride">Try-It-Ride</a>
-          <ul class="dropdown-menu">
-            <li><a href="/girls">Girls Try-It-Ride</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="/resources">Resources</a>
-          <ul class="dropdown-menu">
-            <li><a href="/coach">Coach Info</a></li>
-            <li><a href="/coach-bios">Coach Bios</a></li>
-            <li><a href="/captain">Captain Application</a></li>
-            <li><a href="/media">Photos &amp; Media</a></li>
-            <li><a href="/sponsor">Become a Sponsor</a></li>
-          </ul>
-        </li>
-        <li><a href="https://shop.centralmtb.com/" target="_blank" rel="noopener">Shop</a></li>
-        <li><a href="/join" class="nav-cta">Join the Team</a></li>
-      </ul>
-      <button class="ham" aria-label="Open menu" aria-expanded="false" id="hamBtn">
-        <span></span><span></span><span></span>
-      </button>
+
+      <div class="nav__links">
+        <a href="/">Home</a>
+        <a href="/parent-guide">Parent Guide</a>
+        <a href="/try-it-ride">Try-It-Ride</a>
+        <a href="/resources">Resources</a>
+        <a href="https://shop.centralmtb.com/" target="_blank" rel="noopener">Shop</a>
+      </div>
+
+      <div class="nav__cta">
+        <a href="/join" class="btn btn--primary btn--small">Join the Team <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        <button class="nav__burger" aria-label="Open menu" aria-expanded="false" data-menu-open>
+          <span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
-  <div class="mob-menu" id="mobMenu" role="dialog" aria-label="Navigation menu">
+  <div class="sheet" data-sheet aria-hidden="true" role="dialog" aria-label="Navigation menu">
+    <button class="sheet__close" aria-label="Close menu" data-menu-close>&times;</button>
     <a href="/">Home</a>
     <a href="/parent-guide">Parent Guide</a>
-    <div class="mob-sub">
-      <a href="/parent-guide#eligibility">Eligibility</a>
-      <a href="/parent-guide#costs">Equipment &amp; Fees</a>
-      <a href="/equipment-guide">Equipment Guide</a>
-      <a href="/lettering-criteria">Lettering Criteria</a>
-    </div>
     <a href="/try-it-ride">Try-It-Ride</a>
-    <div class="mob-sub">
-      <a href="/girls">Girls Try-It-Ride</a>
-    </div>
+    <a href="/girls">Girls Try-It-Ride</a>
     <a href="/resources">Resources</a>
-    <div class="mob-sub">
-      <a href="/coach-bios">Coach Bios</a>
-      <a href="/captain">Captain Application</a>
-      <a href="/media">Photos &amp; Media</a>
-      <a href="/sponsor">Become a Sponsor</a>
-    </div>
+    <a href="/coach">Coach Info</a>
+    <a href="/coach-bios">Coach Bios</a>
+    <a href="/captain">Captain Application</a>
+    <a href="/media">Photos &amp; Media</a>
+    <a href="/sponsor">Become a Sponsor</a>
     <a href="https://shop.centralmtb.com/" target="_blank" rel="noopener">Shop</a>
-    <a href="/join" class="mob-cta">Join the Team</a>
+    <a href="/join">Join the Team</a>
   </div>
 
   <script>
-    // Mobile menu toggle
-    var hamBtn=document.getElementById("hamBtn"),mobMenu=document.getElementById("mobMenu");
-    hamBtn.addEventListener("click",function(){var o=mobMenu.classList.toggle("open");hamBtn.classList.toggle("active");hamBtn.setAttribute("aria-expanded",o);document.body.style.overflow=o?"hidden":"";});
-    for(var ml=mobMenu.querySelectorAll("a"),i=0;i<ml.length;i++)ml[i].addEventListener("click",function(){mobMenu.classList.remove("open");hamBtn.classList.remove("active");hamBtn.setAttribute("aria-expanded","false");document.body.style.overflow="";});
-  </script>
+    (function(){
+      var openBtn  = document.querySelector('[data-menu-open]');
+      var closeBtn = document.querySelector('[data-menu-close]');
+      var sheet    = document.querySelector('[data-sheet]');
+      if (!openBtn || !closeBtn || !sheet) return;
+      function openSheet(){
+        sheet.setAttribute('data-open','true');
+        sheet.setAttribute('aria-hidden','false');
+        openBtn.setAttribute('aria-expanded','true');
+        document.body.style.overflow='hidden';
+      }
+      function closeSheet(){
+        sheet.setAttribute('data-open','false');
+        sheet.setAttribute('aria-hidden','true');
+        openBtn.setAttribute('aria-expanded','false');
+        document.body.style.overflow='';
+      }
+      openBtn.addEventListener('click', openSheet);
+      closeBtn.addEventListener('click', closeSheet);
+      sheet.querySelectorAll('a').forEach(function(a){
+        a.addEventListener('click', closeSheet);
+      });
+      document.addEventListener('keydown', function(e){
+        if (e.key==='Escape' && sheet.getAttribute('data-open')==='true') closeSheet();
+      });
+    })();
+  <\/script>
 `);
