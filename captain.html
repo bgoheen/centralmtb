@@ -139,6 +139,22 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--acid); outline-
   letter-spacing: -0.01em; text-transform: uppercase;
   color: var(--bone-dim);
 }
+
+.footer { background: var(--ink); border-top: 1px solid var(--line); padding: 60px var(--gutter) 32px; }
+.footer__inner { max-width: var(--maxw); margin: 0 auto; display: grid; gap: 40px; }
+@media (min-width: 720px) { .footer__inner { grid-template-columns: 2fr 1fr 1fr 1fr; } }
+.footer__brand img { height: 72px; width: auto; display: block; margin-bottom: 16px; }
+.footer__brand p { font-size: 13px; color: var(--bone-low); max-width: 36ch; line-height: 1.55; }
+.footer__col h4 { font-family: var(--display); font-weight: 700; font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bone-low); margin-bottom: 14px; }
+.footer__col ul { list-style: none; display: grid; gap: 8px; }
+.footer__col a { color: var(--bone-dim); font-size: 15px; transition: color var(--t-fast) var(--ease); }
+.footer__col a:hover { color: var(--bone); }
+.footer__bottom { max-width: var(--maxw); margin: 40px auto 0; padding-top: 24px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; font-size: 13px; color: var(--bone-low); }
+.footer__social { display: flex; gap: 14px; margin-top: 18px; align-items: center; }
+.footer__social a { color: var(--bone-low); display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border: 1px solid var(--line-strong); border-radius: 8px; transition: color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease), background var(--t-fast) var(--ease); }
+.footer__social a:hover { color: var(--bone); border-color: var(--acid); background: rgba(194,40,45,0.08); }
+@media (max-width: 767px) { .footer__col a { font-size: 16px; } .footer__brand p { font-size: 14px; } }
+
 </style>
 </head>
 <body>
