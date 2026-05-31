@@ -976,6 +976,35 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   .reveal { opacity: 1; transform: none; transition: none; }
 }
 
+/* ===========================================================
+   Mobile text bumps - lift floor sizes only, desktop unchanged
+   =========================================================== */
+@media (max-width: 767px) {
+  body { font-size: 17px; }
+
+  /* Section lede / sub paragraphs */
+  .section__lede { font-size: 18px; }
+  .vibe__body p  { font-size: 18px; }
+  .hero__sub     { font-size: 18px; }
+
+  /* Card body copy */
+  .card p        { font-size: 17px; }
+  .card ul li    { font-size: 17px; }
+
+  /* Cost table */
+  .cost-note     { font-size: 15.5px; }
+
+  /* FAQ answers */
+  .faq__answer   { font-size: 17px; }
+
+  /* Heja list */
+  .heja__list li { font-size: 17px; }
+
+  /* Footer */
+  .footer__brand p { font-size: 14px; }
+  .footer__col a   { font-size: 16px; }
+}
+
 </style>
 </head>
 <body>
@@ -1497,10 +1526,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   (function(){
     var items = document.querySelectorAll('.faq__item');
     items.forEach(function(item){
-      item.addEventListener('toggle', function(){
-        if (item.open) {
+      item.querySelector('summary').addEventListener('click', function(){
+        if (!item.open) {
           items.forEach(function(other){
-            if (other !== item && other.open) other.open = false;
+            if (other !== item) other.open = false;
           });
         }
       });
