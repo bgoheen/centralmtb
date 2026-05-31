@@ -1469,10 +1469,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 
   // ---- Scroll reveal (IntersectionObserver) ----
   (function(){
-    if (!('IntersectionObserver' in window)) {
-      document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
-      return;
-    }
+    var els = document.querySelectorAll('.reveal');
+    function showAll(){ els.forEach(function(el){ el.classList.add('is-in'); }); }
+    if (!('IntersectionObserver' in window)) { showAll(); return; }
+    // Hard fallback - if observer hasn't fired within 1s, show everything
+    var fallback = setTimeout(showAll, 1000);
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
         if (entry.isIntersecting) {
@@ -1480,8 +1481,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
           io.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+      // Cancel fallback once observer starts firing
+      clearTimeout(fallback);
+    }, { threshold: 0, rootMargin: '0px' });
+    els.forEach(function(el){ io.observe(el); });
   })();
 </script>
 
