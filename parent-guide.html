@@ -936,32 +936,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   // Year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Mobile sheet open/close
-  (function(){
-    var openBtn  = document.querySelector('[data-menu-open]');
-    var closeBtn = document.querySelector('[data-menu-close]');
-    var sheet    = document.querySelector('[data-sheet]');
-    if (!openBtn || !closeBtn || !sheet) return;
-    function open(){
-      sheet.setAttribute('data-open', 'true');
-      sheet.setAttribute('aria-hidden', 'false');
-      openBtn.setAttribute('aria-expanded', 'true');
-      document.body.style.overflow = 'hidden';
-    }
-    function close(){
-      sheet.setAttribute('data-open', 'false');
-      sheet.setAttribute('aria-hidden', 'true');
-      openBtn.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    }
-    openBtn.addEventListener('click', open);
-    closeBtn.addEventListener('click', close);
-    sheet.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', close); });
-    document.addEventListener('keydown', function(e){
-      if (e.key === 'Escape' && sheet.getAttribute('data-open') === 'true') close();
-    });
-  })();
-
   // FAQ one-open-at-a-time
   (function(){
     var items = document.querySelectorAll('.faq__item');
