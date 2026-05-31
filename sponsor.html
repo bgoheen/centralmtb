@@ -6,243 +6,301 @@
   <title>Become a Sponsor | St. Paul Central Mountain Bike Team</title>
   <meta name="description" content="Partner with the St. Paul Central Mountain Bike Team. Your sponsorship puts kids on bikes and keeps them riding all season long.">
   <link rel="canonical" href="https://centralmtb.com/sponsor">
+  <meta property="og:title" content="Become a Sponsor | St. Paul Central Mountain Bike Team">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://centralmtb.com/sponsor">
   <link rel="icon" type="image/png" href="/images/logo-64.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <style>
-    /* Page hero with image */
-    .page-hero{position:relative;height:50vh;min-height:320px;max-height:500px;display:flex;align-items:flex-end;overflow:hidden;margin-top:var(--nav-h)}
-    .page-hero-img{position:absolute;inset:0;z-index:0}.page-hero-img img{width:100%;height:100%;object-fit:cover;object-position:center center}
-    .page-hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(15,17,20,.9) 0%,rgba(15,17,20,.5) 50%,rgba(15,17,20,.2) 100%)}
-    .page-hero-content{position:relative;z-index:1;width:100%;max-width:1200px;margin:0 auto;padding:0 16px 40px}
-    .page-hero-content h1{font-family:var(--font-d);font-weight:700;font-size:clamp(32px,6vw,52px);color:#fff;line-height:1.05;margin-bottom:8px}
-    .page-hero-content p{font-size:16px;color:rgba(255,255,255,.8);max-width:600px;font-weight:400}
-    @media(min-width:768px){.page-hero{height:55vh}.page-hero-content{padding:0 24px 56px}}
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:         #0A0A0A;
+  --ink-2:       #161616;
+  --ink-3:       #242424;
+  --bone:        #F5F5F5;
+  --bone-dim:    #BABABA;
+  --bone-low:    #707070;
+  --line:        rgba(245,245,245,0.12);
+  --line-strong: rgba(245,245,245,0.28);
+  --acid:        #C2282D;
+  --acid-dim:    #D63E43;
+  --acid-deep:   #7A1A1D;
+  --display: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+  --body:    "Roboto", system-ui, -apple-system, sans-serif;
+  --maxw:    1440px;
+  --gutter:  clamp(16px, 4vw, 40px);
+  --section-y: clamp(64px, 10vw, 120px);
+  --ease:    cubic-bezier(0.16, 1, 0.3, 1);
+  --t-fast:  180ms; --t-med: 320ms; --t-slow: 520ms;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { background: var(--ink); color: var(--bone); font-family: var(--body); font-size: 16px; line-height: 1.55; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; border: 0; background: 0; color: inherit; }
+::selection { background: var(--acid); color: var(--ink); }
+.skip { position: absolute; left: -9999px; top: 0; background: var(--acid); color: var(--ink); padding: 12px 18px; font-weight: 700; z-index: 100; }
+.skip:focus { left: 12px; top: 12px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--acid); outline-offset: 3px; border-radius: 2px; }
+.grain { position: fixed; inset: 0; z-index: 99; pointer-events: none; opacity: 0.06; mix-blend-mode: overlay; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.85'/></svg>"); }
+.nav { position: sticky; top: 0; z-index: 50; background: rgba(10,10,10,0.82); backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%); border-bottom: 1px solid var(--line); }
+.nav__inner { max-width: var(--maxw); margin: 0 auto; padding: 14px var(--gutter); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.brand { display: inline-flex; align-items: center; line-height: 1; }
+.brand img { height: 44px; width: auto; display: block; transition: transform var(--t-fast) var(--ease); }
+.brand:hover img { transform: rotate(-3deg) scale(1.04); }
+.nav__links { display: none; gap: 28px; align-items: center; }
+@media (min-width: 960px) { .nav__links { display: inline-flex; } }
+.nav__links a { font-family: var(--display); font-weight: 700; font-size: 16px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--bone-dim); position: relative; padding: 4px 0; transition: color var(--t-fast) var(--ease); }
+.nav__links a::after { content: ""; position: absolute; left: 0; bottom: -2px; height: 2px; width: 0; background: var(--acid); transition: width var(--t-med) var(--ease); }
+.nav__links a:hover { color: var(--bone); }
+.nav__links a:hover::after { width: 100%; }
+.nav__cta { display: inline-flex; align-items: center; gap: 12px; }
+.nav__cta .btn { display: none; }
+@media (min-width: 720px) { .nav__cta .btn { display: inline-flex; } }
+.nav__burger { display: inline-grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--line-strong); border-radius: 8px; background: transparent; }
+.nav__burger span { width: 18px; height: 2px; background: var(--bone); position: relative; }
+.nav__burger span::before, .nav__burger span::after { content: ""; position: absolute; left: 0; width: 18px; height: 2px; background: var(--bone); }
+.nav__burger span::before { top: -6px; }
+.nav__burger span::after { top: 6px; }
+@media (min-width: 960px) { .nav__burger { display: none; } }
+.sheet { position: fixed; inset: 0; z-index: 60; background: var(--ink); padding: 80px var(--gutter) 40px; transform: translateY(-100%); transition: transform var(--t-slow) var(--ease); visibility: hidden; }
+.sheet[data-open="true"] { transform: translateY(0); visibility: visible; }
+.sheet a { display: block; font-family: var(--display); font-weight: 800; font-size: clamp(36px, 9vw, 56px); letter-spacing: -0.01em; text-transform: uppercase; color: var(--bone); padding: 14px 0; border-bottom: 1px solid var(--line); }
+.sheet a:hover { color: var(--acid); }
+.sheet__close { position: absolute; top: 22px; right: var(--gutter); width: 44px; height: 44px; border: 1px solid var(--line-strong); border-radius: 8px; display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 28px; color: var(--bone); }
+.btn { display: inline-flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 800; font-size: 17px; letter-spacing: 0.06em; text-transform: uppercase; padding: 14px 22px; border-radius: 8px; line-height: 1; transition: transform var(--t-fast) var(--ease), background var(--t-fast) var(--ease), color var(--t-fast) var(--ease); will-change: transform; }
+.btn--primary { background: var(--acid); color: var(--bone); box-shadow: 0 1px 0 rgba(0,0,0,0.2) inset, 0 12px 28px -16px rgba(194,40,45,0.55); }
+.btn--primary:hover { background: var(--acid-dim); transform: translateY(-2px); }
+.btn--ghost { background: transparent; color: var(--bone); border: 1px solid var(--line-strong); }
+.btn--ghost:hover { background: var(--ink-2); border-color: var(--bone-dim); }
+.btn--small { padding: 10px 16px; font-size: 14px; }
+.btn .arrow { display: inline-block; transition: transform var(--t-med) var(--ease); }
+.btn:hover .arrow { transform: translateX(4px); }
+.topo { position: absolute; inset: 0; pointer-events: none; opacity: 0.08; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'><g fill='none' stroke='%23F5F5F5' stroke-width='1'><path d='M0,400 Q200,300 400,400 T800,400'/><path d='M0,440 Q200,340 400,440 T800,440'/><path d='M0,480 Q200,380 400,480 T800,480'/><path d='M0,520 Q200,420 400,520 T800,520'/><path d='M0,360 Q200,260 400,360 T800,360'/><path d='M0,320 Q200,220 400,320 T800,320'/><path d='M0,280 Q200,180 400,280 T800,280'/><path d='M0,560 Q200,460 400,560 T800,560'/><path d='M0,600 Q200,500 400,600 T800,600'/></g></svg>"); background-size: 800px 800px; }
+.section__label { display: inline-flex; align-items: center; gap: 12px; font-family: var(--display); font-weight: 700; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--acid); margin-bottom: 16px; }
+.section__label .num { font-size: 12px; border: 1px solid var(--acid); padding: 2px 6px; border-radius: 2px; }
+.page-hero { position: relative; overflow: hidden; background: var(--ink-2); border-bottom: 1px solid var(--line); padding: clamp(60px, 10vw, 120px) 0 clamp(50px, 8vw, 100px); }
+.page-hero .topo { opacity: 0.06; }
+.page-hero__inner { position: relative; z-index: 2; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); display: grid; gap: 20px; }
+.page-hero h1 { font-family: var(--display); font-weight: 900; font-size: clamp(56px, 11vw, 150px); line-height: 0.86; letter-spacing: -0.025em; text-transform: uppercase; color: var(--bone); text-wrap: balance; max-width: 14ch; }
+.page-hero h1 em { font-style: normal; color: var(--acid); }
+.page-hero__sub { font-size: clamp(17px, 1.5vw, 19px); color: var(--bone-dim); max-width: 56ch; line-height: 1.55; }
+.section { padding: var(--section-y) 0; }
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+.content-narrow { max-width: 800px; }
+.content-prose { font-size: 16px; color: var(--bone-dim); line-height: 1.65; }
+.content-prose + .content-prose { margin-top: 14px; }
+.content-link { color: var(--acid); border-bottom: 1px solid var(--acid-deep); transition: border-color var(--t-fast) var(--ease); }
+.content-link:hover { border-color: var(--acid); }
+.section-head { margin-bottom: clamp(24px, 3vw, 36px); }
+.section-head h2 { font-family: var(--display); font-weight: 900; font-size: clamp(28px, 4vw, 52px); line-height: 0.92; letter-spacing: -0.02em; text-transform: uppercase; color: var(--bone); margin-top: 10px; }
+.section-head h2 em { font-style: normal; color: var(--acid); }
+.content-h2 { font-family: var(--display); font-weight: 900; font-size: clamp(26px, 3.5vw, 44px); line-height: 0.92; letter-spacing: -0.02em; text-transform: uppercase; color: var(--bone); margin-bottom: 14px; margin-top: clamp(40px,5vw,64px); }
+.content-h2 em { font-style: normal; color: var(--acid); }
+.content-h3 { font-family: var(--display); font-weight: 800; font-size: clamp(18px, 2vw, 26px); letter-spacing: -0.01em; text-transform: uppercase; color: var(--bone); margin-bottom: 12px; margin-top: 28px; }
+.content-list { list-style: none; display: grid; gap: 10px; margin: 14px 0; }
+.content-list li { display: block; padding-left: 22px; position: relative; color: var(--bone-dim); font-size: 15.5px; line-height: 1.6; }
+.content-list li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 8px; height: 1px; background: var(--acid); display: block; }
+.info-box { margin: 20px 0; background: rgba(194,40,45,0.08); border: 1px solid rgba(194,40,45,0.22); border-radius: 10px; padding: 18px 22px; font-size: 15px; color: var(--bone-dim); line-height: 1.6; }
+.info-box a { color: var(--acid); border-bottom: 1px solid var(--acid-deep); }
+.info-box a:hover { border-color: var(--acid); }
+.divider { border: 0; border-top: 1px solid var(--line); margin: clamp(40px, 6vw, 72px) 0; }
+.footer__social { display: flex; gap: 14px; margin-top: 18px; align-items: center; }
+.footer__social a { color: var(--bone-low); display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border: 1px solid var(--line-strong); border-radius: 8px; transition: color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease), background var(--t-fast) var(--ease); }
+.footer__social a:hover { color: var(--bone); border-color: var(--acid); background: rgba(194,40,45,0.08); }
+.cta-final { position: relative; background: var(--acid); color: var(--ink); overflow: hidden; margin-top: var(--section-y); }
+.cta-final__inner { max-width: var(--maxw); margin: 0 auto; padding: clamp(64px, 10vw, 120px) var(--gutter); display: grid; gap: 22px; position: relative; z-index: 2; }
+.cta-final h2 { font-family: var(--display); font-weight: 900; font-size: clamp(56px, 12vw, 160px); line-height: 0.86; letter-spacing: -0.025em; text-transform: uppercase; color: var(--ink); text-wrap: balance; max-width: 14ch; }
+.cta-final p { font-size: clamp(17px, 1.5vw, 19px); color: rgba(10,10,10,0.78); max-width: 56ch; line-height: 1.55; }
+.cta-final .btn--primary { background: var(--ink); color: var(--bone); box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset; }
+.cta-final .btn--primary:hover { background: #1A1A1A; }
+.cta-final .btn--ghost { border-color: rgba(10,10,10,0.25); color: var(--ink); }
+.cta-final__topo { position: absolute; inset: 0; opacity: 0.16; z-index: 1; pointer-events: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'><g fill='none' stroke='%230A0A0A' stroke-width='1.2'><path d='M0,400 Q200,300 400,400 T800,400'/><path d='M0,440 Q200,340 400,440 T800,440'/><path d='M0,480 Q200,380 400,480 T800,480'/><path d='M0,520 Q200,420 400,520 T800,520'/><path d='M0,360 Q200,260 400,360 T800,360'/><path d='M0,320 Q200,220 400,320 T800,320'/><path d='M0,280 Q200,180 400,280 T800,280'/><path d='M0,560 Q200,460 400,560 T800,560'/><path d='M0,600 Q200,500 400,600 T800,600'/></g></svg>"); background-size: 800px 800px; }
+@media (max-width: 767px) {
+  body { font-size: 17px; }
+  .content-prose { font-size: 17px; }
+  .content-list li { font-size: 17px; }
+  .info-box { font-size: 16.5px; }
+}
 
-    /* 2x2 grid for "where it goes" cards */
-    .sponsor-cards.org-cards { grid-template-columns:1fr; }
-    @media(min-width:768px) { .sponsor-cards.org-cards { grid-template-columns:1fr 1fr; } }
+/* Where it goes - 2x2 grid */
+.spend-grid {
+  display: grid; grid-template-columns: 1fr; gap: 14px; margin: 28px 0;
+}
+@media (min-width: 640px) { .spend-grid { grid-template-columns: repeat(2, 1fr); } }
+.spend-card {
+  background: var(--ink-2); border: 1px solid var(--line); border-radius: 14px;
+  padding: clamp(22px, 3vw, 32px);
+  transition: border-color var(--t-med) var(--ease), transform var(--t-med) var(--ease);
+}
+.spend-card:hover { border-color: var(--line-strong); transform: translateY(-3px); }
+.spend-card__label { font-family: var(--display); font-weight: 700; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--acid); margin-bottom: 10px; }
+.spend-card h3 { font-family: var(--display); font-weight: 800; font-size: clamp(18px, 2vw, 24px); letter-spacing: -0.01em; text-transform: uppercase; color: var(--bone); margin-bottom: 10px; }
+.spend-card p { font-size: 15px; color: var(--bone-dim); line-height: 1.6; }
 
-    /* Sponsor tiers */
-    .tier-cards { display:grid; grid-template-columns:1fr; gap:16px; margin:24px 0; }
-    .tier-card {
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:28px 24px;
-      position:relative;
-    }
-    .tier-card.featured {
-      border-color:var(--red);
-      box-shadow:0 4px 24px rgba(194,40,45,0.1);
-    }
-    .tier-amount {
-      font-family:var(--font-d);
-      font-weight:700;
-      font-size:36px;
-      color:var(--red);
-      line-height:1;
-      margin-bottom:4px;
-    }
-    .tier-amount span {
-      font-size:18px;
-      font-weight:700;
-      color:var(--text-muted);
-    }
-    .tier-label {
-      font-size:12px;
-      font-weight:500;
-      color:var(--text-muted);
-      text-transform:uppercase;
-      letter-spacing:0.06em;
-      margin-bottom:16px;
-    }
-    .tier-list {
-      list-style:none;
-      margin:0;
-      padding:0;
-    }
-    .tier-list li {
-      font-size:16px;
-      line-height:1.5;
-      color:var(--text-mid);
-      font-weight:400;
-      padding:6px 0;
-      padding-left:22px;
-      position:relative;
-    }
-    .tier-list li::before {
-      content:'';
-      position:absolute;
-      left:0;
-      top:12px;
-      width:10px;
-      height:10px;
-      border-radius:50%;
-      background:rgba(194,40,45,0.15);
-      border:2px solid var(--red);
-    }
+/* Tier cards */
+.tier-grid {
+  display: grid; grid-template-columns: 1fr; gap: 14px; margin: 28px 0;
+}
+@media (min-width: 720px) { .tier-grid { grid-template-columns: repeat(3, 1fr); } }
+.tier-card {
+  background: var(--ink-2); border: 1px solid var(--line); border-radius: 14px;
+  padding: clamp(24px, 3vw, 36px); position: relative;
+  transition: border-color var(--t-med) var(--ease), transform var(--t-med) var(--ease);
+}
+.tier-card:hover { transform: translateY(-3px); }
+.tier-card--featured { border-color: var(--acid); box-shadow: 0 4px 32px rgba(194,40,45,0.12); }
+.tier-card--featured::before {
+  content: "Most Popular";
+  position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+  background: var(--acid); color: var(--ink);
+  font-family: var(--display); font-weight: 700; font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 5px 14px; border-radius: 0 0 8px 8px;
+}
+.tier-amount {
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(40px, 5vw, 60px); line-height: 1;
+  letter-spacing: -0.02em; color: var(--acid);
+  margin-bottom: 4px;
+}
+.tier-amount sup { font-size: 0.45em; vertical-align: top; margin-top: 0.3em; }
+.tier-amount sub { font-size: 0.4em; color: var(--bone-low); }
+.tier-name {
+  font-family: var(--display); font-weight: 700; font-size: 13px;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--bone-low);
+  margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--line);
+}
+.tier-list { list-style: none; display: grid; gap: 10px; }
+.tier-list li { display: block; padding-left: 20px; position: relative; color: var(--bone-dim); font-size: 15px; line-height: 1.55; }
+.tier-list li::before { content: ""; position: absolute; left: 0; top: 0.68em; width: 7px; height: 1px; background: var(--acid); display: block; }
 
-    /* Custom partnership callout */
-    .custom-cta {
-      background:var(--dark);
-      border-radius:var(--radius);
-      padding:28px 24px;
-      margin-top:16px;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-    }
-    .custom-cta h3 {
-      font-family:var(--font-d);
-      font-weight:700;
-      font-size:22px;
-      color:#fff;
-      margin:0;
-    }
-    .custom-cta p {
-      font-size:15px;
-      line-height:1.6;
-      color:rgba(255,255,255,0.6);
-      margin:0;
-    }
-    .custom-cta a {
-      color:var(--red) !important;
-      font-weight:600;
-      text-decoration:underline !important;
-      text-underline-offset:2px;
-    }
-    .custom-cta a:hover { color:var(--red-hover) !important; }
+/* Custom partnership callout */
+.custom-cta {
+  background: var(--ink-3); border: 1px solid var(--line-strong);
+  border-radius: 14px; padding: clamp(28px, 4vw, 44px);
+  margin-top: 14px; display: grid; gap: 12px;
+}
+@media (min-width: 720px) {
+  .custom-cta { grid-template-columns: 1fr auto; align-items: center; gap: 32px; }
+}
+.custom-cta__body { display: grid; gap: 8px; }
+.custom-cta h3 { font-family: var(--display); font-weight: 900; font-size: clamp(22px, 3vw, 34px); letter-spacing: -0.01em; text-transform: uppercase; color: var(--bone); }
+.custom-cta p { font-size: 15px; line-height: 1.6; color: var(--bone-dim); }
 
-    /* Sponsor form */
-    .form-section { margin-top:32px; }
-    .form-section-title {
-      font-family:var(--font-d); font-weight:700; font-size:16px;
-      text-transform:uppercase; letter-spacing:0.08em;
-      color:var(--red); margin-bottom:20px; padding-bottom:8px;
-      border-bottom:2px solid var(--red);
-    }
-    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
-    .form-row.single { grid-template-columns:1fr; }
-    .form-group { display:flex; flex-direction:column; }
-    .form-group label {
-      font-size:14px; font-weight:500; color:var(--dark);
-      margin-bottom:6px;
-    }
-    .form-group label .req { color:var(--red); margin-left:2px; }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      font-family:var(--font-b); font-size:16px; font-weight:400;
-      padding:12px 14px; border:1px solid var(--border);
-      border-radius:8px; background:#fff;
-      color:var(--dark); transition:border-color 0.2s;
-    }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      outline:none; border-color:var(--red);
-      box-shadow:0 0 0 3px rgba(194,40,45,0.1);
-    }
-    .form-group select { appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; padding-right:36px; }
-    .form-group textarea { resize:vertical; min-height:100px; }
-    .form-submit {
-      font-family:var(--font-b); font-weight:600; font-size:16px;
-      color:#fff; background:var(--red); border:none;
-      padding:16px 48px; border-radius:8px; cursor:pointer;
-      transition:background 0.2s; margin-top:8px;
-    }
-    .form-submit:hover { background:#a82025; }
-    .success-msg {
-      background:#f0fdf4; border:1px solid #bbf7d0; border-radius:10px;
-      padding:32px; text-align:center; display:none;
-    }
-    .success-msg h3 { color:#166534; margin-bottom:8px; }
-    .success-msg p { color:#15803d; }
+/* Form */
+.form-section { margin-top: 36px; }
+.form-section-title { font-family: var(--display); font-weight: 800; font-size: clamp(18px, 2.5vw, 26px); letter-spacing: -0.01em; text-transform: uppercase; color: var(--bone); padding-bottom: 12px; margin-bottom: 22px; border-bottom: 1px solid var(--line); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.form-row.single { grid-template-columns: 1fr; }
+@media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+.form-group { display: flex; flex-direction: column; gap: 7px; }
+.form-group label { font-family: var(--display); font-weight: 700; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bone-dim); }
+.form-group label .req { color: var(--acid); margin-left: 2px; }
+.form-group label .opt { color: var(--bone-low); font-family: var(--body); font-weight: 400; font-size: 12px; text-transform: none; letter-spacing: 0; }
+.form-group input, .form-group select, .form-group textarea { font-family: var(--body); font-size: 16px; font-weight: 400; padding: 13px 16px; background: var(--ink-3); border: 1px solid var(--line-strong); border-radius: 8px; color: var(--bone); transition: border-color var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease); -webkit-appearance: none; }
+.form-group input::placeholder, .form-group textarea::placeholder { color: var(--bone-low); }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--acid); box-shadow: 0 0 0 3px rgba(194,40,45,0.15); }
+.form-group select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23BABABA' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; background-color: var(--ink-3); padding-right: 40px; cursor: pointer; }
+.form-group select option { background: var(--ink-3); color: var(--bone); }
+.form-group textarea { resize: vertical; min-height: 110px; line-height: 1.55; }
+.form-submit { font-family: var(--display); font-weight: 800; font-size: 18px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--bone); background: var(--acid); border: 0; padding: 16px 48px; border-radius: 8px; cursor: pointer; margin-top: 12px; line-height: 1; transition: background var(--t-fast) var(--ease), transform var(--t-fast) var(--ease); box-shadow: 0 12px 28px -16px rgba(194,40,45,0.55); }
+.form-submit:hover { background: var(--acid-dim); transform: translateY(-2px); }
+.success-msg { background: rgba(22,163,74,0.08); border: 1px solid rgba(22,163,74,0.3); border-radius: 14px; padding: clamp(32px,5vw,56px); text-align: center; display: none; }
+.success-msg h3 { font-family: var(--display); font-weight: 900; font-size: clamp(32px,5vw,56px); letter-spacing: -0.02em; text-transform: uppercase; color: #4ade80; margin-bottom: 12px; }
+.success-msg p { font-size: 17px; color: var(--bone-dim); max-width: 48ch; margin: 0 auto; line-height: 1.6; }
 
-    @media(max-width:600px) {
-      .form-row { grid-template-columns:1fr; }
-    }
-    @media(min-width:768px) {
-      .tier-cards { grid-template-columns:repeat(3,1fr); }
-    }
-  </style>
+@media (max-width: 767px) {
+  .spend-card p { font-size: 17px; }
+  .tier-list li { font-size: 16px; }
+  .custom-cta p { font-size: 16px; }
+}
+</style>
 </head>
 <body>
-  <script src="/includes/header.js"></script>
+<a href="#main" class="skip">Skip to content</a>
+<div class="grain" aria-hidden="true"></div>
+<script src="/includes/header.js"></script>
 
-  <section class="page-hero">
-    <div class="page-hero-img"><img src="team-hero.jpg" alt="St. Paul Central Mountain Bike Team group photo"></div>
-    <div class="page-hero-content"><h1>Become a Sponsor</h1><p>Help us keep more kids on bikes.</p></div>
-  </section>
+<main id="main">
+  <div class="page-hero">
+    <div class="topo" aria-hidden="true"></div>
+    <div class="page-hero__inner">
+      <h1>Become a<br><em>Sponsor.</em></h1>
+      <p class="page-hero__sub">Help us keep more kids on bikes.</p>
+    </div>
+  </div>
 
-  <!-- PITCH -->
   <section class="section">
-    <div class="container">
-      <div class="content" style="max-width:800px">
-        <p>The St. Paul Central Mountain Bike Team is a volunteer-run program serving roughly 50 student-athletes in grades 6 through 12 across the St. Paul school district. We are not funded by the school. Every dollar that keeps this team running comes from families, community partners, and sponsors like you.</p>
+    <div class="wrap">
+      <div class="content-narrow">
 
-        <p>Your sponsorship reaches far beyond the riders. Parents, siblings, and volunteers show up every week at practices and at races across the metro all season long. When your name is on our banner, hundreds of people see it, and they see a business that invests in kids.</p>
+        <!-- Pitch -->
+        <p class="content-prose">The St. Paul Central Mountain Bike Team is a volunteer-run program serving roughly 50 student-athletes in grades 6 through 12 across the St. Paul school district. We are not funded by the school. Every dollar that keeps this team running comes from families, community partners, and sponsors like you.</p>
+        <p class="content-prose" style="margin-top:14px">Your sponsorship reaches far beyond the riders. Parents, siblings, and volunteers show up every week at practices and at races across the metro all season long. When your name is on our banner, hundreds of people see it - and they see a business that invests in kids.</p>
+        <p class="content-prose" style="margin-top:14px">This is not a donation. It is a partnership. You help us cover the real costs of running a youth cycling team, and we put your business in front of an engaged, community-minded audience.</p>
 
-        <p>This is not a donation. It is a partnership. You help us cover the real costs of running a youth cycling team, and we put your business in front of an engaged, community-minded audience.</p>
+        <hr class="divider">
 
-        <hr class="section-divider">
-
-        <h2>Where Your Sponsorship Goes</h2>
-        <div class="org-cards sponsor-cards">
-          <div class="org-card">
-            <h4>Race Day Food and Supplies</h4>
+        <!-- Where it goes -->
+        <div class="section-head">
+          <div class="section__label"><span class="num">01</span> Impact</div>
+          <h2>Where it <em>goes.</em></h2>
+        </div>
+        <div class="spend-grid">
+          <div class="spend-card">
+            <div class="spend-card__label">Race Day</div>
+            <h3>Food &amp; Supplies</h3>
             <p>Feeding riders and volunteers at all-day race events throughout the season.</p>
           </div>
-          <div class="org-card">
-            <h4>Tools and Bike Maintenance</h4>
+          <div class="spend-card">
+            <div class="spend-card__label">Maintenance</div>
+            <h3>Tools &amp; Bike Maintenance</h3>
             <p>Trail-side repair kits, spare tubes, pumps, and workshop supplies to keep riders rolling.</p>
           </div>
-          <div class="org-card">
-            <h4>Team Loaner Bikes</h4>
+          <div class="spend-card">
+            <div class="spend-card__label">Access</div>
+            <h3>Team Loaner Bikes</h3>
             <p>Purchasing bikes so that any student can ride regardless of what they own.</p>
           </div>
-          <div class="org-card">
-            <h4>Rider Scholarships</h4>
+          <div class="spend-card">
+            <div class="spend-card__label">Equity</div>
+            <h3>Rider Scholarships</h3>
             <p>Covering registration fees so cost is never the reason a kid misses the season.</p>
           </div>
         </div>
 
-        <hr class="section-divider">
+        <hr class="divider">
 
-        <h2>Sponsorship Levels</h2>
-        <p>Choose the level that works for your business. Every tier makes a direct impact on student-athletes.</p>
-      </div>
-
-      <div style="max-width:800px">
-        <div class="tier-cards">
-          <!-- $100 -->
+        <!-- Tiers -->
+        <div class="section-head">
+          <div class="section__label"><span class="num">02</span> Sponsorship Levels</div>
+          <h2>Choose your <em>level.</em></h2>
+        </div>
+        <p class="content-prose">Every tier makes a direct impact on student-athletes.</p>
+        <div class="tier-grid">
           <div class="tier-card">
-            <div class="tier-amount">$100</div>
-            <div class="tier-label">Trail Supporter</div>
+            <div class="tier-amount"><sup>$</sup>100</div>
+            <div class="tier-name">Trail Supporter</div>
             <ul class="tier-list">
               <li>Logo on team website</li>
               <li>Social media recognition</li>
             </ul>
           </div>
-
-          <!-- $250 -->
-          <div class="tier-card featured">
-            <div class="tier-amount">$250</div>
-            <div class="tier-label">Trailhead Partner</div>
+          <div class="tier-card tier-card--featured">
+            <div class="tier-amount"><sup>$</sup>250</div>
+            <div class="tier-name">Trailhead Partner</div>
             <ul class="tier-list">
               <li>Logo on team website</li>
               <li>Social media recognition</li>
               <li>Name on race day banner, seen by hundreds of students, parents, and volunteers at every race</li>
             </ul>
           </div>
-
-          <!-- $500+ -->
           <div class="tier-card">
-            <div class="tier-amount">$500<span>+</span></div>
-            <div class="tier-label">Summit Sponsor</div>
+            <div class="tier-amount"><sup>$</sup>500<sub>+</sub></div>
+            <div class="tier-name">Summit Sponsor</div>
             <ul class="tier-list">
               <li>Logo on team website</li>
               <li>Social media recognition</li>
@@ -255,71 +313,76 @@
         </div>
 
         <div class="custom-cta">
-          <h3>Want to do more?</h3>
-          <p>We are happy to work with businesses interested in a larger or custom partnership. In-kind donations of food, gear, or services are also welcome. <a href="#sponsor-form">Reach out below</a> and we will find the right fit.</p>
+          <div class="custom-cta__body">
+            <h3>Want to do more?</h3>
+            <p>We are happy to work with businesses interested in a larger or custom partnership. In-kind donations of food, gear, or services are also welcome.</p>
+          </div>
+          <a href="#sponsor-form" class="btn btn--ghost">Get in Touch <span class="arrow" aria-hidden="true">→</span></a>
         </div>
-      </div>
 
-      <div class="content" style="max-width:800px">
-        <hr class="section-divider">
+        <hr class="divider">
 
-        <h2 id="sponsor-form">Get in Touch</h2>
-        <p>Interested in sponsoring the team? Fill out the form below and we will follow up to get things rolling.</p>
+        <!-- Form -->
+        <div class="section-head" id="sponsor-form">
+          <div class="section__label"><span class="num">03</span> Get in Touch</div>
+          <h2>Let's <em>connect.</em></h2>
+        </div>
+        <p class="content-prose">Interested in sponsoring the team? Fill out the form below and we will follow up to get things rolling.</p>
 
         <div id="formWrap">
-        <form name="sponsor-central-mtb" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="sponsorForm">
-          <input type="hidden" name="form-name" value="sponsor-central-mtb">
-          <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+          <form name="sponsor-central-mtb" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="sponsorForm">
+            <input type="hidden" name="form-name" value="sponsor-central-mtb">
+            <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
 
-          <div class="form-section">
-            <div class="form-section-title">Contact Information</div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="biz-name">Business Name <span class="req">*</span></label>
-                <input type="text" id="biz-name" name="Business Name" required>
+            <div class="form-section">
+              <div class="form-section-title">Contact Information</div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="biz-name">Business Name <span class="req">*</span></label>
+                  <input type="text" id="biz-name" name="Business Name" required>
+                </div>
+                <div class="form-group">
+                  <label for="contact-name">Contact Name <span class="req">*</span></label>
+                  <input type="text" id="contact-name" name="Contact Name" required>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="contact-name">Contact Name <span class="req">*</span></label>
-                <input type="text" id="contact-name" name="Contact Name" required>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="contact-email">Email <span class="req">*</span></label>
+                  <input type="email" id="contact-email" name="Email" required>
+                </div>
+                <div class="form-group">
+                  <label for="contact-phone">Phone <span class="opt">(optional)</span></label>
+                  <input type="tel" id="contact-phone" name="Phone" placeholder="(651) 555-1234" maxlength="14">
+                </div>
               </div>
             </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="contact-email">Email <span class="req">*</span></label>
-                <input type="email" id="contact-email" name="Email" required>
-              </div>
-              <div class="form-group">
-                <label for="contact-phone">Phone <span style="font-weight:400;color:var(--text-muted)">(optional)</span></label>
-                <input type="tel" id="contact-phone" name="Phone" placeholder="(651) 555-1234" maxlength="14">
-              </div>
-            </div>
-          </div>
 
-          <div class="form-section">
-            <div class="form-section-title">Sponsorship Interest</div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="tier">Which level interests you?</label>
-                <select id="tier" name="Tier Interest">
-                  <option value="">Select...</option>
-                  <option>$100 — Trail Supporter</option>
-                  <option>$250 — Trailhead Partner</option>
-                  <option>$500+ — Summit Sponsor</option>
-                  <option>Custom / In-Kind Partnership</option>
-                  <option>Not sure yet</option>
-                </select>
+            <div class="form-section">
+              <div class="form-section-title">Sponsorship Interest</div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="tier">Which level interests you?</label>
+                  <select id="tier" name="Tier Interest">
+                    <option value="">Select...</option>
+                    <option>$100 - Trail Supporter</option>
+                    <option>$250 - Trailhead Partner</option>
+                    <option>$500+ - Summit Sponsor</option>
+                    <option>Custom / In-Kind Partnership</option>
+                    <option>Not sure yet</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row single">
+                <div class="form-group">
+                  <label for="message">Questions or Comments</label>
+                  <textarea id="message" name="Message" placeholder="Anything else you would like us to know..."></textarea>
+                </div>
               </div>
             </div>
-            <div class="form-row single">
-              <div class="form-group">
-                <label for="message">Questions or Comments</label>
-                <textarea id="message" name="Message" placeholder="Anything else you would like us to know..."></textarea>
-              </div>
-            </div>
-          </div>
 
-          <button type="submit" class="form-submit">Send</button>
-        </form>
+            <button type="submit" class="form-submit">Send</button>
+          </form>
         </div>
 
         <div class="success-msg" id="successMsg">
@@ -327,52 +390,46 @@
           <p>We received your inquiry and will follow up soon. We appreciate your support of Central MTB.</p>
         </div>
 
-        <hr class="section-divider">
+        <p class="content-prose" style="margin-top:32px">Rather just send an email? Reach us at <a href="mailto:hello@centralmtb.com" class="content-link">hello@centralmtb.com</a>.</p>
+        <p class="content-prose" style="margin-top:14px;color:var(--bone-low);font-size:14px">Every dollar goes directly to supporting student-athletes. Central MTB is a 100% volunteer-run program with no paid staff.</p>
 
-        <p>Rather just send an email? Reach us at <a href="mailto:hello@centralmtb.com">hello@centralmtb.com</a>.</p>
-
-        <p style="margin-top:24px;font-size:15px;color:var(--text-muted)">Every dollar goes directly to supporting student-athletes. Central MTB is a 100% volunteer-run program with no paid staff.</p>
       </div>
     </div>
   </section>
+</main>
 
-  <script src="/includes/footer.js"></script>
+<script src="/includes/footer.js"></script>
 
-  <script>
-    // Auto-format phone numbers to (XXX) XXX-XXXX
-    function formatPhone(e) {
-      var x = e.target.value.replace(/\D/g, '').substring(0, 10);
-      var a = x.substring(0, 3), b = x.substring(3, 6), c = x.substring(6, 10);
-      if (x.length > 6) e.target.value = '(' + a + ') ' + b + '-' + c;
-      else if (x.length > 3) e.target.value = '(' + a + ') ' + b;
-      else if (x.length > 0) e.target.value = '(' + a;
-      else e.target.value = '';
-    }
-    document.querySelectorAll('input[type="tel"]').forEach(function(el) {
-      el.addEventListener('input', formatPhone);
-    });
+<script>
+  function formatPhone(e) {
+    var x = e.target.value.replace(/\D/g, '').substring(0, 10);
+    var a = x.substring(0,3), b = x.substring(3,6), c = x.substring(6,10);
+    if (x.length > 6)      e.target.value = '(' + a + ') ' + b + '-' + c;
+    else if (x.length > 3) e.target.value = '(' + a + ') ' + b;
+    else if (x.length > 0) e.target.value = '(' + a;
+    else                   e.target.value = '';
+  }
+  document.querySelectorAll('input[type="tel"]').forEach(function(el){
+    el.addEventListener('input', formatPhone);
+  });
 
-    // Form submission
-    document.getElementById('sponsorForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      var form = this;
-      var data = new FormData(form);
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(data).toString()
-      }).then(function(res) {
-        if (res.ok) {
-          document.getElementById('formWrap').style.display = 'none';
-          document.getElementById('successMsg').style.display = 'block';
-          window.scrollTo({ top: document.getElementById('sponsor-form').offsetTop - 100, behavior: 'smooth' });
-        } else {
-          alert('Something went wrong. Please try again.');
-        }
-      }).catch(function() {
+  document.getElementById('sponsorForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var data = new FormData(this);
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(data).toString()
+    }).then(function(res) {
+      if (res.ok) {
+        document.getElementById('formWrap').style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+        window.scrollTo({ top: document.getElementById('sponsor-form').offsetTop - 100, behavior: 'smooth' });
+      } else {
         alert('Something went wrong. Please try again.');
-      });
-    });
-  </script>
+      }
+    }).catch(function(){ alert('Something went wrong. Please try again.'); });
+  });
+</script>
 </body>
 </html>

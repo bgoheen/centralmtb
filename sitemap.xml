@@ -13,11 +13,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://centralmtb.com/try-it-ride</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://centralmtb.com/girls</loc>
+    <loc>https://centralmtb.com/equipment-guide</loc>
     <priority>0.8</priority>
   </url>
   <url>
@@ -25,19 +21,15 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://centralmtb.com/equipment-guide</loc>
+    <loc>https://centralmtb.com/coach-bios</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://centralmtb.com/resources</loc>
+    <loc>https://centralmtb.com/media</loc>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://centralmtb.com/coach</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://centralmtb.com/coach-bios</loc>
     <priority>0.6</priority>
   </url>
   <url>
@@ -46,10 +38,6 @@
   </url>
   <url>
     <loc>https://centralmtb.com/lettering-criteria</loc>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://centralmtb.com/media</loc>
     <priority>0.5</priority>
   </url>
 </urlset>
