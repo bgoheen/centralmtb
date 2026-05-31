@@ -14,198 +14,973 @@
   <link rel="icon" type="image/png" href="/images/logo-64.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ===========================================================
+   CENTRAL MTB · PARENT GUIDE
+   Design system: warm off-black + cream + hi-vis red accent
+   Matches homepage aesthetic exactly.
+   =========================================================== */
+
+:root {
+  --ink:         #0A0A0A;
+  --ink-2:       #161616;
+  --ink-3:       #242424;
+  --bone:        #F5F5F5;
+  --bone-dim:    #BABABA;
+  --bone-low:    #707070;
+  --line:        rgba(245,245,245,0.12);
+  --line-strong: rgba(245,245,245,0.28);
+
+  --acid:        #C2282D;
+  --acid-dim:    #D63E43;
+  --acid-deep:   #7A1A1D;
+
+  --display: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+  --body:    "Roboto", system-ui, -apple-system, sans-serif;
+
+  --maxw:    1440px;
+  --gutter:  clamp(16px, 4vw, 40px);
+  --section-y: clamp(64px, 10vw, 120px);
+
+  --ease:    cubic-bezier(0.16, 1, 0.3, 1);
+  --t-fast:  180ms;
+  --t-med:   320ms;
+  --t-slow:  520ms;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--ink);
+  color: var(--bone);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.55;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; border: 0; background: 0; color: inherit; }
+::selection { background: var(--acid); color: var(--ink); }
+
+.skip {
+  position: absolute; left: -9999px; top: 0;
+  background: var(--acid); color: var(--ink);
+  padding: 12px 18px; font-weight: 700; z-index: 100;
+}
+.skip:focus { left: 12px; top: 12px; }
+
+a:focus-visible, button:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--acid); outline-offset: 3px; border-radius: 2px;
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* ===========================================================
+   Grain overlay
+   =========================================================== */
+.grain {
+  position: fixed; inset: 0; z-index: 99; pointer-events: none;
+  opacity: 0.06; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.85'/></svg>");
+}
+
+/* ===========================================================
+   Nav
+   =========================================================== */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(10,10,10, 0.82);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid var(--line);
+}
+.nav__inner {
+  max-width: var(--maxw); margin: 0 auto;
+  padding: 14px var(--gutter);
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+}
+.brand { display: inline-flex; align-items: center; line-height: 1; }
+.brand img {
+  height: 44px; width: auto; display: block;
+  transition: transform var(--t-fast) var(--ease);
+}
+.brand:hover img { transform: rotate(-3deg) scale(1.04); }
+
+.nav__links { display: none; gap: 28px; align-items: center; }
+@media (min-width: 960px) { .nav__links { display: inline-flex; } }
+.nav__links a {
+  font-family: var(--display); font-weight: 700; font-size: 16px;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--bone-dim); position: relative; padding: 4px 0;
+  transition: color var(--t-fast) var(--ease);
+}
+.nav__links a::after {
+  content: ""; position: absolute; left: 0; bottom: -2px;
+  height: 2px; width: 0; background: var(--acid);
+  transition: width var(--t-med) var(--ease);
+}
+.nav__links a:hover { color: var(--bone); }
+.nav__links a:hover::after { width: 100%; }
+.nav__links a.active { color: var(--bone); }
+.nav__links a.active::after { width: 100%; }
+
+.nav__cta { display: inline-flex; align-items: center; gap: 12px; }
+.nav__cta .btn { display: none; }
+@media (min-width: 720px) { .nav__cta .btn { display: inline-flex; } }
+
+.nav__burger {
+  display: inline-grid; place-items: center;
+  width: 44px; height: 44px;
+  border: 1px solid var(--line-strong); border-radius: 8px; background: transparent;
+}
+.nav__burger span { width: 18px; height: 2px; background: var(--bone); position: relative; }
+.nav__burger span::before, .nav__burger span::after {
+  content: ""; position: absolute; left: 0; width: 18px; height: 2px; background: var(--bone);
+}
+.nav__burger span::before { top: -6px; }
+.nav__burger span::after  { top: 6px; }
+@media (min-width: 960px) { .nav__burger { display: none; } }
+
+.sheet {
+  position: fixed; inset: 0; z-index: 60;
+  background: var(--ink);
+  padding: 80px var(--gutter) 40px;
+  transform: translateY(-100%);
+  transition: transform var(--t-slow) var(--ease);
+  visibility: hidden;
+}
+.sheet[data-open="true"] { transform: translateY(0); visibility: visible; }
+.sheet a {
+  display: block;
+  font-family: var(--display); font-weight: 800;
+  font-size: clamp(36px, 9vw, 56px);
+  letter-spacing: -0.01em; text-transform: uppercase;
+  color: var(--bone); padding: 14px 0; border-bottom: 1px solid var(--line);
+}
+.sheet a:hover, .sheet a:focus { color: var(--acid); }
+.sheet__close {
+  position: absolute; top: 22px; right: var(--gutter);
+  width: 44px; height: 44px;
+  border: 1px solid var(--line-strong); border-radius: 8px;
+  display: grid; place-items: center;
+  font-family: var(--display); font-weight: 800; font-size: 28px; color: var(--bone);
+}
+
+/* ===========================================================
+   Buttons
+   =========================================================== */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--display); font-weight: 800; font-size: 17px;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 14px 22px; border-radius: 8px;
+  transition: transform var(--t-fast) var(--ease),
+              background var(--t-fast) var(--ease),
+              color var(--t-fast) var(--ease),
+              box-shadow var(--t-fast) var(--ease);
+  will-change: transform; line-height: 1;
+}
+.btn--primary {
+  background: var(--acid); color: var(--bone);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.2) inset, 0 12px 28px -16px rgba(194,40,45,0.55);
+}
+.btn--primary:hover { background: var(--acid-dim); transform: translateY(-2px); }
+.btn--primary:active { transform: translateY(1px); }
+.btn--ghost {
+  background: transparent; color: var(--bone); border: 1px solid var(--line-strong);
+}
+.btn--ghost:hover { background: var(--ink-2); border-color: var(--bone-dim); }
+.btn--ghost:active { transform: translateY(1px); }
+.btn--small { padding: 10px 16px; font-size: 14px; }
+.btn .arrow { display: inline-block; transition: transform var(--t-med) var(--ease); }
+.btn:hover .arrow { transform: translateX(4px); }
+
+/* ===========================================================
+   Topo pattern utility
+   =========================================================== */
+.topo {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0.08;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'><g fill='none' stroke='%23F5F5F5' stroke-width='1'><path d='M0,400 Q200,300 400,400 T800,400'/><path d='M0,440 Q200,340 400,440 T800,440'/><path d='M0,480 Q200,380 400,480 T800,480'/><path d='M0,520 Q200,420 400,520 T800,520'/><path d='M0,360 Q200,260 400,360 T800,360'/><path d='M0,320 Q200,220 400,320 T800,320'/><path d='M0,280 Q200,180 400,280 T800,280'/><path d='M0,560 Q200,460 400,560 T800,560'/><path d='M0,600 Q200,500 400,600 T800,600'/></g></svg>");
+  background-size: 800px 800px;
+}
+
+/* ===========================================================
+   Section scaffolding
+   =========================================================== */
+.section { position: relative; padding: var(--section-y) 0; }
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+
+.section__label {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: var(--display); font-weight: 700; font-size: 13px;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--acid); margin-bottom: 16px;
+}
+.section__label .num {
+  font-size: 12px; background: transparent; border: 1px solid var(--acid);
+  padding: 2px 6px; border-radius: 2px;
+}
+.section__title {
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(42px, 7vw, 88px);
+  line-height: 0.92; letter-spacing: -0.02em; text-transform: uppercase;
+  text-wrap: balance; max-width: 18ch;
+}
+.section__title em { font-style: normal; color: var(--acid); }
+.section__lede {
+  margin-top: 22px;
+  font-size: clamp(17px, 1.5vw, 19px);
+  color: var(--bone-dim); max-width: 60ch; line-height: 1.6;
+}
+
+/* ===========================================================
+   Scroll reveal
+   =========================================================== */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.55s var(--ease), transform 0.55s var(--ease); }
+.reveal.is-in { opacity: 1; transform: translateY(0); }
+
+/* ===========================================================
+   PAGE HERO - condensed banner version
+   =========================================================== */
+.page-hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink-2);
+  border-bottom: 1px solid var(--line);
+  padding: clamp(60px, 10vw, 120px) 0 clamp(50px, 8vw, 100px);
+}
+.page-hero .topo { opacity: 0.06; }
+.page-hero__inner {
+  position: relative; z-index: 2;
+  max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter);
+  display: grid; gap: 20px;
+}
+.breadcrumb {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--display); font-weight: 700; font-size: 13px;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--bone-low);
+}
+.breadcrumb a { color: var(--bone-low); transition: color var(--t-fast) var(--ease); }
+.breadcrumb a:hover { color: var(--acid); }
+.breadcrumb span { color: var(--acid); font-size: 10px; }
+.page-hero h1 {
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(60px, 12vw, 160px);
+  line-height: 0.86; letter-spacing: -0.025em; text-transform: uppercase;
+  color: var(--bone); text-wrap: balance; max-width: 14ch;
+}
+.page-hero h1 em { font-style: normal; color: var(--acid); }
+.page-hero__sub {
+  font-size: clamp(17px, 1.5vw, 19px); color: var(--bone-dim);
+  max-width: 56ch; line-height: 1.55;
+}
+.page-hero__sub a { color: var(--acid); border-bottom: 1px solid var(--acid-deep); }
+.page-hero__sub a:hover { border-bottom-color: var(--acid); }
+
+/* ===========================================================
+   Two-column layout: content + sidebar
+   =========================================================== */
+.content-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: start;
+}
+@media (min-width: 1024px) {
+  .content-layout {
+    grid-template-columns: 1fr 280px;
+    gap: clamp(40px, 5vw, 70px);
+  }
+}
+
+.content-main { display: grid; gap: 0; }
+
+/* Sticky sidebar */
+.sidebar {
+  position: sticky; top: 84px;
+  display: none;
+}
+@media (min-width: 1024px) {
+  .sidebar { display: block; }
+}
+.sidebar__card {
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.sidebar__section { padding: 22px 24px; border-bottom: 1px solid var(--line); }
+.sidebar__section:last-child { border-bottom: 0; }
+.sidebar__heading {
+  font-family: var(--display); font-weight: 700; font-size: 11px;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--bone-low);
+  margin-bottom: 14px;
+}
+.sidebar__nav { display: grid; gap: 2px; }
+.sidebar__nav a {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--display); font-weight: 700; font-size: 15px;
+  letter-spacing: 0.02em; text-transform: uppercase;
+  color: var(--bone-dim); padding: 9px 12px; border-radius: 6px;
+  transition: color var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
+}
+.sidebar__nav a::before {
+  content: ""; display: block; width: 5px; height: 5px;
+  background: var(--acid-deep); border-radius: 50%; flex-shrink: 0;
+  transition: background var(--t-fast) var(--ease);
+}
+.sidebar__nav a:hover { color: var(--bone); background: rgba(245,245,245,0.04); }
+.sidebar__nav a:hover::before { background: var(--acid); }
+.sidebar__cta { padding: 22px 24px; }
+.sidebar__cta .btn { width: 100%; justify-content: center; }
+
+/* ===========================================================
+   Section dividers within content
+   =========================================================== */
+.content-section {
+  padding: clamp(56px, 8vw, 96px) 0;
+  border-bottom: 1px solid var(--line);
+}
+.content-section:first-child { padding-top: 0; }
+.content-section:last-child { border-bottom: 0; }
+
+.section-head { margin-bottom: clamp(32px, 4vw, 50px); }
+.section-head h2 {
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(34px, 5vw, 58px);
+  line-height: 0.92; letter-spacing: -0.02em; text-transform: uppercase;
+  color: var(--bone); margin-top: 10px;
+}
+.section-head h2 em { font-style: normal; color: var(--acid); }
+
+/* ===========================================================
+   Org cards - 3 up grid
+   =========================================================== */
+.org-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+@media (min-width: 640px) {
+  .org-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.org-card {
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: clamp(22px, 3vw, 32px);
+  position: relative;
+  overflow: hidden;
+  transition: border-color var(--t-med) var(--ease), transform var(--t-med) var(--ease);
+}
+.org-card:hover { border-color: var(--line-strong); transform: translateY(-3px); }
+.org-card__label {
+  font-family: var(--display); font-weight: 700; font-size: 11px;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--acid);
+  margin-bottom: 10px;
+}
+.org-card h4 {
+  font-family: var(--display); font-weight: 800;
+  font-size: clamp(22px, 2.5vw, 30px); line-height: 1;
+  letter-spacing: -0.01em; text-transform: uppercase;
+  color: var(--bone); margin-bottom: 12px;
+}
+.org-card h4 a { color: inherit; border-bottom: 1px solid var(--acid-deep); transition: border-color var(--t-fast) var(--ease); }
+.org-card h4 a:hover { border-color: var(--acid); }
+.org-card p {
+  font-size: 14.5px; color: var(--bone-dim); line-height: 1.6;
+}
+
+/* ===========================================================
+   Eligibility lists
+   =========================================================== */
+.elig-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+@media (min-width: 640px) {
+  .elig-grid { grid-template-columns: repeat(2, 1fr); }
+}
+.elig-card {
+  background: var(--ink-2); border: 1px solid var(--line); border-radius: 14px; padding: 28px;
+}
+.elig-card--yes { border-top: 2px solid var(--acid); }
+.elig-card--no  { border-top: 2px solid var(--bone-low); }
+.elig-card__head {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 18px;
+}
+.elig-card__head span {
+  font-family: var(--display); font-weight: 800; font-size: 20px;
+  letter-spacing: -0.01em; text-transform: uppercase;
+}
+.elig-card--yes .elig-card__head span { color: var(--acid); }
+.elig-card--no  .elig-card__head span { color: var(--bone-low); }
+.elig-card ul { list-style: none; display: grid; gap: 10px; }
+.elig-card ul li {
+  display: flex; gap: 12px; align-items: baseline;
+  color: var(--bone-dim); font-size: 15px; line-height: 1.5;
+}
+.elig-card ul li::before {
+  content: ""; flex: 0 0 6px; height: 1px;
+  display: inline-block; transform: translateY(-4px);
+}
+.elig-card--yes ul li::before { background: var(--acid); }
+.elig-card--no  ul li::before { background: var(--bone-low); }
+.elig-card ul li a { color: var(--acid); border-bottom: 1px solid var(--acid-deep); }
+.elig-card ul li a:hover { border-color: var(--acid); }
+
+.info-box {
+  margin-top: 20px;
+  background: rgba(194,40,45,0.08);
+  border: 1px solid rgba(194,40,45,0.22);
+  border-radius: 10px; padding: 18px 22px;
+  font-size: 14.5px; color: var(--bone-dim); line-height: 1.55;
+}
+.info-box a { color: var(--acid); border-bottom: 1px solid var(--acid-deep); }
+.info-box a:hover { border-color: var(--acid); }
+
+/* ===========================================================
+   Schedule
+   =========================================================== */
+.sched-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2px;
+  margin: 0 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--line);
+}
+@media (min-width: 640px) {
+  .sched-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.sched-item {
+  background: var(--ink-2);
+  padding: 26px 28px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.sched-day {
+  font-family: var(--display); font-weight: 900; font-size: clamp(22px, 3vw, 32px);
+  letter-spacing: -0.01em; text-transform: uppercase; color: var(--bone);
+}
+.sched-time {
+  font-family: var(--display); font-weight: 700; font-size: 15px;
+  letter-spacing: 0.06em; color: var(--acid); text-transform: uppercase;
+}
+.content-prose {
+  font-size: 16px; color: var(--bone-dim); line-height: 1.65;
+  max-width: 68ch;
+}
+.content-prose + .content-prose { margin-top: 14px; }
+.content-prose strong { color: var(--bone); font-weight: 500; }
+.content-prose h3 {
+  font-family: var(--display); font-weight: 800; font-size: clamp(20px, 2.5vw, 26px);
+  letter-spacing: -0.01em; text-transform: uppercase;
+  color: var(--bone); margin-top: 28px; margin-bottom: 10px;
+}
+
+/* ===========================================================
+   Cost table - homepage style
+   =========================================================== */
+.cost-table { margin-top: clamp(32px, 4vw, 48px); border-top: 1px solid var(--line); }
+.cost-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 18px;
+  align-items: baseline;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+  transition: background var(--t-fast) var(--ease);
+}
+.cost-row:hover { background: rgba(245,245,245,0.02); margin: 0 -12px; padding: 20px 12px; }
+.cost-name {
+  font-family: var(--display); font-weight: 700;
+  font-size: clamp(18px, 2vw, 24px); text-transform: uppercase;
+  letter-spacing: -0.005em; color: var(--bone); line-height: 1.1;
+}
+.cost-name small {
+  display: block; font-family: var(--body); font-weight: 400;
+  font-size: 13px; text-transform: none; letter-spacing: 0;
+  color: var(--bone-low); margin-top: 4px;
+}
+.tag {
+  font-family: var(--display); font-weight: 700; font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 5px 10px; border-radius: 3px; white-space: nowrap; line-height: 1;
+}
+.tag--req  { background: var(--acid); color: var(--ink); }
+.tag--rec  { background: transparent; color: var(--bone-dim); border: 1px solid var(--line-strong); }
+.tag--opt  { background: transparent; color: var(--bone-low); border: 1px solid var(--line); }
+.tag--race { background: var(--ink-3); color: var(--bone); border: 1px solid var(--line); }
+.cost-price {
+  font-family: var(--display); font-weight: 800;
+  font-size: clamp(20px, 2.2vw, 26px); color: var(--bone);
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 600px) {
+  .cost-row {
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "name price" "tag tag";
+    row-gap: 8px;
+  }
+  .cost-name  { grid-area: name; }
+  .cost-price { grid-area: price; }
+  .tag        { grid-area: tag; justify-self: start; }
+}
+.cost-note {
+  margin-top: 24px; font-size: 14px; color: var(--bone-low);
+  max-width: 60ch; line-height: 1.6;
+}
+.cost-note a { color: var(--acid); border-bottom: 1px solid var(--acid-deep); }
+.cost-note a:hover { border-color: var(--acid); }
+
+/* ===========================================================
+   FAQ - details/summary
+   =========================================================== */
+.faq__list { margin-top: 0; display: grid; gap: 0; }
+.faq__item { border-top: 1px solid var(--line); }
+.faq__item:last-child { border-bottom: 1px solid var(--line); }
+.faq__item summary {
+  list-style: none; cursor: pointer; padding: 24px 0;
+  display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: center;
+  font-family: var(--display); font-weight: 700;
+  font-size: clamp(18px, 2vw, 24px); text-transform: uppercase;
+  letter-spacing: -0.005em; color: var(--bone); line-height: 1.15;
+  transition: color var(--t-fast) var(--ease);
+}
+.faq__item summary::-webkit-details-marker { display: none; }
+.faq__item summary:hover { color: var(--acid); }
+.faq__item .plus {
+  width: 34px; height: 34px;
+  border: 1px solid var(--line-strong); border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: var(--display); font-weight: 800; font-size: 20px;
+  color: var(--bone-dim);
+  transition: transform var(--t-med) var(--ease), background var(--t-med) var(--ease), color var(--t-med) var(--ease);
+  flex-shrink: 0;
+}
+.faq__item[open] .plus { transform: rotate(45deg); background: var(--acid); color: var(--ink); border-color: var(--acid); }
+.faq__answer {
+  padding: 0 0 26px; max-width: 70ch; color: var(--bone-dim);
+  font-size: 16px; line-height: 1.65;
+}
+.faq__answer a { color: var(--acid); border-bottom: 1px solid var(--acid-deep); }
+.faq__answer a:hover { border-color: var(--acid); }
+
+/* ===========================================================
+   Footer
+   =========================================================== */
+.footer {
+  background: var(--ink); border-top: 1px solid var(--line);
+  padding: 60px var(--gutter) 32px;
+}
+.footer__inner {
+  max-width: var(--maxw); margin: 0 auto; display: grid; gap: 40px;
+}
+@media (min-width: 720px) {
+  .footer__inner { grid-template-columns: 2fr 1fr 1fr; }
+}
+.footer__brand img { height: 72px; width: auto; display: block; margin-bottom: 16px; }
+.footer__brand p { font-size: 13px; color: var(--bone-low); max-width: 36ch; line-height: 1.55; }
+.footer__col h4 {
+  font-family: var(--display); font-weight: 700; font-size: 13px;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--bone-low); margin-bottom: 14px;
+}
+.footer__col ul { list-style: none; display: grid; gap: 8px; }
+.footer__col a { color: var(--bone-dim); font-size: 15px; transition: color var(--t-fast) var(--ease); }
+.footer__col a:hover { color: var(--bone); }
+.footer__bottom {
+  max-width: var(--maxw); margin: 40px auto 0;
+  padding-top: 24px; border-top: 1px solid var(--line);
+  display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between;
+  font-size: 13px; color: var(--bone-low);
+}
+
+/* ===========================================================
+   Final CTA strip
+   =========================================================== */
+.cta-final {
+  position: relative; background: var(--acid); color: var(--ink); overflow: hidden;
+}
+.cta-final__inner {
+  max-width: var(--maxw); margin: 0 auto;
+  padding: clamp(64px, 10vw, 120px) var(--gutter);
+  display: grid; gap: 22px; position: relative; z-index: 2;
+}
+.cta-final h2 {
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(56px, 12vw, 160px);
+  line-height: 0.86; letter-spacing: -0.025em; text-transform: uppercase;
+  color: var(--ink); text-wrap: balance; max-width: 14ch;
+}
+.cta-final p {
+  font-size: clamp(17px, 1.5vw, 19px); color: rgba(10,10,10,0.78);
+  max-width: 56ch; line-height: 1.55;
+}
+.cta-final .btn--primary {
+  background: var(--ink); color: var(--bone);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset;
+}
+.cta-final .btn--primary:hover { background: #1A1A1A; }
+.cta-final .btn--ghost { border-color: rgba(10,10,10,0.25); color: var(--ink); }
+.cta-final__topo {
+  position: absolute; inset: 0; opacity: 0.16; z-index: 1; pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'><g fill='none' stroke='%230A0A0A' stroke-width='1.2'><path d='M0,400 Q200,300 400,400 T800,400'/><path d='M0,440 Q200,340 400,440 T800,440'/><path d='M0,480 Q200,380 400,480 T800,480'/><path d='M0,520 Q200,420 400,520 T800,520'/><path d='M0,360 Q200,260 400,360 T800,360'/><path d='M0,320 Q200,220 400,320 T800,320'/><path d='M0,280 Q200,180 400,280 T800,280'/><path d='M0,560 Q200,460 400,560 T800,560'/><path d='M0,600 Q200,500 400,600 T800,600'/></g></svg>");
+  background-size: 800px 800px;
+}
+</style>
 </head>
 <body>
-  <script src="/includes/header.js"></script>
 
+<a href="#main" class="skip">Skip to content</a>
+<div class="grain" aria-hidden="true"></div>
 
-  <!-- ====== PAGE HEADER ====== -->
-  <header class="page-header">
-    <div class="container">
-      <div class="breadcrumb"><a href="/">Home</a> / Parent Guide</div>
-      <h1>Parent Guide</h1>
-      <p>Everything you need to know about the St. Paul Central Mountain Bike Team.<br>Questions? <a href="mailto:hello@centralmtb.com" style="color:var(--red)">Contact us</a>.</p>
+<!-- ====== HEADER (via header.js) ====== -->
+<script src="/includes/header.js"></script>
+
+<main id="main">
+
+  <!-- ====== PAGE HERO ====== -->
+  <div class="page-hero">
+    <div class="topo" aria-hidden="true"></div>
+    <div class="page-hero__inner">
+      <div class="breadcrumb reveal">
+        <a href="/">Home</a>
+        <span>›</span>
+        Parent Guide
+      </div>
+      <h1 class="reveal">Parent<br><em>Guide.</em></h1>
+      <p class="page-hero__sub reveal">
+        Everything you need to know about the St. Paul Central Mountain Bike Team.
+        Questions? <a href="mailto:hello@centralmtb.com">Contact us</a>.
+      </p>
     </div>
-  </header>
+  </div>
 
   <!-- ====== MAIN CONTENT ====== -->
   <section class="section">
-    <div class="container">
-      <div class="page-grid">
-        <div class="content">
+    <div class="wrap">
+      <div class="content-layout">
+
+        <!-- Content -->
+        <div class="content-main">
 
           <!-- Organizations -->
-          <div class="org-cards">
-            <div class="org-card">
-              <h4>Central MTB</h4>
-              <p>St. Paul Central MTB is a club for riders in 6th–12th grade. We are a volunteer-run program with <a href="/coach-bios">licensed coaches</a> to help mentor, train, and enrich the experience for kids in the sport of mountain biking.</p>
+          <div class="content-section reveal" id="overview">
+            <div class="section-head">
+              <div class="section__label"><span class="num">01</span> The Organizations</div>
+              <h2>Who's <em>involved.</em></h2>
             </div>
-            <div class="org-card">
-              <h4><a href="https://minnesotacycling.org/" target="_blank" rel="noopener">MCA</a></h4>
-              <p>Founded in 2012, the Minnesota Cycling Association manages races, oversees coach licensing, and handles student-athlete registration. Its mission: strong minds, strong bodies, and strong character.</p>
-            </div>
-            <div class="org-card">
-              <h4><a href="https://minnesotacycling.org/mca-grrls/" target="_blank" rel="noopener">MCA GRRLS</a></h4>
-              <p>MCA GRRLS is dedicated to attracting and retaining female student-athletes, coaches, and volunteers - acknowledging that females may need different approaches to feel genuinely welcome.</p>
+            <div class="org-grid">
+              <div class="org-card">
+                <div class="org-card__label">Your Team</div>
+                <h4>Central MTB</h4>
+                <p>St. Paul Central MTB is a club for riders in 6th–12th grade. We are a volunteer-run program with <a href="/coach-bios" style="color:var(--acid);border-bottom:1px solid var(--acid-deep)">licensed coaches</a> to help mentor, train, and enrich the experience for kids in the sport of mountain biking.</p>
+              </div>
+              <div class="org-card">
+                <div class="org-card__label">Our League</div>
+                <h4><a href="https://minnesotacycling.org/" target="_blank" rel="noopener">MCA</a></h4>
+                <p>Founded in 2012, the Minnesota Cycling Association manages races, oversees coach licensing, and handles student-athlete registration. Its mission: strong minds, strong bodies, and strong character.</p>
+              </div>
+              <div class="org-card">
+                <div class="org-card__label">Female Athletes</div>
+                <h4><a href="https://minnesotacycling.org/mca-grrls/" target="_blank" rel="noopener">MCA GRRLS</a></h4>
+                <p>MCA GRRLS is dedicated to attracting and retaining female student-athletes, coaches, and volunteers - acknowledging that females may need different approaches to feel genuinely welcome.</p>
+              </div>
             </div>
           </div>
-
-          <hr class="section-divider">
 
           <!-- Eligibility -->
-          <div id="eligibility">
-            <span class="s-label">Eligibility</span>
-            <h2>Who Can Join</h2>
-
-            <h3>Eligible</h3>
-            <ul>
-              <li>6th–12th grade students attending almost any St. Paul school (see below)</li>
-              <li>Home-schooled students living within District 625 boundaries</li>
-            </ul>
-
-            <h3>Not Eligible</h3>
-            <ul>
-              <li>Students attending Highland Park high school or middle school - please contact the <a href="https://www.spymtb.org/" target="_blank" rel="noopener">SPY MTB team</a></li>
-            </ul>
-
+          <div class="content-section reveal" id="eligibility">
+            <div class="section-head">
+              <div class="section__label"><span class="num">02</span> Eligibility</div>
+              <h2>Who can <em>join.</em></h2>
+            </div>
+            <div class="elig-grid">
+              <div class="elig-card elig-card--yes">
+                <div class="elig-card__head">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--acid)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Eligible</span>
+                </div>
+                <ul>
+                  <li>6th–12th grade students attending almost any St. Paul school</li>
+                  <li>Home-schooled students living within District 625 boundaries</li>
+                </ul>
+              </div>
+              <div class="elig-card elig-card--no">
+                <div class="elig-card__head">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--bone-low)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                  <span>Not Eligible</span>
+                </div>
+                <ul>
+                  <li>Students attending Highland Park high school or middle school - please contact the <a href="https://www.spymtb.org/" target="_blank" rel="noopener">SPY MTB team</a></li>
+                </ul>
+              </div>
+            </div>
             <div class="info-box">
-              <p>Not sure if your school qualifies? <a href="mailto:hello@centralmtb.com">Email us</a> and we'll help you figure it out.</p>
+              Not sure if your school qualifies? <a href="mailto:hello@centralmtb.com">Email us</a> and we'll help you figure it out.
             </div>
           </div>
-
-          <hr class="section-divider">
 
           <!-- Schedule -->
-          <div id="schedule">
-            <span class="s-label">Practices</span>
-            <h2>Schedule &amp; Transportation</h2>
-
-            <div class="sched-grid">
-              <div class="sched-item"><span class="sched-day">Tuesday</span><span class="sched-time">5:30 – 7:30pm</span></div>
-              <div class="sched-item"><span class="sched-day">Thursday</span><span class="sched-time">5:30 – 7:30pm</span></div>
-              <div class="sched-item"><span class="sched-day">Saturday</span><span class="sched-time">9:30 – 11:30am</span></div>
+          <div class="content-section reveal" id="schedule">
+            <div class="section-head">
+              <div class="section__label"><span class="num">03</span> Practices</div>
+              <h2>Schedule &amp; <em>transport.</em></h2>
             </div>
-
-            <p>The season runs from early July through mid-October. Participation is flexible based on your schedule.</p>
-
-            <h3>Transportation</h3>
-            <p>Student athletes and their parents are responsible for transportation to and from practices. If this is an issue, there is a carpool channel in our team app where other parents may be able to help.</p>
-
-            <div class="info-box">
-              <p><strong>Note:</strong> MCA rules do not allow coaches to help with transportation.</p>
+            <div class="sched-grid">
+              <div class="sched-item">
+                <span class="sched-day">Tuesday</span>
+                <span class="sched-time">5:30 – 7:30 pm</span>
+              </div>
+              <div class="sched-item">
+                <span class="sched-day">Thursday</span>
+                <span class="sched-time">5:30 – 7:30 pm</span>
+              </div>
+              <div class="sched-item">
+                <span class="sched-day">Saturday</span>
+                <span class="sched-time">9:30 – 11:30 am</span>
+              </div>
+            </div>
+            <p class="content-prose">The season runs from early July through mid-October. Participation is flexible based on your schedule.</p>
+            <h3 class="content-prose" style="font-family:var(--display);font-weight:800;font-size:clamp(20px,2.5vw,26px);letter-spacing:-0.01em;text-transform:uppercase;color:var(--bone);margin-top:32px;margin-bottom:12px;">Transportation</h3>
+            <p class="content-prose">Student athletes and their parents are responsible for transportation to and from practices. If this is an issue, there is a carpool channel in our team app where other parents may be able to help.</p>
+            <div class="info-box" style="margin-top:20px">
+              <strong style="color:var(--bone)">Note:</strong> MCA rules do not allow coaches to help with transportation.
             </div>
           </div>
-
-          <hr class="section-divider">
 
           <!-- Equipment & Fees -->
-          <div id="costs">
-            <span class="s-label">Equipment &amp; Fees</span>
-            <h2>What It Costs</h2>
+          <div class="content-section reveal" id="costs">
+            <div class="section-head">
+              <div class="section__label"><span class="num">04</span> Equipment &amp; Fees</div>
+              <h2>What it <em>costs.</em></h2>
+            </div>
+            <p class="content-prose">See the full <a href="/equipment-guide" style="color:var(--acid);border-bottom:1px solid var(--acid-deep)">Equipment Guide</a> for detailed recommendations on bikes, helmets, and gear.</p>
 
-            <p>See the full <a href="/equipment-guide">Equipment Guide</a> for detailed recommendations on bikes, helmets, and gear.</p>
-
-            <div class="tbl-wrap">
-              <table class="cost-tbl">
-                <thead><tr><th>Item</th><th>Required?</th><th>Est. Cost</th></tr></thead>
-                <tbody>
-                  <tr><td>Mountain Bike (hardtail or full suspension)</td><td class="req">Required</td><td>$500+</td></tr>
-                  <tr><td>Helmet (MIPS recommended)</td><td class="req">Required</td><td>~$60</td></tr>
-                  <tr><td>Cycling Gloves</td><td class="opt">Recommended</td><td>~$25</td></tr>
-                  <tr><td>Protective Eyewear</td><td class="opt">Recommended</td><td>~$50</td></tr>
-                  <tr><td>MCA Athlete Registration</td><td class="req">Required</td><td>$125</td></tr>
-                  <tr><td>St. Paul Central MTB Team Dues</td><td class="req">Required</td><td>$90</td></tr>
-                  <tr><td>Team Jersey (racing only)</td><td class="opt">Racing only</td><td>~$60</td></tr>
-                  <tr><td>Season Race Entry (5 races)</td><td class="opt">Optional</td><td>$175+</td></tr>
-                </tbody>
-              </table>
-
-              <div class="cost-cards">
-                <div class="cost-card"><div class="cost-card-info"><div class="cost-card-name">Mountain Bike</div><div class="cost-card-req req">Required</div></div><div class="cost-card-price">$500+</div></div>
-                <div class="cost-card"><div class="cost-card-info"><div class="cost-card-name">Helmet (MIPS recommended)</div><div class="cost-card-req req">Required</div></div><div class="cost-card-price">~$60</div></div>
-                <div class="cost-card"><div class="cost-card-info"><div class="cost-card-name">Cycling Gloves</div><div class="cost-card-req opt">Recommended</div></div><div class="cost-card-price">~$25</div></div>
-                <div class="cost-card"><div class="cost-card-info"><div class="cost-card-name">Protective Eyewear</div><div class="cost-card-req opt">Recommended</div></div><div class="cost-card-price">~$50</div></div>
-                <div class="cost-card"><div class="cost-card-info"><div class="cost-card-name">MCA Athlete Registration</div><div class="cost-card-req req">Required</div></div><div class="cost-card-price">$125</div></div>
-                <div class="cost-card"><div class="cost-card-info"><div class="cost-card-name">Team Dues</div><div class="cost-card-req req">Required</div></div><div class="cost-card-price">$90</div></div>
-                <div class="cost-card"><div class="cost-card-info"><div class="cost-card-name">Team Jersey</div><div class="cost-card-req opt">Racing only</div></div><div class="cost-card-price">~$60</div></div>
-                <div class="cost-card"><div class="cost-card-info"><div class="cost-card-name">Season Race Entry (5 races)</div><div class="cost-card-req opt">Optional</div></div><div class="cost-card-price">$175+</div></div>
+            <div class="cost-table">
+              <div class="cost-row">
+                <div class="cost-name">Mountain Bike<small>Hardtail or full suspension</small></div>
+                <span class="tag tag--req">Required</span>
+                <span class="cost-price">$500+</span>
+              </div>
+              <div class="cost-row">
+                <div class="cost-name">Helmet<small>MIPS recommended</small></div>
+                <span class="tag tag--req">Required</span>
+                <span class="cost-price">~$60</span>
+              </div>
+              <div class="cost-row">
+                <div class="cost-name">Cycling Gloves</div>
+                <span class="tag tag--rec">Recommended</span>
+                <span class="cost-price">~$25</span>
+              </div>
+              <div class="cost-row">
+                <div class="cost-name">Protective Eyewear</div>
+                <span class="tag tag--rec">Recommended</span>
+                <span class="cost-price">~$50</span>
+              </div>
+              <div class="cost-row">
+                <div class="cost-name">MCA Athlete Registration</div>
+                <span class="tag tag--req">Required</span>
+                <span class="cost-price">$125</span>
+              </div>
+              <div class="cost-row">
+                <div class="cost-name">St. Paul Central MTB Team Dues</div>
+                <span class="tag tag--req">Required</span>
+                <span class="cost-price">$90</span>
+              </div>
+              <div class="cost-row">
+                <div class="cost-name">Team Jersey<small>Racing only</small></div>
+                <span class="tag tag--race">Racing</span>
+                <span class="cost-price">~$60</span>
+              </div>
+              <div class="cost-row">
+                <div class="cost-name">Season Race Entry<small>5 races</small></div>
+                <span class="tag tag--opt">Optional</span>
+                <span class="cost-price">$175+</span>
               </div>
             </div>
-            </div>
-
-          <hr class="section-divider">
+            <p class="cost-note">Financial assistance may be available. <a href="mailto:hello@centralmtb.com">Reach out</a> and we'll find a way to make it work.</p>
+          </div>
 
           <!-- FAQ -->
-          <div id="faq">
-            <span class="s-label">FAQs</span>
-            <h2>Frequently Asked Questions</h2>
-
-            <div class="faq-list">
-              <div class="faq-item">
-                <button class="faq-q" aria-expanded="false">How do I sign up?<span class="faq-ic" aria-hidden="true">+</span></button>
-                <div class="faq-a" role="region"><div class="faq-a-inner">Complete <a href="/join">this form</a> and we will send more information about the team and how to join.</div></div>
-              </div>
-              <div class="faq-item">
-                <button class="faq-q" aria-expanded="false">Can parents ride?<span class="faq-ic" aria-hidden="true">+</span></button>
-                <div class="faq-a" role="region"><div class="faq-a-inner">We love having parents that want to help out. You can participate in one ride (after signing a waiver) before you need to register as a coach.</div></div>
-              </div>
-              <div class="faq-item">
-                <button class="faq-q" aria-expanded="false">What's the time commitment?<span class="faq-ic" aria-hidden="true">+</span></button>
-                <div class="faq-a" role="region"><div class="faq-a-inner">Practices are held Tuesday and Thursday evenings, and Saturday mornings. The season is early July through mid-October. Participation is flexible based on your schedule.</div></div>
-              </div>
-              <div class="faq-item">
-                <button class="faq-q" aria-expanded="false">Is racing required?<span class="faq-ic" aria-hidden="true">+</span></button>
-                <div class="faq-a" role="region"><div class="faq-a-inner">Participation in races is optional. Students are welcome to join practices and enjoy the sport without racing.</div></div>
-              </div>
-              <div class="faq-item">
-                <button class="faq-q" aria-expanded="false">How long are the races?<span class="faq-ic" aria-hidden="true">+</span></button>
-                <div class="faq-a" role="region"><div class="faq-a-inner">Races are typically a 4-mile cross-country style loop. Length varies per grade: 6th–8th graders do one lap, freshmen and JV2 do two laps, JV3 does three laps, and varsity does four laps.</div></div>
-              </div>
+          <div class="content-section reveal" id="faq">
+            <div class="section-head">
+              <div class="section__label"><span class="num">05</span> FAQs</div>
+              <h2>Common <em>questions.</em></h2>
+            </div>
+            <div class="faq__list">
+              <details class="faq__item">
+                <summary>How do I sign up?<span class="plus" aria-hidden="true">+</span></summary>
+                <div class="faq__answer">Complete <a href="/join">this form</a> and we will send more information about the team and how to join.</div>
+              </details>
+              <details class="faq__item">
+                <summary>Can parents ride?<span class="plus" aria-hidden="true">+</span></summary>
+                <div class="faq__answer">We love having parents that want to help out. You can participate in one ride (after signing a waiver) before you need to register as a coach.</div>
+              </details>
+              <details class="faq__item">
+                <summary>What's the time commitment?<span class="plus" aria-hidden="true">+</span></summary>
+                <div class="faq__answer">Practices are held Tuesday and Thursday evenings, and Saturday mornings. The season is early July through mid-October. Participation is flexible based on your schedule.</div>
+              </details>
+              <details class="faq__item">
+                <summary>Is racing required?<span class="plus" aria-hidden="true">+</span></summary>
+                <div class="faq__answer">Participation in races is optional. Students are welcome to join practices and enjoy the sport without racing.</div>
+              </details>
+              <details class="faq__item">
+                <summary>How long are the races?<span class="plus" aria-hidden="true">+</span></summary>
+                <div class="faq__answer">Races are typically a 4-mile cross-country style loop. Length varies per grade: 6th–8th graders do one lap, freshmen and JV2 do two laps, JV3 does three laps, and varsity does four laps.</div>
+              </details>
             </div>
           </div>
 
-        </div>
+        </div><!-- /content-main -->
 
         <!-- Sidebar -->
-        <aside class="page-sidebar">
-          <h4>On This Page</h4>
-          <a href="#eligibility">Eligibility</a>
-          <a href="#schedule">Practices &amp; Schedule</a>
-          <a href="#costs">Equipment &amp; Fees</a>
-          <a href="#faq">FAQs</a>
-          <h4 style="margin-top:20px">Related</h4>
-          <a href="/equipment-guide">Equipment Guide</a>
-          <a href="/lettering-criteria">Lettering Criteria</a>
-          <a href="/join">Join the Team</a>
+        <aside class="sidebar">
+          <div class="sidebar__card">
+            <div class="sidebar__section">
+              <div class="sidebar__heading">On This Page</div>
+              <nav class="sidebar__nav" aria-label="Page sections">
+                <a href="#overview">Organizations</a>
+                <a href="#eligibility">Eligibility</a>
+                <a href="#schedule">Schedule &amp; Transport</a>
+                <a href="#costs">Equipment &amp; Fees</a>
+                <a href="#faq">FAQs</a>
+              </nav>
+            </div>
+            <div class="sidebar__section">
+              <div class="sidebar__heading">Related</div>
+              <nav class="sidebar__nav">
+                <a href="/equipment-guide">Equipment Guide</a>
+                <a href="/lettering-criteria">Lettering Criteria</a>
+                <a href="/coaches">Coach Bios</a>
+              </nav>
+            </div>
+            <div class="sidebar__cta">
+              <a href="/join" class="btn btn--primary">
+                Join the Team <span class="arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
         </aside>
+
+      </div><!-- /content-layout -->
+    </div><!-- /wrap -->
+  </section>
+
+  <!-- ====== FINAL CTA ====== -->
+  <section class="cta-final">
+    <div class="cta-final__topo" aria-hidden="true"></div>
+    <div class="cta-final__inner">
+      <div class="section__label" style="color:var(--ink);opacity:0.75;">
+        <span class="num" style="border-color:var(--ink);color:var(--ink);">06</span> Drop In
+      </div>
+      <h2>Ready to ride?</h2>
+      <p>Join the team and experience the trails with us - first-timers and seasoned shredders both. We'll teach you the rest.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="/join" class="btn btn--primary">
+          Join the Team <span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="/equipment-guide" class="btn btn--ghost" style="border-color:rgba(10,10,10,0.25);color:var(--ink);">Equipment Guide</a>
       </div>
     </div>
   </section>
 
-  <!-- FAQ toggle -->
-  <script>
-  document.querySelectorAll(".faq-q").forEach(function(btn){
-    btn.addEventListener("click",function(){
-      var item=this.closest(".faq-item");
-      var isOpen=item.classList.contains("on");
-      // Close all open items first
-      document.querySelectorAll(".faq-item.on").forEach(function(openItem){
-        openItem.classList.remove("on");
-        openItem.querySelector(".faq-q").setAttribute("aria-expanded","false");
-        openItem.querySelector(".faq-a").style.maxHeight="0";
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div>
+      <div class="footer__brand">
+        <img src="/images/logo.png" alt="St. Paul Central Mountain Bike Team" width="127" height="240">
+        <p>Youth mountain biking for grades 6–12 in Saint Paul, Minnesota. A volunteer-run program affiliated with the Minnesota Cycling Association.</p>
+      </div>
+    </div>
+    <div class="footer__col">
+      <h4>The Team</h4>
+      <ul>
+        <li><a href="/join">Join</a></li>
+        <li><a href="/parent-guide">Parent Guide</a></li>
+        <li><a href="/equipment-guide">Equipment Guide</a></li>
+        <li><a href="/coaches">Coaches</a></li>
+        <li><a href="/media">Media</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="/sponsors">Sponsors</a></li>
+        <li><a href="/shop">Shop</a></li>
+        <li><a href="#" data-mail="hello">Contact</a></li>
+        <li><a href="https://minnesotacycling.org/">MN Cycling Assoc.</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <span>&copy; <span id="year">2026</span> St. Paul Central Mountain Bike Team</span>
+    <span>Built by riders &amp; parents. Powered by dirt.</span>
+  </div>
+</footer>
+
+<script>
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // FAQ one-open-at-a-time
+  (function(){
+    var items = document.querySelectorAll('.faq__item');
+    items.forEach(function(item){
+      item.addEventListener('toggle', function(){
+        if (item.open) {
+          items.forEach(function(other){
+            if (other !== item && other.open) other.open = false;
+          });
+        }
       });
-      // If it wasn't already open, open it
-      if(!isOpen){
-        var answer=this.nextElementSibling;
-        answer.style.maxHeight=answer.scrollHeight+"px";
-        item.classList.add("on");
-        this.setAttribute("aria-expanded","true");
-      }
     });
-  });
-  </script>
-  <script src="/includes/footer.js"></script>
+  })();
+
+  // Email hydration (Cloudflare-safe)
+  (function(){
+    var d1 = 'centralmtb', d2 = 'com';
+    document.querySelectorAll('a[data-mail]').forEach(function(a){
+      var user = a.getAttribute('data-mail') || 'hello';
+      a.setAttribute('href', 'mailto:' + user + '@' + d1 + '.' + d2);
+    });
+    // Also hydrate the plain mailto links on this page
+    document.querySelectorAll('a[href="mailto:hello@centralmtb.com"]').forEach(function(a){
+      a.setAttribute('href', 'mailto:hello@centralmtb' + '.' + 'com');
+    });
+  })();
+
+  // Scroll reveal
+  (function(){
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  })();
+</script>
+
+<script src="/includes/footer.js"></script>
 </body>
 </html>
