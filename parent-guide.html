@@ -672,6 +672,21 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'><g fill='none' stroke='%230A0A0A' stroke-width='1.2'><path d='M0,400 Q200,300 400,400 T800,400'/><path d='M0,440 Q200,340 400,440 T800,440'/><path d='M0,480 Q200,380 400,480 T800,480'/><path d='M0,520 Q200,420 400,520 T800,520'/><path d='M0,360 Q200,260 400,360 T800,360'/><path d='M0,320 Q200,220 400,320 T800,320'/><path d='M0,280 Q200,180 400,280 T800,280'/><path d='M0,560 Q200,460 400,560 T800,560'/><path d='M0,600 Q200,500 400,600 T800,600'/></g></svg>");
   background-size: 800px 800px;
 }
+
+.footer__social {
+  display: flex; gap: 14px; margin-top: 18px; align-items: center;
+}
+.footer__social a {
+  color: var(--bone-low);
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px;
+  border: 1px solid var(--line-strong); border-radius: 8px;
+  transition: color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
+}
+.footer__social a:hover {
+  color: var(--bone); border-color: var(--acid); background: rgba(194,40,45,0.08);
+}
+
 </style>
 </head>
 <body>
@@ -976,45 +991,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   })();
 </script>
 
-<footer class="footer">
-  <div class="footer__inner">
-    <div>
-      <div class="footer__brand">
-        <img src="/images/logo.png" alt="St. Paul Central Mountain Bike Team" width="127" height="240">
-        <p>Youth mountain biking for grades 6–12 in Saint Paul, Minnesota. A volunteer-run program affiliated with the Minnesota Cycling Association.</p>
-      </div>
-    </div>
-    <div class="footer__col">
-      <h4>Ride</h4>
-      <ul>
-        <li><a href="/parent-guide">Parent Guide</a></li>
-        <li><a href="/equipment-guide">Equipment Guide</a></li>
-        <li><a href="/lettering-criteria">Lettering Criteria</a></li>
-        <li><a href="/girls">Girls Try-It-Ride</a></li>
-      </ul>
-    </div>
-    <div class="footer__col">
-      <h4>The Team</h4>
-      <ul>
-        <li><a href="/coach-bios">Coach Bios</a></li>
-        <li><a href="/captain">Captain Application</a></li>
-        <li><a href="/media">Media</a></li>
-        <li><a href="/join">Join the Team</a></li>
-      </ul>
-    </div>
-    <div class="footer__col">
-      <h4>Support</h4>
-      <ul>
-        <li><a href="/sponsor">Become a Sponsor</a></li>
-        <li><a href="https://shop.centralmtb.com/">Shop</a></li>
-        <li><a href="#" data-mail="hello">Contact</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer__bottom">
-    <span>&copy; <span id="year">2026</span> St. Paul Central Mountain Bike Team</span>
-    <span>Built by riders &amp; parents. Powered by dirt.</span>
-  </div>
-</footer>
+
+<script src="/includes/footer.js"></script>
 </body>
 </html>

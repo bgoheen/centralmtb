@@ -448,6 +448,21 @@ a:focus-visible, button:focus-visible {
   .footer__col a { font-size: 16px; }
   .footer__brand p { font-size: 14px; }
 }
+
+.footer__social {
+  display: flex; gap: 14px; margin-top: 18px; align-items: center;
+}
+.footer__social a {
+  color: var(--bone-low);
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px;
+  border: 1px solid var(--line-strong); border-radius: 8px;
+  transition: color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
+}
+.footer__social a:hover {
+  color: var(--bone); border-color: var(--acid); background: rgba(194,40,45,0.08);
+}
+
 </style>
 </head>
 <body>
@@ -632,46 +647,6 @@ a:focus-visible, button:focus-visible {
 
 </main>
 
-<footer class="footer">
-  <div class="footer__inner">
-    <div>
-      <div class="footer__brand">
-        <img src="/images/logo.png" alt="St. Paul Central Mountain Bike Team" width="127" height="240">
-        <p>Youth mountain biking for grades 6–12 in Saint Paul, Minnesota. A volunteer-run program affiliated with the Minnesota Cycling Association.</p>
-      </div>
-    </div>
-    <div class="footer__col">
-      <h4>Ride</h4>
-      <ul>
-        <li><a href="/parent-guide">Parent Guide</a></li>
-        <li><a href="/equipment-guide">Equipment Guide</a></li>
-        <li><a href="/lettering-criteria">Lettering Criteria</a></li>
-        <li><a href="/girls">Girls Try-It-Ride</a></li>
-      </ul>
-    </div>
-    <div class="footer__col">
-      <h4>The Team</h4>
-      <ul>
-        <li><a href="/coach-bios">Coach Bios</a></li>
-        <li><a href="/captain">Captain Application</a></li>
-        <li><a href="/media">Media</a></li>
-        <li><a href="/join">Join the Team</a></li>
-      </ul>
-    </div>
-    <div class="footer__col">
-      <h4>Support</h4>
-      <ul>
-        <li><a href="/sponsor">Become a Sponsor</a></li>
-        <li><a href="https://shop.centralmtb.com/">Shop</a></li>
-        <li><a href="#" data-mail="hello">Contact</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer__bottom">
-    <span>&copy; <span id="year">2026</span> St. Paul Central Mountain Bike Team</span>
-    <span>Built by riders &amp; parents. Powered by dirt.</span>
-  </div>
-</footer>
 
 <script>
   // Year
@@ -686,5 +661,7 @@ a:focus-visible, button:focus-visible {
     });
   })();
 </script>
+
+<script src="/includes/footer.js"></script>
 </body>
 </html>
