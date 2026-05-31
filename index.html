@@ -919,7 +919,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   gap: 40px;
 }
 @media (min-width: 720px) {
-  .footer__inner { grid-template-columns: 2fr 1fr 1fr; }
+  .footer__inner { grid-template-columns: 2fr 1fr 1fr 1fr; }
 }
 .footer__brand img {
   height: 72px;
@@ -1014,42 +1014,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 <div class="grain" aria-hidden="true"></div>
 
 <!-- Nav -->
-<header class="nav">
-  <div class="nav__inner">
-    <a href="/" class="brand" aria-label="St. Paul Central Mountain Bike Team - Home">
-      <img src="/images/logo.png" alt="" width="127" height="240">
-      <span class="sr-only">St. Paul Central Mountain Bike Team</span>
-    </a>
-    <nav class="nav__links" aria-label="Primary">
-      <a href="#crew">Our Crew</a>
-      <a href="#how-it-works">How It Works</a>
-      <a href="#costs">Costs</a>
-      <a href="#faq">FAQs</a>
-      <a href="/parent-guide">Parent Guide</a>
-      <a href="/shop">Shop</a>
-      <a href="/sponsors">Sponsors</a>
-    </nav>
-    <div class="nav__cta">
-      <a href="/join" class="btn btn--primary btn--small">Join the Team</a>
-      <button class="nav__burger" aria-label="Open menu" aria-expanded="false" data-menu-open>
-        <span></span>
-      </button>
-    </div>
-  </div>
-</header>
-
-<!-- Mobile sheet -->
-<aside class="sheet" data-sheet aria-hidden="true">
-  <button class="sheet__close" aria-label="Close menu" data-menu-close>&times;</button>
-  <a href="#crew">Our Crew</a>
-  <a href="#how-it-works">How It Works</a>
-  <a href="#costs">Costs</a>
-  <a href="#faq">FAQs</a>
-  <a href="/parent-guide">Parent Guide</a>
-  <a href="/shop">Shop</a>
-  <a href="/sponsors">Sponsors</a>
-  <a href="/join">Join the Team</a>
-</aside>
+<script src="/includes/header.js"></script>
 
 <main id="main">
 
@@ -1467,22 +1432,29 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
       </div>
     </div>
     <div class="footer__col">
-      <h4>The Team</h4>
+      <h4>Ride</h4>
       <ul>
-        <li><a href="/join">Join</a></li>
         <li><a href="/parent-guide">Parent Guide</a></li>
         <li><a href="/equipment-guide">Equipment Guide</a></li>
-        <li><a href="/coaches">Coaches</a></li>
+        <li><a href="/lettering-criteria">Lettering Criteria</a></li>
+        <li><a href="/girls">Girls Try-It-Ride</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4>The Team</h4>
+      <ul>
+        <li><a href="/coach-bios">Coach Bios</a></li>
+        <li><a href="/captain">Captain Application</a></li>
         <li><a href="/media">Media</a></li>
+        <li><a href="/join">Join the Team</a></li>
       </ul>
     </div>
     <div class="footer__col">
       <h4>Support</h4>
       <ul>
-        <li><a href="/sponsors">Sponsors</a></li>
-        <li><a href="/shop">Shop</a></li>
+        <li><a href="/sponsor">Become a Sponsor</a></li>
+        <li><a href="https://shop.centralmtb.com/">Shop</a></li>
         <li><a href="#" data-mail="hello">Contact</a></li>
-        <li><a href="https://www.mncycling.org/">MN Cycling Assoc.</a></li>
       </ul>
     </div>
   </div>
@@ -1495,32 +1467,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 <script>
   // ---- Year ----
   document.getElementById('year').textContent = new Date().getFullYear();
-
-  // ---- Mobile sheet ----
-  (function(){
-    var openBtn  = document.querySelector('[data-menu-open]');
-    var closeBtn = document.querySelector('[data-menu-close]');
-    var sheet    = document.querySelector('[data-sheet]');
-    if (!openBtn || !closeBtn || !sheet) return;
-    function open(){
-      sheet.setAttribute('data-open', 'true');
-      sheet.setAttribute('aria-hidden', 'false');
-      openBtn.setAttribute('aria-expanded', 'true');
-      document.body.style.overflow = 'hidden';
-    }
-    function close(){
-      sheet.setAttribute('data-open', 'false');
-      sheet.setAttribute('aria-hidden', 'true');
-      openBtn.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    }
-    openBtn.addEventListener('click', open);
-    closeBtn.addEventListener('click', close);
-    sheet.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', close); });
-    document.addEventListener('keydown', function(e){
-      if (e.key === 'Escape' && sheet.getAttribute('data-open') === 'true') close();
-    });
-  })();
 
   // ---- FAQ accordion: only one open at a time ----
   (function(){
