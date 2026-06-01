@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lost on the Trail | St. Paul Central Mountain Bike Team</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" href="/images/logo-64.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .not-found {
+      min-height: calc(100vh - 80px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(64px, 10vw, 120px) clamp(16px, 4vw, 40px);
+      text-align: center;
+      background: #0A0A0A;
+    }
+    .not-found__inner {
+      max-width: 640px;
+    }
+    .not-found__code {
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 900;
+      font-size: clamp(120px, 20vw, 220px);
+      line-height: 0.85;
+      letter-spacing: -0.04em;
+      color: #C2282D;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .not-found__heading {
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 900;
+      font-size: clamp(36px, 6vw, 72px);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: #F5F5F5;
+      margin-bottom: 20px;
+    }
+    .not-found__heading em {
+      font-style: normal;
+      color: #C2282D;
+    }
+    .not-found__body {
+      font-family: "Roboto", sans-serif;
+      font-size: clamp(15px, 2vw, 18px);
+      color: #707070;
+      line-height: 1.6;
+      max-width: 42ch;
+      margin: 0 auto 36px;
+    }
+    .not-found__actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-404-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 800;
+      font-size: 17px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 14px 24px;
+      border-radius: 8px;
+      background: #C2282D;
+      color: #F5F5F5;
+      text-decoration: none;
+      transition: background 180ms ease;
+    }
+    .btn-404-primary:hover { background: #D63E43; }
+    .btn-404-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 800;
+      font-size: 17px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 14px 24px;
+      border-radius: 8px;
+      background: transparent;
+      color: #BABABA;
+      border: 1px solid rgba(245,245,245,0.28);
+      text-decoration: none;
+      transition: border-color 180ms ease, color 180ms ease;
+    }
+    .btn-404-ghost:hover { border-color: rgba(245,245,245,0.6); color: #F5F5F5; }
+  </style>
+</head>
+<body>
+<script src="/includes/header.js"></script>
+
+<div class="not-found">
+  <div class="not-found__inner">
+    <span class="not-found__code">404</span>
+    <h1 class="not-found__heading">Lost on the <em>trail.</em></h1>
+    <p class="not-found__body">Looks like this page took a wrong turn somewhere. It may have moved, been removed, or never existed in the first place.</p>
+    <div class="not-found__actions">
+      <a href="/" class="btn-404-primary">Back to Home →</a>
+      <a href="/join" class="btn-404-ghost">Join the Team</a>
+      <a href="/parent-guide" class="btn-404-ghost">Parent Guide</a>
+    </div>
+  </div>
+</div>
+
+<script src="/includes/footer.js"></script>
+</body>
+</html>
