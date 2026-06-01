@@ -944,7 +944,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 
 <script>
   // Year
-  document.getElementById('year').textContent = new Date().getFullYear();
+  var yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   // FAQ one-open-at-a-time
   (function(){
