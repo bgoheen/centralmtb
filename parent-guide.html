@@ -947,7 +947,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   document.getElementById('year').textContent = new Date().getFullYear();
 
   // FAQ one-open-at-a-time
-  document.addEventListener('DOMContentLoaded', function(){
+  (function(){
     var items = document.querySelectorAll('.faq__item');
     items.forEach(function(item){
       item.querySelector('summary').addEventListener('click', function(){
@@ -958,7 +958,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
         }
       });
     });
-  });
+  })();
 
   // Email hydration (Cloudflare-safe)
   (function(){
