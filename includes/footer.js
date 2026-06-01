@@ -1,6 +1,40 @@
 // Central MTB Footer Include
 
 (function(){
+
+  // Inject footer styles
+  var style = document.createElement('style');
+  style.textContent = `
+    .footer-treeline {
+      display: block;
+      line-height: 0;
+      background: linear-gradient(to bottom, #C2282D 0%, #0A0A0A 100%);
+      margin-top: -2px;
+    }
+    .footer-treeline img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .footer__brand-link {
+      display: inline-block;
+      line-height: 0;
+    }
+    .footer__brand-link img {
+      transition: transform 180ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .footer__brand-link:hover img {
+      transform: rotate(-3deg) scale(1.04);
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Treeline transition
+  var treeline = document.createElement('div');
+  treeline.innerHTML = '<div class="footer-treeline" aria-hidden="true"><img src="/images/treeline.png" alt=""></div>';
+  document.body.appendChild(treeline.firstElementChild);
+
+  // Footer
   var footer = document.createElement('div');
   footer.innerHTML = `
 <footer class="footer">
