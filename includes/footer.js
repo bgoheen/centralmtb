@@ -9,7 +9,7 @@
       display: block;
       line-height: 0;
       background: #C2282D;
-      margin-top: -2px;
+      margin-top: -120px;
     }
     .footer-treeline img {
       display: block;
