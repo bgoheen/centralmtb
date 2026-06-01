@@ -950,12 +950,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   (function(){
     var items = document.querySelectorAll('.faq__item');
     items.forEach(function(item){
-      item.querySelector('summary').addEventListener('click', function(){
-        if (!item.open) {
-          items.forEach(function(other){
-            if (other !== item) other.open = false;
-          });
-        }
+      item.querySelector('summary').addEventListener('click', function(e){
+        e.preventDefault();
+        var isOpen = item.open;
+        items.forEach(function(other){ other.open = false; });
+        if (!isOpen) item.open = true;
       });
     });
   })();
