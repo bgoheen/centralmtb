@@ -7,7 +7,9 @@
   <div class="footer__inner">
     <div>
       <div class="footer__brand">
-        <img src="/images/logo.png" alt="St. Paul Central Mountain Bike Team" width="127" height="240">
+        <a href="/" aria-label="Central MTB Home" class="footer__brand-link">
+          <img src="/images/logo.png" alt="St. Paul Central Mountain Bike Team" width="127" height="240">
+        </a>
         <p>Youth mountain biking for grades 6&ndash;12 in St. Paul, Minnesota. A volunteer-run program affiliated with the Minnesota Cycling Association.</p>
         <div class="footer__social">
           <a href="https://www.instagram.com/spcmtb_official" target="_blank" rel="noopener" aria-label="Central MTB on Instagram">

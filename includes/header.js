@@ -31,7 +31,7 @@ document.write(`
     <a href="/equipment-guide">Equipment Guide</a>
     <a href="/coach-bios">Coaches</a>
     <a href="/media">Media</a>
-    <a href="/join">Join the Team</a>
+    <a href="/join" style="color:var(--acid);">Join the Team</a>
   </div>
 
   <script>
