@@ -9,13 +9,14 @@
       display: block;
       line-height: 0;
       background: #C2282D;
-      margin-top: -120px;
+      margin-top: -2px;
     }
     .footer-treeline img {
       display: block;
       width: 100%;
       height: auto;
     }
+    .cta-final { padding-bottom: 20px !important; }
     .footer {
       border-top: none !important;
     }
