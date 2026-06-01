@@ -8,13 +8,16 @@
     .footer-treeline {
       display: block;
       line-height: 0;
-      background: linear-gradient(to bottom, #C2282D 0%, #0A0A0A 100%);
+      background: #C2282D;
       margin-top: -2px;
     }
     .footer-treeline img {
       display: block;
       width: 100%;
       height: auto;
+    }
+    .footer {
+      border-top: none !important;
     }
     .footer__brand-link {
       display: inline-block;
