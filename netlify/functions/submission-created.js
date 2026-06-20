@@ -78,10 +78,10 @@ function getTemplate(season, data) {
   const common = {
     hejaBlock: [
       "",
-      "We handle all of our team communication and updates through the Heja app, so please make sure to download it and turn on notifications.",
+      "We handle all of our team communication and updates through an app called Heja. Please make sure to download it and turn on notifications.",
       "",
-      "Heja App: https://heja.io/download/WD027099",
-      "Team code: WD-027099",
+      "Heja App: https://heja.io/download/PF057607",
+      "Team code: PF-057607",
       "",
     ].join("\n"),
     signoff: [
@@ -114,9 +114,9 @@ function getTemplate(season, data) {
       text: [
         greeting,
         "",
-        "My name is Ben Goheen, and I'm the team admin. I've copied our head coach and my wife, Rebecca, here as well.",
+        "My name is Ben Goheen and I'm the team admin. I've copied our head coach and my wife, Rebecca, here as well.",
         "",
-        "Registration for the team and the Minnesota Cycling Association (MCA) is now open, and practices will start in early July. Join the team by registering here:",
+        "Registration for the team and the league (Minnesota Cycling Association) is now open and practices will start in early July. Join the team by registering here:",
         "",
         "https://ccnbikes.com/#!/events/st-paul-central-2026",
         "Passcode: Central2026",
