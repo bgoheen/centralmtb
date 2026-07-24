@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" href="/images/logo-64.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --red: #C2282D;
@@ -28,7 +28,7 @@
     body {
       font-family: var(--font-b);
       font-size: 16px;
-      font-weight: 400;
+      font-weight: 300;
       line-height: 1.6;
       color: var(--text);
       background: var(--bg);
@@ -99,7 +99,7 @@
       min-height: 320px;
       font-family: var(--font-b);
       font-size: 15px;
-      font-weight: 400;
+      font-weight: 300;
       line-height: 1.7;
       color: var(--text);
       border: 1px solid var(--border);
@@ -133,10 +133,22 @@
     }
     .recipient-chip .email { font-weight: 400; }
     .recipient-chip .role { color: var(--text-muted); font-size: 12px; }
+    .recipient-chip .remove-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1;
+      padding: 0 2px;
+      margin-left: 4px;
+      transition: color 0.2s;
+    }
+    .recipient-chip .remove-btn:hover { color: var(--red); }
 
     /* CC section */
     .cc-section { margin-top: 16px; }
-    .cc-label { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; }
+    .cc-label { font-size: 13px; color: var(--text-muted); margin-bottom: 6px; }
     .cc-checkboxes label {
       display: flex;
       align-items: center;
@@ -376,33 +388,47 @@
     document.getElementById('infoExp').textContent = data['Biking Experience'] || '-';
 
     // ---------------------------------------------------------------------------
-    // Recipients
+    // Recipients (editable - can remove duplicates or unwanted)
     // ---------------------------------------------------------------------------
     const riderEmail = data['Rider Email'] || '';
     const p1Email = data['Parent 1 Email'] || '';
     const p2Email = data['Parent 2 Email'] || '';
-    const recipientEmails = [riderEmail, p1Email, p2Email].filter(Boolean);
+
+    // Deduplicate emails while preserving labels
+    var recipientLabels = {};
+    var recipientEmails = [];
+    function addRecipient(email, label) {
+      if (!email) return;
+      if (recipientEmails.indexOf(email) === -1) {
+        recipientEmails.push(email);
+        recipientLabels[email] = label;
+      } else {
+        // Duplicate - append the role to the existing label
+        recipientLabels[email] += ' / ' + label;
+      }
+    }
+    addRecipient(riderEmail, 'Rider');
+    addRecipient(p1Email, 'Parent 1');
+    addRecipient(p2Email, 'Parent 2');
+    addRecipient('headcoach@centralmtb.com', 'Head Coach');
 
     const recipientList = document.getElementById('recipientList');
-    var recipientLabels = {};
-    if (riderEmail) recipientLabels[riderEmail] = 'Rider';
-    if (p1Email) recipientLabels[p1Email] = 'Parent 1';
-    if (p2Email) recipientLabels[p2Email] = 'Parent 2';
 
-    recipientEmails.forEach(function(email) {
-      var chip = document.createElement('div');
-      chip.className = 'recipient-chip';
-      chip.innerHTML = '<span class="email">' + email + '</span><span class="role">' + (recipientLabels[email] || '') + '</span>';
-      recipientList.appendChild(chip);
-    });
-
-    // CC emails
-    // Add head coach as a recipient
-    var coachChip = document.createElement('div');
-    coachChip.className = 'recipient-chip';
-    coachChip.innerHTML = '<span class="email">headcoach@centralmtb.com</span><span class="role">Head Coach</span>';
-    recipientList.appendChild(coachChip);
-    recipientEmails.push('headcoach@centralmtb.com');
+    function renderRecipients() {
+      recipientList.innerHTML = '';
+      recipientEmails.forEach(function(email, i) {
+        var chip = document.createElement('div');
+        chip.className = 'recipient-chip';
+        chip.innerHTML = '<span class="email">' + email + '</span><span class="role">' + (recipientLabels[email] || '') + '</span><button class="remove-btn" title="Remove">&times;</button>';
+        chip.querySelector('.remove-btn').addEventListener('click', function() {
+          recipientEmails.splice(i, 1);
+          delete recipientLabels[email];
+          renderRecipients();
+        });
+        recipientList.appendChild(chip);
+      });
+    }
+    renderRecipients();
 
     // ---------------------------------------------------------------------------
     // Populate email editor
@@ -432,6 +458,14 @@
       var card = document.getElementById('editorCard');
       card.classList.add('loading');
       btn.disabled = true;
+
+      if (recipientEmails.length === 0) {
+        alert('Please add at least one recipient.');
+        card.classList.remove('loading');
+        btn.disabled = false;
+        sending = false;
+        return;
+      }
 
       var payload = {
         recipientEmails: recipientEmails,
