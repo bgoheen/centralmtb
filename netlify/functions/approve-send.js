@@ -7,7 +7,7 @@ const https = require("https");
 // ---------------------------------------------------------------------------
 // Brevo send helper (uses their REST API directly — no SDK needed)
 // ---------------------------------------------------------------------------
-function sendEmail({ apiKey, from, to, cc, subject, text }) {
+function sendEmail({ apiKey, from, to, cc, bcc, subject, text }) {
   // Brevo requires htmlContent — convert plain text to simple HTML
   const simpleHtml = text
     .replace(/&/g, "&amp;")
@@ -26,6 +26,10 @@ function sendEmail({ apiKey, from, to, cc, subject, text }) {
 
   if (cc && cc.length) {
     payload.cc = cc.map((email) => ({ email }));
+  }
+
+  if (bcc && bcc.length) {
+    payload.bcc = bcc.map((email) => ({ email }));
   }
 
   const body = JSON.stringify(payload);
@@ -86,12 +90,14 @@ exports.handler = async (event) => {
     }
 
     const apiKey = process.env.BREVO_API_KEY;
+    const bccEmail = process.env.ADMIN_EMAIL || "bgoheen@gmail.com";
 
     await sendEmail({
       apiKey,
       from: { email: "hello@centralmtb.com", name: "Central MTB" },
       to: recipientEmails,
       cc: ccEmails,
+      bcc: [bccEmail],
       subject: subject || "Welcome to Central MTB!",
       text: text,
     });
