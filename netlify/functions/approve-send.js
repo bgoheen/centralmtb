@@ -75,11 +75,12 @@ exports.handler = async (event) => {
 
   try {
     const {
-      recipientEmails, // array of parent email(s)
+      recipientEmails, // array of To email(s)
       subject,
       text,            // the (possibly edited) plain-text email
       riderFirst,
-      ccEmails,        // optional: CC head coach / Rebecca
+      ccEmails,        // optional: CC recipients
+      bccEmails,       // optional: BCC recipients from approval page
     } = JSON.parse(event.body);
 
     if (!recipientEmails || !recipientEmails.length || !text) {
@@ -90,14 +91,20 @@ exports.handler = async (event) => {
     }
 
     const apiKey = process.env.BREVO_API_KEY;
-    const bccEmail = process.env.ADMIN_EMAIL || "bgoheen@gmail.com";
+    const adminEmail = process.env.ADMIN_EMAIL || "bgoheen@gmail.com";
+
+    // Merge any BCC from the approval page with Ben's auto-BCC
+    var allBcc = (bccEmails || []).slice();
+    if (allBcc.indexOf(adminEmail) === -1) {
+      allBcc.push(adminEmail);
+    }
 
     await sendEmail({
       apiKey,
       from: { email: "hello@centralmtb.com", name: "Central MTB" },
       to: recipientEmails,
       cc: ccEmails,
-      bcc: [bccEmail],
+      bcc: allBcc,
       subject: subject || "Welcome to Central MTB!",
       text: text,
     });
