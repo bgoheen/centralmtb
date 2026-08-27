@@ -307,6 +307,15 @@
         <div style="margin-bottom:16px;">
           <div class="field-label">To</div>
           <div class="recipients" id="recipientList"></div>
+          <div style="display:flex;gap:8px;margin-top:8px;">
+            <input type="email" id="addEmailInput" class="subject-input" placeholder="Add an email address" style="flex:1;font-size:14px;padding:8px 12px;">
+            <select id="addEmailType" class="subject-input" style="width:auto;font-size:14px;padding:8px 12px;">
+              <option value="to">To</option>
+              <option value="cc">CC</option>
+              <option value="bcc">BCC</option>
+            </select>
+            <button class="btn btn-secondary" id="addEmailBtn" style="padding:8px 16px;font-size:14px;">Add</button>
+          </div>
         </div>
 
         <div style="margin:16px 0;">
@@ -388,47 +397,72 @@
     document.getElementById('infoExp').textContent = data['Biking Experience'] || '-';
 
     // ---------------------------------------------------------------------------
-    // Recipients (editable - can remove duplicates or unwanted)
+    // Recipients (editable - can add, remove, and set type)
     // ---------------------------------------------------------------------------
     const riderEmail = data['Rider Email'] || '';
     const p1Email = data['Parent 1 Email'] || '';
     const p2Email = data['Parent 2 Email'] || '';
 
-    // Deduplicate emails while preserving labels
-    var recipientLabels = {};
-    var recipientEmails = [];
-    function addRecipient(email, label) {
+    // Each entry: { email, label, type }
+    var recipients = [];
+    function addRecipient(email, label, type) {
       if (!email) return;
-      if (recipientEmails.indexOf(email) === -1) {
-        recipientEmails.push(email);
-        recipientLabels[email] = label;
+      var existing = recipients.find(function(r) { return r.email === email; });
+      if (existing) {
+        existing.label += ' / ' + label;
       } else {
-        // Duplicate - append the role to the existing label
-        recipientLabels[email] += ' / ' + label;
+        recipients.push({ email: email, label: label, type: type || 'to' });
       }
     }
-    addRecipient(riderEmail, 'Rider');
-    addRecipient(p1Email, 'Parent 1');
-    addRecipient(p2Email, 'Parent 2');
-    addRecipient('headcoach@centralmtb.com', 'Head Coach');
+    addRecipient(riderEmail, 'Rider', 'to');
+    addRecipient(p1Email, 'Parent 1', 'to');
+    addRecipient(p2Email, 'Parent 2', 'to');
+    addRecipient('headcoach@centralmtb.com', 'Head Coach', 'to');
 
     const recipientList = document.getElementById('recipientList');
 
+    function typeLabel(type) {
+      if (type === 'cc') return 'CC';
+      if (type === 'bcc') return 'BCC';
+      return '';
+    }
+
     function renderRecipients() {
       recipientList.innerHTML = '';
-      recipientEmails.forEach(function(email, i) {
+      recipients.forEach(function(r, i) {
         var chip = document.createElement('div');
         chip.className = 'recipient-chip';
-        chip.innerHTML = '<span class="email">' + email + '</span><span class="role">' + (recipientLabels[email] || '') + '</span><button class="remove-btn" title="Remove">&times;</button>';
+        var typeBadge = r.type !== 'to' ? '<span class="role" style="background:var(--red);color:#fff;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600;">' + typeLabel(r.type) + '</span>' : '';
+        chip.innerHTML = '<span class="email">' + r.email + '</span><span class="role">' + r.label + '</span>' + typeBadge + '<button class="remove-btn" title="Remove">&times;</button>';
         chip.querySelector('.remove-btn').addEventListener('click', function() {
-          recipientEmails.splice(i, 1);
-          delete recipientLabels[email];
+          recipients.splice(i, 1);
           renderRecipients();
         });
         recipientList.appendChild(chip);
       });
     }
     renderRecipients();
+
+    // Add email button
+    var addEmailInput = document.getElementById('addEmailInput');
+    var addEmailType = document.getElementById('addEmailType');
+    document.getElementById('addEmailBtn').addEventListener('click', function() {
+      var email = addEmailInput.value.trim().toLowerCase();
+      var type = addEmailType.value;
+      if (!email || email.indexOf('@') === -1) return;
+      var existing = recipients.find(function(r) { return r.email === email; });
+      if (!existing) {
+        recipients.push({ email: email, label: 'Added', type: type });
+        renderRecipients();
+      }
+      addEmailInput.value = '';
+    });
+    addEmailInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        document.getElementById('addEmailBtn').click();
+      }
+    });
 
     // ---------------------------------------------------------------------------
     // Populate email editor
@@ -459,8 +493,12 @@
       card.classList.add('loading');
       btn.disabled = true;
 
-      if (recipientEmails.length === 0) {
-        alert('Please add at least one recipient.');
+      var toEmails = recipients.filter(function(r) { return r.type === 'to'; }).map(function(r) { return r.email; });
+      var ccEmails = recipients.filter(function(r) { return r.type === 'cc'; }).map(function(r) { return r.email; });
+      var bccEmails = recipients.filter(function(r) { return r.type === 'bcc'; }).map(function(r) { return r.email; });
+
+      if (toEmails.length === 0) {
+        alert('Please add at least one recipient in the To field.');
         card.classList.remove('loading');
         btn.disabled = false;
         sending = false;
@@ -468,7 +506,9 @@
       }
 
       var payload = {
-        recipientEmails: recipientEmails,
+        recipientEmails: toEmails,
+        ccEmails: ccEmails,
+        bccEmails: bccEmails,
         subject: subjectInput.value,
         text: emailBody.value,
         riderFirst: riderFirst,
