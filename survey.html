@@ -91,7 +91,7 @@
 <header class="hero"><div class="wrap hero-in">
   <span class="eyebrow">St. Paul Central MTB</span>
   <h1>2026 Season <span>Survey</span></h1>
-  <p class="intro">Help us plan next season. Thanks for helping make the team better.</p>
+  <p class="intro">Thanks for helping make the team better.</p>
 </div></header>
 <div class="wrap">
 
@@ -159,7 +159,7 @@
       <textarea id="t5" name="MCA Changes"></textarea>
     </div>
 
-    <button type="submit" class="submit">Submit Survey</button>
+    <button type="submit" class="submit">Submit</button>
   </form>
 
   <div class="thanks" id="thanks">
@@ -248,7 +248,7 @@
       document.getElementById('thanks').style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }).catch(() => {
-      btn.disabled = false; btn.textContent = 'Submit Survey';
+      btn.disabled = false; btn.textContent = 'Submit';
       alertBox();
     });
   });
