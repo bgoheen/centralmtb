@@ -203,7 +203,7 @@
 
     function render() {
       list.innerHTML = picks.map((p, i) =>
-        '<li class="pick"><span class="pick-num">' + (i + 1) + '</span><span class="pick-name">' + esc(p) + '</span><span class="pick-btns">' +
+        '<li class="pick"><span class="pick-num">' + (i + 1) + '</span><span class="pick-name">' + label(p) + '</span><span class="pick-btns">' +
         '<button type="button" class="pbtn" data-act="up" data-i="' + i + '" aria-label="Move ' + esc(p) + ' up"' + (i === 0 ? ' disabled' : '') + '>' + up + '</button>' +
         '<button type="button" class="pbtn" data-act="down" data-i="' + i + '" aria-label="Move ' + esc(p) + ' down"' + (i === picks.length - 1 ? ' disabled' : '') + '>' + down + '</button>' +
         '<button type="button" class="pbtn" data-act="rm" data-i="' + i + '" aria-label="Remove ' + esc(p) + '">' + xIcon + '</button></span></li>').join('');
