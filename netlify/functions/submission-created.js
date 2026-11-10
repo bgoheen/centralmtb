@@ -286,6 +286,68 @@ function buildApprovalEmail(season, data, draftText, siteUrl) {
 }
 
 // ---------------------------------------------------------------------------
+// Season survey results email (sent to Ben + Rebecca)
+// ---------------------------------------------------------------------------
+const SURVEY_FIELDS = [
+  "Role",
+  "Practice Trail Ranking",
+  "What They Like About Top Trails",
+  "Race Location Preference",
+  "Race Venue Ranking",
+  "Schedule Around Homecoming",
+  "Working Well",
+  "Could Do Better",
+  "MCA Changes",
+];
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function formatSurveyValue(field, value) {
+  if (!value) return '<span style="color:#aaa;">(no answer)</span>';
+  // Rankings arrive as "1. A, 2. B, 3. C": show one per line
+  if (field.endsWith("Ranking")) {
+    return value
+      .split(/,\s*(?=\d+\.\s)/)
+      .map(escapeHtml)
+      .join("<br>");
+  }
+  return escapeHtml(value).replace(/\n/g, "<br>");
+}
+
+function buildSurveyEmail(data) {
+  const rows = SURVEY_FIELDS.map(
+    (f) => `
+        <tr><td style="padding:10px 0 2px;"><strong style="color:#C2282D;font-size:13px;text-transform:uppercase;letter-spacing:0.04em;">${escapeHtml(f)}</strong></td></tr>
+        <tr><td style="padding:0 0 10px;border-bottom:1px solid #eee;">${formatSurveyValue(f, data[f])}</td></tr>`
+  ).join("");
+
+  return `
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"></head>
+<body style="margin:0;padding:0;background:#f5f5f5;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
+  <div style="max-width:600px;margin:24px auto;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+    <div style="background:#0f1114;padding:24px 32px;">
+      <h1 style="margin:0;color:#fff;font-size:20px;font-weight:700;">New Season Survey Response</h1>
+      <p style="margin:4px 0 0;color:#aaa;font-size:14px;">From: <strong style="color:#C2282D;">${escapeHtml(data["Role"] || "Unknown")}</strong></p>
+    </div>
+    <div style="padding:16px 32px 24px;">
+      <table style="font-size:14px;color:#333;line-height:1.6;width:100%;border-collapse:collapse;">${rows}
+      </table>
+      <p style="margin:20px 0 0;font-size:13px;color:#999;">All responses: Netlify &gt; centralmtb &gt; Forms &gt; season-survey (CSV export available).</p>
+    </div>
+  </div>
+</body>
+</html>`;
+}
+
+// ---------------------------------------------------------------------------
 // Handler
 // ---------------------------------------------------------------------------
 exports.handler = async (event) => {
@@ -302,6 +364,22 @@ exports.handler = async (event) => {
     const siteUrl = process.env.URL || "https://centralmtb.com";
     const adminEmail = process.env.ADMIN_EMAIL || "bgoheen@gmail.com";
     const rebeccaEmail = process.env.REBECCA_EMAIL || "rebeccagoheen1@gmail.com";
+
+    // Season survey: send the response to Ben + Rebecca and stop here
+    const formName = body.payload?.form_name || body.form_name || "";
+    if (formName === "season-survey") {
+      await sendEmail({
+        apiKey,
+        from: { email: "hello@centralmtb.com", name: "Central MTB" },
+        to: [adminEmail, rebeccaEmail],
+        subject: `Survey Response: ${data["Role"] || "Unknown"}`,
+        html: buildSurveyEmail(data),
+      });
+      return {
+        statusCode: 200,
+        body: JSON.stringify({ message: "Survey email sent." }),
+      };
+    }
 
     const season = getSeason(new Date());
     const template = getTemplate(season, data);

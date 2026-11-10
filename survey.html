@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026 Season Survey | St. Paul Central Mountain Bike Team</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://centralmtb.com/survey">
+<link rel="icon" type="image/png" href="/images/logo-64.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #F4F4F4; --ink-2: #FFFFFF; --ink-3: #F7F7F7;
+    --bone: #0A0A0A; --bone-dim: #444444; --bone-low: #6B6B6B;
+    --line: rgba(10,10,10,0.10); --line-strong: rgba(10,10,10,0.22);
+    --acid: #C2282D; --acid-dim: #D63E43; --acid-deep: #7A1A1D;
+    --display: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+    --body: "Roboto", system-ui, -apple-system, sans-serif;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--ink); color: var(--bone); font-family: var(--body); line-height: 1.5; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: clamp(28px, 6vw, 64px) clamp(16px, 4vw, 32px) 80px; }
+
+  .hero { background: #0A0A0A; color: #F5F5F5; }
+  .hero-in { padding-bottom: clamp(28px, 5vw, 44px); }
+  .hero .intro { color: #BABABA; margin-bottom: 0; }
+  .hero + .wrap { padding-top: 22px; }
+  .eyebrow { display: inline-block; background: var(--acid); color: #fff; font-family: var(--display); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: 13px; padding: 4px 10px; border-radius: 3px; }
+  h1 { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: clamp(44px, 9vw, 76px); line-height: .92; margin: 16px 0 14px; letter-spacing: -.01em; }
+  h1 span { color: var(--acid); }
+  .intro { color: var(--bone-dim); font-size: 17px; max-width: 560px; margin: 0 0 36px; }
+
+  .q { background: var(--ink-2); border: 1px solid var(--line); box-shadow: 0 1px 2px rgba(0,0,0,.04); border-radius: 10px; padding: 22px clamp(16px, 4vw, 26px); margin-bottom: 18px; }
+  .q.invalid { border-color: var(--acid); }
+  .q-label { display: block; font-family: var(--body); font-weight: 700; font-size: 18px; line-height: 1.3; margin: 0 0 8px; }
+  .q-label .req { color: var(--acid); }
+  .q-help { color: var(--bone-dim); font-size: 15px; margin: 0 0 14px; }
+  .q-error { display: none; color: var(--acid-dim); font-size: 14px; margin-top: 10px; }
+  .q.invalid .q-error { display: block; }
+  .new-tag { font-family: var(--body); font-size: 11px; font-weight: 700; letter-spacing: .06em; color: var(--ink); background: #e7c14a; border-radius: 3px; padding: 2px 6px; vertical-align: 4px; margin-left: 6px; }
+
+  /* choice buttons */
+  .choices { display: grid; gap: 10px; }
+  .choices.two { grid-template-columns: 1fr 1fr; }
+  .choice { position: relative; }
+  .choice input { position: absolute; opacity: 0; pointer-events: none; }
+  .choice label { display: flex; align-items: center; gap: 12px; padding: 13px 14px; border: 1px solid var(--line-strong); border-radius: 8px; cursor: pointer; transition: border-color .18s, background .18s; font-size: 16px; }
+  .choice label::before { content: ""; flex: 0 0 18px; height: 18px; border-radius: 50%; border: 2px solid var(--bone-low); transition: all .18s; }
+  .choice input:checked + label { border-color: var(--acid); background: rgba(194,40,45,.07); }
+  .choice input:checked + label::before { border-color: var(--acid); background: var(--acid); box-shadow: inset 0 0 0 3px #fff; }
+  .choice input:focus-visible + label { outline: 2px solid var(--bone); outline-offset: 2px; }
+
+  textarea { width: 100%; min-height: 96px; resize: vertical; background: #fff; color: var(--bone); border: 1px solid var(--line-strong); border-radius: 8px; padding: 12px 14px; font: 16px/1.45 var(--body); }
+  textarea:focus { outline: none; border-color: var(--acid); }
+
+  /* tap-to-rank */
+  .picks { border: 1px dashed var(--line-strong); border-radius: 8px; padding: 10px; margin-bottom: 12px; background: var(--ink-3); }
+  .picks-head { display: flex; justify-content: space-between; align-items: center; font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: .04em; font-size: 15px; color: var(--bone-dim); margin: 0 2px 8px; }
+  .clear { background: none; border: 0; color: var(--acid); font: 500 14px var(--body); cursor: pointer; padding: 4px; }
+  .clear[hidden] { display: none; }
+  .picks-empty { color: var(--bone-low); font-size: 14px; margin: 2px 2px 4px; }
+  .pick-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .pick { display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid var(--line); border-radius: 7px; padding: 6px 6px 6px 8px; }
+  .pick-num { flex: 0 0 28px; height: 28px; border-radius: 6px; display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 17px; background: var(--acid); color: #fff; }
+  .pick-name { flex: 1; font-weight: 500; font-size: 15px; }
+  .pick-btns { display: flex; gap: 4px; }
+  .pbtn { width: 34px; height: 34px; border: 1px solid var(--line-strong); background: #fff; color: var(--bone-dim); border-radius: 6px; cursor: pointer; display: grid; place-items: center; padding: 0; }
+  .pbtn:disabled { opacity: .25; cursor: default; }
+  .options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .opt { position: relative; text-align: left; min-height: 48px; padding: 10px 12px 10px 12px; border: 1px solid var(--line-strong); border-radius: 8px; background: #fff; color: var(--bone); font: 500 15px/1.25 var(--body); cursor: pointer; transition: border-color .15s, background .15s, opacity .15s; -webkit-tap-highlight-color: transparent; }
+  .opt.on { border-color: var(--acid); background: rgba(194,40,45,.07); padding-right: 40px; }
+  .opt .badge { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 26px; height: 26px; border-radius: 50%; background: var(--acid); color: #fff; font-family: var(--display); font-weight: 800; font-size: 16px; display: none; place-items: center; }
+  .opt.on .badge { display: grid; }
+  .opt:disabled { opacity: .4; cursor: default; }
+  .rank-count { color: var(--bone-low); font-size: 13px; margin: 8px 2px 0; }
+  .submit { margin-top: 10px; width: 100%; background: var(--acid); color: #fff; border: 0; border-radius: 8px; padding: 17px; font-family: var(--display); font-weight: 700; font-size: 20px; text-transform: uppercase; letter-spacing: .06em; cursor: pointer; transition: background .18s; }
+  .submit:hover { background: var(--acid-dim); }
+
+  .thanks { display: none; text-align: center; padding: 40px 0; }
+  .thanks h2 { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: 48px; margin: 0 0 10px; }
+  .thanks p { color: var(--bone-dim); }
+  .preview-note { margin-top: 28px; text-align: left; background: var(--ink-2); border: 1px dashed var(--line-strong); border-radius: 10px; padding: 18px; font-size: 14px; color: var(--bone-dim); }
+  .preview-note pre { white-space: pre-wrap; color: var(--bone); font-size: 13px; margin: 10px 0 0; }
+  .again { background: none; border: 1px solid var(--line-strong); color: var(--bone); padding: 10px 18px; border-radius: 6px; cursor: pointer; margin-top: 14px; font: 500 14px var(--body); }
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap hero-in">
+  <span class="eyebrow">St. Paul Central MTB</span>
+  <h1>2026 Season <span>Survey</span></h1>
+  <p class="intro">Help us plan next season. Thanks for helping make the team better.</p>
+</div></header>
+<div class="wrap">
+
+  <form id="survey" name="season-survey" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+    <input type="hidden" name="form-name" value="season-survey">
+    <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+    <div class="q" data-required="Role">
+      <span class="q-label">I am a... <span class="req">*</span></span>
+      <div class="choices two">
+        <div class="choice"><input type="radio" id="r1" name="Role" value="Student Athlete"><label for="r1">Student Athlete</label></div>
+        <div class="choice"><input type="radio" id="r2" name="Role" value="Parent / Guardian"><label for="r2">Parent / Guardian</label></div>
+      </div>
+      <div class="q-error">Please choose one.</div>
+    </div>
+
+    <div class="q">
+      <span class="q-label">Rank your top 5 trails for practices next season</span>
+      <p class="q-help">Tap your favorite first, then your next favorite, up to 5. Use the arrows to adjust the order.</p>
+      <div class="ranker" data-field="practice_trail_ranking" data-max="5" data-options="Battle Creek|Braemar|Carver|Kinnickinnic|Lebanon Hills|Salem Hills|Sunfish|Theo Wirth|Whitetail Ridge"></div>
+      <input type="hidden" name="Practice Trail Ranking">
+    </div>
+
+    <div class="q">
+      <label class="q-label" for="t1">What do you like most about your top trails?</label>
+      <textarea id="t1" name="What They Like About Top Trails"></textarea>
+    </div>
+
+    <div class="q">
+      <span class="q-label">Which do you prefer for races?</span>
+      <div class="choices">
+        <div class="choice"><input type="radio" id="l1" name="Race Location Preference" value="Race closer to home, even if the course isn't as good"><label for="l1">Race closer to home, even if the course isn't as good</label></div>
+        <div class="choice"><input type="radio" id="l2" name="Race Location Preference" value="Travel further for a better course"><label for="l2">Travel further for a better course</label></div>
+        <div class="choice"><input type="radio" id="l3" name="Race Location Preference" value="A mix of both"><label for="l3">A mix of both</label></div>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-label">Rank your top 5 race venues for next year</span>
+      <p class="q-help">Tap your favorite first, then your next favorite, up to 5. Use the arrows to adjust the order.</p>
+      <div class="ranker" data-field="race_venue_ranking" data-max="5" data-options="Xcel|Lake Rebecca|Whitetail|Brophy|Gamehaven|Theo Wirth|Cuyuna|Austin|Pine Valley|Spirit Mountain|Detroit Mountain"></div>
+      <input type="hidden" name="Race Venue Ranking">
+    </div>
+
+    <div class="q">
+      <span class="q-label">Is it important to schedule races around homecoming?</span>
+      <div class="choices two">
+        <div class="choice"><input type="radio" id="h1" name="Schedule Around Homecoming" value="Yes"><label for="h1">Yes</label></div>
+        <div class="choice"><input type="radio" id="h2" name="Schedule Around Homecoming" value="No"><label for="h2">No</label></div>
+      </div>
+    </div>
+
+    <div class="q">
+      <label class="q-label" for="t3">What's working well that we should keep doing?</label>
+      <textarea id="t3" name="Working Well"></textarea>
+    </div>
+
+    <div class="q">
+      <label class="q-label" for="t4">What could we do better, and how?</label>
+      <textarea id="t4" name="Could Do Better"></textarea>
+    </div>
+
+    <div class="q">
+      <label class="q-label" for="t5">Is there anything about MCA races or rules you'd change? Why?</label>
+      <textarea id="t5" name="MCA Changes"></textarea>
+    </div>
+
+    <button type="submit" class="submit">Submit Survey</button>
+  </form>
+
+  <div class="thanks" id="thanks">
+    <h2>Thank <span style="color:var(--acid)">you!</span></h2>
+    <p>Your feedback helps us plan a great season.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  const up = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l4-4 4 4"/></svg>';
+  const down = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5l4 4 4-4"/></svg>';
+  const xIcon = '<svg width="12" height="12" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2"><path d="M2 2l8 8M10 2l-8 8"/></svg>';
+  const esc = t => t.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+  document.querySelectorAll('.ranker').forEach(box => {
+    const options = box.dataset.options.split('|');
+    const max = +box.dataset.max;
+    const hidden = box.closest('.q').querySelector('input[type=hidden]');
+    let picks = [];
+
+    box.innerHTML =
+      '<div class="picks"><div class="picks-head"><span>Your top ' + max + '</span><button type="button" class="clear" hidden>Clear</button></div>' +
+      '<p class="picks-empty">Tap below to start ranking.</p><ol class="pick-list"></ol></div>' +
+      '<div class="options">' + options.map(o => '<button type="button" class="opt" data-v="' + esc(o) + '">' + esc(o) + '<span class="badge"></span></button>').join('') + '</div>';
+
+    const list = box.querySelector('.pick-list'), empty = box.querySelector('.picks-empty'), clear = box.querySelector('.clear');
+
+    function render() {
+      list.innerHTML = picks.map((p, i) =>
+        '<li class="pick"><span class="pick-num">' + (i + 1) + '</span><span class="pick-name">' + esc(p) + '</span><span class="pick-btns">' +
+        '<button type="button" class="pbtn" data-act="up" data-i="' + i + '" aria-label="Move ' + esc(p) + ' up"' + (i === 0 ? ' disabled' : '') + '>' + up + '</button>' +
+        '<button type="button" class="pbtn" data-act="down" data-i="' + i + '" aria-label="Move ' + esc(p) + ' down"' + (i === picks.length - 1 ? ' disabled' : '') + '>' + down + '</button>' +
+        '<button type="button" class="pbtn" data-act="rm" data-i="' + i + '" aria-label="Remove ' + esc(p) + '">' + xIcon + '</button></span></li>').join('');
+      empty.style.display = picks.length ? 'none' : '';
+      clear.hidden = !picks.length;
+      box.querySelectorAll('.opt').forEach(b => {
+        const i = picks.indexOf(b.dataset.v);
+        b.classList.toggle('on', i > -1);
+        b.querySelector('.badge').textContent = i > -1 ? i + 1 : '';
+        b.disabled = i === -1 && picks.length >= max;
+        b.setAttribute('aria-pressed', i > -1);
+      });
+      hidden.value = picks.map((p, i) => (i + 1) + '. ' + p).join(', ');
+    }
+
+    box.querySelector('.options').addEventListener('click', e => {
+      const b = e.target.closest('.opt'); if (!b) return;
+      const v = b.dataset.v, i = picks.indexOf(v);
+      if (i > -1) picks.splice(i, 1); else if (picks.length < max) picks.push(v);
+      render();
+    });
+    list.addEventListener('click', e => {
+      const b = e.target.closest('.pbtn'); if (!b) return;
+      const i = +b.dataset.i;
+      if (b.dataset.act === 'up' && i > 0) [picks[i - 1], picks[i]] = [picks[i], picks[i - 1]];
+      if (b.dataset.act === 'down' && i < picks.length - 1) [picks[i + 1], picks[i]] = [picks[i], picks[i + 1]];
+      if (b.dataset.act === 'rm') picks.splice(i, 1);
+      render();
+    });
+    clear.addEventListener('click', () => { picks = []; render(); });
+    render();
+  });
+
+  // Submit to Netlify Forms
+  const form = document.getElementById('survey');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    let ok = true;
+    form.querySelectorAll('[data-required]').forEach(q => {
+      const name = q.dataset.required;
+      const filled = !!form.querySelector('input[name="' + name + '"]:checked');
+      q.classList.toggle('invalid', !filled);
+      if (!filled) ok = false;
+    });
+    if (!ok) { form.querySelector('.invalid').scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
+    const btn = form.querySelector('.submit');
+    btn.disabled = true; btn.textContent = 'Sending...';
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toString()
+    }).then(r => {
+      if (!r.ok) throw new Error(r.status);
+      form.style.display = 'none';
+      document.getElementById('thanks').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }).catch(() => {
+      btn.disabled = false; btn.textContent = 'Submit Survey';
+      alertBox();
+    });
+  });
+  function alertBox() {
+    let el = document.getElementById('formError');
+    if (!el) {
+      el = document.createElement('p'); el.id = 'formError';
+      el.style.cssText = 'color:var(--acid);text-align:center;margin-top:12px';
+      el.textContent = 'Something went wrong sending your answers. Please check your connection and try again.';
+      form.appendChild(el);
+    }
+  }
+  form.addEventListener('change', e => {
+    const q = e.target.closest('.q.invalid');
+    if (q) q.classList.remove('invalid');
+  });
+})();
+</script>
+</body>
+</html>
