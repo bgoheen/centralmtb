@@ -84,6 +84,9 @@
   .opt .badge { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 26px; height: 26px; border-radius: 50%; background: var(--acid); color: #fff; font-family: var(--display); font-weight: 800; font-size: 16px; display: none; place-items: center; }
   .opt.on .badge { display: grid; }
   .opt:disabled { opacity: .4; cursor: default; }
+  .options.one { grid-template-columns: 1fr; }
+  .opt, .pick-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .city { color: var(--bone-low); font-weight: 400; }
   .rank-count { color: var(--bone-low); font-size: 13px; margin: 8px 2px 0; }
   .submit { margin-top: 10px; width: 100%; background: var(--acid); color: #fff; border: 0; border-radius: 8px; padding: 17px; font-family: var(--display); font-weight: 700; font-size: 20px; text-transform: uppercase; letter-spacing: .06em; cursor: pointer; transition: background .18s; }
   .submit:hover { background: var(--acid-dim); }
@@ -141,7 +144,7 @@
     <div class="q">
       <span class="q-label">Rank your top 5 race venues for next year</span>
       <p class="q-help">Tap your favorite first, then your next favorite, up to 5. Use the arrows to adjust the order.</p>
-      <div class="ranker" data-field="race_venue_ranking" data-max="5" data-options="Xcel|Lake Rebecca|Whitetail|Brophy|Gamehaven|Theo Wirth|Cuyuna|Austin|Pine Valley|Spirit Mountain|Detroit Mountain"></div>
+      <div class="ranker" data-field="race_venue_ranking" data-max="5" data-cols="1" data-options="Xcel (Shakopee)|Whitetail (River Falls)|Gamehaven (Rochester)|Cuyuna (Crosby)|Pine Valley (Cloquet)|Lake Rebecca (Rockford)|Brophy (Alexandria)|Theo Wirth (Minneapolis)|Schindler's Way (Austin)|Detroit Mountain (Detroit Lakes)"></div>
       <input type="hidden" name="Race Venue Ranking">
     </div>
 
@@ -182,6 +185,7 @@
   const up = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l4-4 4 4"/></svg>';
   const down = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5l4 4 4-4"/></svg>';
   const xIcon = '<svg width="12" height="12" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2"><path d="M2 2l8 8M10 2l-8 8"/></svg>';
+  const label = o => { const m = o.match(/^(.*?)\s*(\(.*\))$/); return m ? esc(m[1]) + ' <span class="city">' + esc(m[2]) + '</span>' : esc(o); };
   const esc = t => t.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
   document.querySelectorAll('.ranker').forEach(box => {
@@ -193,7 +197,7 @@
     box.innerHTML =
       '<div class="picks"><div class="picks-head"><span>Your top ' + max + '</span><button type="button" class="clear" hidden>Clear</button></div>' +
       '<p class="picks-empty">Tap below to start ranking.</p><ol class="pick-list"></ol></div>' +
-      '<div class="options">' + options.map(o => '<button type="button" class="opt" data-v="' + esc(o) + '">' + esc(o) + '<span class="badge"></span></button>').join('') + '</div>';
+      '<div class="options' + (box.dataset.cols === '1' ? ' one' : '') + '">' + options.map(o => '<button type="button" class="opt" data-v="' + esc(o) + '">' + label(o) + '<span class="badge"></span></button>').join('') + '</div>';
 
     const list = box.querySelector('.pick-list'), empty = box.querySelector('.picks-empty'), clear = box.querySelector('.clear');
 
